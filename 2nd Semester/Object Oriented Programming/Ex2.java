@@ -39,9 +39,9 @@ public class Ex2 {
 			}
 		
 	// Método para imprimir pessoas com um determinado número de telefone
-		public static void imprimirPessoasDadoTelefone(Pessoa pessoas[], String telefone) {
+		public static void imprimirTelefoneDadoNome(Pessoa pessoas[], String nome) {
 			for (Pessoa p : pessoas) {
-				if (p.getTelefone().equals(telefone)) {
+				if (p.getNome().contains(nome)) {
 					System.out.println(p + "\n");
 				}
 			}
@@ -141,7 +141,7 @@ public class Ex2 {
 			//imprimirPessoasDadoEstadoCivil(pessoas, 's');
 		
 		// Impressão das pessoas com um determinado número de telefone
-			//imprimirPessoasDadoTelefone(pessoas, "272000004");
+			//imprimirTelefoneDadoNome(pessoas, "T");
 					
 		// Impressão das pessoas que dado o telefone, aparece o nome e morada
 			//imprimirNomeMoradaDadoTelefone(pessoas, "272000005");
