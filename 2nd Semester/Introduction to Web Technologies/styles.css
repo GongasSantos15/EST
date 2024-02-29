@@ -8,6 +8,7 @@ table {
     width: 80%;
     height: 250px;
     border-color: white;
+    background-color: rgb(5, 75, 5);
 }
 
 th {
@@ -17,4 +18,13 @@ th {
 table td {
     text-align: center;
     margin: 0px;
+}
+
+#logo {
+    background-color: rgb(105, 105, 105);
+    text-align: center;
+    font-size: 30px;
+    height: 40px;
+    width: 95%;
+    margin: 20px;
 }
