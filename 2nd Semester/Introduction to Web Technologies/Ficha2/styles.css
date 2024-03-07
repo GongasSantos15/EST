@@ -1,0 +1,71 @@
+body {
+    background-color: #CECECE;
+}
+
+#container {
+    width: 763px;
+    margin: auto;
+    background-image:url("../imagens/fundo.gif");
+}
+
+#header {
+    width: 100%;
+    height: 100px;
+}
+
+.logo {
+    float: left;
+    padding: 10px;
+}
+
+#navbar ul {
+    padding-top: 40px;
+    float: right;
+}
+
+#navbar li {
+    list-style-type: none;
+    float: left;
+    margin-right: 25px;
+}
+
+#navbar a {
+    color: #231F20;
+    text-decoration: none;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+#navbar a:hover {
+    padding-top: 6px;
+    border-top: 2px rgb(255, 72, 0) solid;
+}
+
+#navbar a:active {
+    padding-top: 6px;
+    border-top: 2px rgb(0, 4, 255) solid;
+}
+
+#banner {
+    width: 100%;
+    height: 154px;
+    position: relative;
+}
+
+#botao {
+    position: absolute;
+    top: 100px;
+    right: 6px;
+}
+
+#section {
+    width: 100%;
+    height: 300px;
+}
+
+.article {
+    width: 25%;
+    height: 250px;
+    margin: 5px;
+    float: left;
+}
