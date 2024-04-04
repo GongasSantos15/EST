@@ -1,18 +1,20 @@
 package securest.recurso;
 
+import java.util.Objects;
+
 public class Funcionario {
 	private int id, nivelAcesso;
 	private String nome;
 	private Instalacao instalacao;
 
-	/* Construtor */
+	/* -------------------------------------------------------- CONSTRUTOR -------------------------------------------------------------- */
 	public Funcionario(int id, String nome, int nivelAcesso) {
 		this.id = id;
 		setNome(nome);
 		setNivelAcesso(nivelAcesso);
 	}
 	
-	/* Métodos */
+	/* ---------------------------------------------------------- MÉTODOS --------------------------------------------------------- */
 		
 		// Método que indica se um funcionário está presente em alguma instalação
 		public boolean estaPresente() {
@@ -20,16 +22,36 @@ public class Funcionario {
 		}
 		
 		// Método que faz com que um funcionário entre na instalação indicada
-		public void entrar(Instalacao inst) {
+		void entrar(Instalacao inst) {
 			instalacao = inst;
 		}
 		
 		// Método que faz com que o funcionário saia da instalação onde está
-		public void sair() {
+		void sair() {
 			instalacao = null;
 		}
+		
+		// Métodos que indicam se um funcionário é igual ao outro
 
-	/* Getters e Setters */
+		@Override
+		public int hashCode() {
+			return Objects.hash(id, instalacao, nivelAcesso, nome);
+		}
+	
+			@Override
+			public boolean equals(Object obj) {
+				if (this == obj)
+					return true;
+				if (obj == null)
+					return false;
+				if (getClass() != obj.getClass())
+					return false;
+				Funcionario other = (Funcionario) obj;
+				return id == other.id && Objects.equals(instalacao, other.instalacao)
+						&& nivelAcesso == other.nivelAcesso && Objects.equals(nome, other.nome);
+			}
+
+	/* --------------------------------------------------- GETTERS E SETTERS --------------------------------------------------------- */
 	public int getNivelAcesso() {
 		return nivelAcesso;
 	}
@@ -58,10 +80,12 @@ public class Funcionario {
 		return instalacao;
 	}
 
-	/* ToString */
+	/* --------------------------------------------------------- TOSTRING ---------------------------------------------------------- */
 	@Override
 	public String toString() {
-		return "Funcionario: ["+ id + "] " + nome + " com nível " + nivelAcesso + " está em " + instalacao;
+		return "["+ id + "]" + "; NOME = " + nome + "; NÍVEL = " + nivelAcesso + "; INSTALAÇÃO = " + instalacao;
 	}
+	
+	
 
 }
