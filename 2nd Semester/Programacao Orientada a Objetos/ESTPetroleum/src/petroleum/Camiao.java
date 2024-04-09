@@ -1,5 +1,6 @@
 package petroleum;
 import java.awt.Point;
+import java.util.ArrayList;
 
 import menu.Mapa;
 
@@ -7,7 +8,7 @@ import menu.Mapa;
  * combústivel. Tem para isso um limite máximo de combústivel que pode transportar e a
  * quantidade de combústvel que transporta num dado momento.
  * Cada camião desloca-se a uma velocidade, que para simplificar, iremos contabilizar como a velocidade média.
- * Um camiºão segue um itinerário, sendo que deve terminar o itinerário dentro 
+ * Um camião segue um itinerário, sendo que deve terminar o itinerário dentro 
  * do limite de tempo de um turno de 14 horas )2 condutores com turnos de 7 horas cada).
  */
 public class Camiao {
@@ -15,20 +16,46 @@ public class Camiao {
 	 * (2 condutores), dadas em segundos */
 	public static final int TEMPO_TURNO = 14 * 3600;
 	
+	/* ------------------------------------------ VARIÁVEIS ------------------------------------------------ */
+	private String matricula;
+	private int capacidadeMax, quantidadeAtual, velocidadeMedia, debito;
+	private Itinerario itinerario;
+	
+	/* ----------------------------------------- CONSTRUTOR ------------------------------------------------- */
+	public Camiao(String matricula, int capacidadeMax, int quantidadeAtual, int velocidadeMedia, int debito
+			, Itinerario itinerario) {
+		this.matricula = matricula;
+		setCapacidadeMax(capacidadeMax);
+		setQuantidadeAtual(quantidadeAtual);
+		setVelocidadeMedia(velocidadeMedia);
+		setDebito(debito);
+		setItinerario(itinerario);
+	}
+
+	/* ------------------------------------------- MÉTODOS -------------------------------------------------- */
+	
 	/** indica se o Camião pode acrescentar o seguinte pedido ao seu itinerário
 	 * @param posto posto que pede o abastecimento
 	 * @param litros litros que o posto pretende
-	 * @return ACEITE, se aceitar o pedido <br>
+	 * @return ACEITE, se aceitar o pedido 
 	 *         EXCEDE_CAPACIDADE_CAMIAO, se o número de litros for superior
-	 *         ao que o camião tem disponível<br>
+	 *         ao que o camião tem disponível
 	 *         EXCEDE_TEMPO_TURNO, se o pedido implicar um tempo maior que um turno      
 	 *          
 	 */
+
 	public int podeFazerPedido(Posto posto, int litros) {
-		// TODO implementar este método
+	
+		int tempoNecessario = litros / debito;
+		
+		if (litros > this.capacidadeMax) {
+			return Central.EXCEDE_CAPACIDADE_CAMIAO;
+		} else if (tempoNecessario > TEMPO_TURNO) {
+			return Central.EXCEDE_TEMPO_TURNO;
+		}
 		return Central.ACEITE;
 	}
-	
+
 	/** adiciona um posto ao itinerário do camião, se for possível.
 	 * @param p posto que pede o abastecimento
 	 * @param litros litros que o posto pretende
@@ -38,17 +65,19 @@ public class Camiao {
 	 *         EXCEDE_TEMPO_TURNO, se o pedido implicar um tempo maior que um turno      
 	 */
 	public int addPosto( Posto p, int litros ) {
-		// TODO fazer este método
-		return Central.ACEITE;
+		
+		if (podeFazerPedido(p, litros) == Central.ACEITE) {
+			
+		}
+		return 0;
 	}
 
 	/** retorna o tempo, em segundos, que demora a fazer o itinerário
 	 * @return o tempo, em segundos, que demora a fazer o itinerário 
 	 */
-	public double duracaoTurno( ) {
-		// TODO fazer este método
-		return 0;
-	}
+//	public double duracaoTurno( ) {
+//		
+//    }
 	
 	/** retorna o tempo, em segundos, que demora a fazer o itinerário
 	 * acrescentando um posto extra
@@ -104,4 +133,63 @@ public class Camiao {
 		// TODO fazer este método
 		return 0;
 	}
+	
+	/* --------------------------------------- GETTERS E SETTERS --------------------------------------------- */
+	public int getCapacidadeMax() {
+		return capacidadeMax;
+	}
+
+
+	public void setCapacidadeMax(int capacidadeMax) {
+		this.capacidadeMax = capacidadeMax;
+	}
+
+
+	public int getQuantidadeAtual() {
+		return quantidadeAtual;
+	}
+
+
+	public void setQuantidadeAtual(int quantidadeAtual) {
+		this.quantidadeAtual = quantidadeAtual;
+	}
+
+
+	public int getVelocidadeMedia() {
+		return velocidadeMedia;
+	}
+
+
+	public void setVelocidadeMedia(int velocidadeMedia) {
+		this.velocidadeMedia = velocidadeMedia;
+	}
+
+
+	public int getDebito() {
+		return debito;
+	}
+
+
+	public void setDebito(int debito) {
+		this.debito = debito;
+	}
+
+	
+	public String getMatricula() {
+		return matricula;
+	}
+
+	
+	public Itinerario getItinerario() {
+		return itinerario;
+	}
+
+	
+	public void setItinerario(Itinerario itinerario) {
+		this.itinerario = itinerario;
+	}
+	
+	
+	
+	
 }
