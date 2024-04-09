@@ -1,6 +1,6 @@
 USE BD_20231487_2324_INF
 
--- CriaÁ„o da tabela "empregado2"
+-- Cria√ß√£o da tabela "empregado2"
 	CREATE TABLE empregado2
 	(
 		empnum INT NOT NULL, 
@@ -14,12 +14,12 @@ USE BD_20231487_2324_INF
 		CONSTRAINT tb_emp_PK_2 PRIMARY KEY (empnum)
 	);
 
--- Insert's m˙ltiplos
+-- Insert's m√∫ltiplos
 	INSERT INTO empregado2
 	SELECT *
 	FROM emp;
 
--- Visualizar o conte˙do da tabela "empregado2"
+-- Visualizar o conte√∫do da tabela "empregado2"
 	SELECT *
 	FROM empregado2;
 
@@ -46,7 +46,7 @@ USE BD_20231487_2324_INF
 	VALUES (30, 'ERPs', 'Coimbra');
 
 	INSERT INTO departamento
-	VALUES (40, 'Integrac„o', 'Aveiro');
+	VALUES (40, 'Integrac√£o', 'Aveiro');
 
 -- Visualizar a tabela "departamento"
 	SELECT *
@@ -67,11 +67,11 @@ USE BD_20231487_2324_INF
 		CONSTRAINT tb_emp_PK PRIMARY KEY (empnum)
 	);
 
--- Criar a FK fora da tabela (ACONSELH¡VEL!!!)
+-- Criar a FK fora da tabela (ACONSELH√ÅVEL!!!)
 	ALTER TABLE EMP
 	ADD CONSTRAINT tb_emp_FK_departamento FOREIGN KEY (depnum) REFERENCES departamento(numdept);
 
--- Inserir os dados (usando INSERTs m˙ltiplos)
+-- Inserir os dados (usando INSERTs m√∫ltiplos)
 	INSERT INTO EMP
 	SELECT *
 	FROM empregado2;
@@ -81,12 +81,12 @@ USE BD_20231487_2324_INF
 	FROM EMP;
 
 /* Ficha 4 */
--- ExercÌcio 1 - Liste o nome e funÁ„o de cada empregado e o nome do departamento onde trabalha
+-- Exerc√≠cio 1 - Liste o nome e fun√ß√£o de cada empregado e o nome do departamento onde trabalha
 	SELECT e.nome 'Nome', e.funcao 'Funcao', d.nomedept 'Nome Departamento'
 	FROM emp e INNER JOIN departamento d
 		ON e.depnum = d.numdept;
 
--- ExercÌcio 2 - Liste todos os empregados que ganhem menos que o seu chefe, apresentando o nome do empregado, o seu sal·rio, o nome do chefe e o seu sal·rio.
+-- Exerc√≠cio 2 - Liste todos os empregados que ganhem menos que o seu chefe, apresentando o nome do empregado, o seu sal√°rio, o nome do chefe e o seu sal√°rio.
 	SELECT e2.empnum 'Numero Empregado',
 		   e2.nome 'Nome Empregado',
 		   e2.chefe 'Numero Chefe',
@@ -97,14 +97,14 @@ USE BD_20231487_2324_INF
 	FROM emp e1 CROSS JOIN emp e2
 	WHERE e2.chefe = e1.empnum AND e2.salario < e1.salario
 
--- Extra
--- a) Crie uma consulta que liste o nome do departamento e o respetivo n˙mero de trabalhadores.
-	SELECT d.nomedept, COUNT(e.depnum) 'Numero de Trabalhadores'
+/* Extra */
+-- a) Crie uma consulta que liste o nome do departamento e o respetivo n√∫mero de trabalhadores.
+	SELECT d.nomedept, COUNT(e.empnum) 'Numero de Trabalhadores'
 	FROM departamento d INNER JOIN EMP e
 		ON e.depnum = d.numdept
 	GROUP BY d.nomedept;
 
--- b) Crie uma consulta que liste o nome do departamento e o respetivo n˙mero de trabalhadores. Apresentado apenas no resultado o departamentos
+-- b) Crie uma consulta que liste o nome do departamento e o respetivo n√∫mero de trabalhadores. Apresentado apenas no resultado o departamentos
 -- com pelo menos cinco trabalhadores.
 	SELECT d.nomedept, COUNT(e.depnum) 'Numero de Trabalhadores'
 	FROM departamento d INNER JOIN EMP e
@@ -112,24 +112,30 @@ USE BD_20231487_2324_INF
 	GROUP BY d.nomedept
 	HAVING COUNT(e.depnum) >= 5;
 
--- c) Crie uma consulta que liste o nome do departamento e o respetivo salario medio, mas apenas para os departamento que n„o comecem pela 
--- letra ëCí. Deve apresentar o resultado por ordem crescente do valor mÈdio do salario
+-- c) Crie uma consulta que liste o nome do departamento e o respetivo salario medio, mas apenas para os departamento que n√£o comecem pela 
+-- letra ‚ÄòC‚Äô. Deve apresentar o resultado por ordem crescente do valor m√©dio do salario
 	SELECT d.nomedept, AVG(e.salario) 'Media Salario no Departamento'
 	FROM EMP e INNER JOIN departamento d
 		ON e.depnum = d.numdept
-	GROUP BY d.nomedept, e.depnum
-	HAVING d.nomedept NOT LIKE 'C%'
+	WHERE d.nomedept NOT LIKE 'C%'
+	GROUP BY d.nomedept
 	ORDER BY 2;
 
--- d) Crie uma consulta que liste o nome dos empregados que trabalham no departamento ëIntegraÁ„oí, e que tenham sido admitidos no primeiro 
--- semestre. Deve apresentar o resultado comeÁando pelos que tenham sido admitidos mais recentemente.
+-- d) Crie uma consulta que liste o nome dos empregados que trabalham no departamento ‚ÄòIntegra√ß√£o‚Äô, e que tenham sido admitidos no primeiro 
+-- semestre. Deve apresentar o resultado come√ßando pelos que tenham sido admitidos mais recentemente.
 	SELECT e.nome, d.nomedept, e.data_adm
 	FROM EMP e INNER JOIN departamento d
 		ON e.depnum = d.numdept
-	WHERE d.nomedept = 'IntegraÁ„o' /* Falta a segunda condiÁ„o*/;
+	WHERE d.nomedept = 'Integra√ß√£o' AND MONTH(e.data_adm) <= 6
+	ORDER BY 2 DESC;
 
--- e) Crie uma consulta que liste os nomes dos empregados, as suas funÁıes, e os seus sal·rios. Estes empregados tÍm de trabalhar no 
--- departamento ëConsultoriaí, e os seus sal·rios devem variar entre os 15000 e os 16000. Devem apresentar o resultado ordenado por funÁ„o, de
+	-- Modificar uma linha da tabela emp
+	UPDATE emp
+	SET data_adm = '2000-12-04'
+	WHERE empnum = 69;
+
+-- e) Crie uma consulta que liste os nomes dos empregados, as suas fun√ß√µes, e os seus sal√°rios. Estes empregados t√™m de trabalhar no 
+-- departamento ‚ÄòConsultoria‚Äô, e os seus sal√°rios devem variar entre os 15000 e os 16000. Devem apresentar o resultado ordenado por fun√ß√£o, de
 -- Z para A.
 	SELECT e.nome, e.funcao, e.salario
 	FROM EMP e INNER JOIN departamento d
@@ -137,40 +143,108 @@ USE BD_20231487_2324_INF
 	WHERE d.nomedept = 'Consultoria' AND e.salario BETWEEN 15000 AND 16000
 	ORDER BY 2 DESC;
 
--- f) Crie uma consulta que liste os nomes dos empregados, a data de admiss„o, bem como os respetivos nomes dos departamentos que tiveram 
--- empregados admitidos no ˙ltimo trimestre do ano ë2001í. Devem ordenar o resultado pelo nome de departamento.
+-- f) Crie uma consulta que liste os nomes dos empregados, a data de admiss√£o, bem como os respetivos nomes dos departamentos que tiveram 
+-- empregados admitidos no √∫ltimo trimestre do ano ‚Äò2001‚Äô. Devem ordenar o resultado pelo nome de departamento.
 	SELECT e.nome, e.data_adm, d.nomedept
 	FROM EMP e INNER JOIN departamento d
 		ON e.depnum = d.numdept
 	WHERE MONTH(e.data_adm) >= 10 AND YEAR(e.data_adm) = 2001
-	ORDER BY 3
+	ORDER BY 3;
 
--- g) Crie uma consulta que liste os nomes dos empregados, a sua funÁ„o, bem como os respetivos nomes dos departamentos. Esta consulta deve
--- apenas conter os nomes dos departamentos constituÌdos exatamente por 4 letras. Devem ordenar o resultado pelo nome de departamento, e dentro
--- deste por funÁ„o.
+-- g) Crie uma consulta que liste os nomes dos empregados, a sua fun√ß√£o, bem como os respetivos nomes dos departamentos. Esta consulta deve
+-- apenas conter os nomes dos departamentos constitu√≠dos exatamente por 4 letras. Devem ordenar o resultado pelo nome de departamento, e dentro
+-- deste por fun√ß√£o.
 	SELECT e.nome, e.funcao, d.nomedept
 	FROM EMP e INNER JOIN departamento d
 		ON e.depnum = d.numdept
-	WHERE LEN(d.nomedept) = 4
-	ORDER BY 3, 2
+	WHERE d.nomedept = '____' -- LEN(d.nomedept)
+	ORDER BY 3, 2;
 
--- h) Liste o nome e a funÁ„o de todos os empregados cuja funÁ„o n„o È ëadminí nem ëvendedorí e cujo nome termina com 'o', e que trabalham no
--- departamento ëIntegraÁ„oí.
+-- h) Liste o nome e a fun√ß√£o de todos os empregados cuja fun√ß√£o n√£o √© ‚Äòadmin‚Äô nem ‚Äòvendedor‚Äô e cujo nome termina com 'o', e que trabalham no
+-- departamento ‚ÄòIntegra√ß√£o‚Äô.
 	SELECT e.nome, e.funcao, d.nomedept
 	FROM EMP e INNER JOIN departamento d
 		ON e.depnum = d.numdept
-	WHERE e.funcao != 'Vendedor' AND e.funcao != 'Admin' AND e.nome LIKE '%o' AND d.nomedept = 'IntegraÁ„o';
+	WHERE e.funcao NOT IN ('Admin', 'Vendedor') 
+	AND e.nome LIKE '%o' 
+	AND d.nomedept = 'Integra√ß√£o';
 
--- i) Liste toda informaÁ„o dos empregados e o nome do seu respetivo departamento, que entraram para a empresa entre 9-11-2002 e 12-12-2002 e
--- cuja comiss„o n„o È nula. Estes trabalhadores n„o devem trabalhar nem no departamento ëERPsí nem no ëCRMs
-	SELECT e.empnum, e.nome, e.chefe, e.data_adm, e.salario, e.comissao, e.depnum, d.nomedept
+-- i) Liste toda informa√ß√£o dos empregados e o nome do seu respetivo departamento, que entraram para a empresa entre 9-11-2002 e 12-12-2002 e
+-- cuja comiss√£o n√£o √© nula. Estes trabalhadores n√£o devem trabalhar nem no departamento ‚ÄòERPs‚Äô nem no ‚ÄòCRMs
+	SELECT e.*, d.nomedept -- e.* -> vai selecionar todos os atributos da tabela emp
 	FROM EMP e INNER JOIN departamento d
 		ON e.depnum = d.numdept
-	WHERE (e.data_adm BETWEEN '2002.9.11' AND '2002.12.12') AND e.comissao IS NOT NULL AND d.nomedept != 'ERPs' AND d.nomedept != 'CRMs'
+	WHERE e.data_adm BETWEEN '2002.9.11' AND '2002.12.12' 
+	AND e.comissao IS NOT NULL 
+	AND d.nomedept NOT IN ('CRMs', 'ERPs')
 
--- j) Liste toda a informaÁ„o dos empregados cujo nome comeÁa com uma vogal e n„o contÈm a letra 'N'. Deve ainda garantir que estes trabalhem
+-- j) Liste toda a informa√ß√£o dos empregados cujo nome come√ßa com uma vogal e n√£o cont√©m a letra 'N'. Deve ainda garantir que estes trabalhem
 -- num departamento em 'Lisboa'
-	SELECT *
+	SELECT e.*
 	FROM EMP e INNER JOIN departamento d
 		ON e.depnum = d.numdept
-	WHERE e.nome LIKE 'a%' AND e.nome LIKE 'e%' AND e.nome LIKE 'i%' AND e.nome LIKE 'o%' AND e.nome LIKE 'u%' AND d.nomedept = 'Lisboa'
+	WHERE e.nome LIKE '[a,e,i,o,u]%' --> inclui todos os nomes come√ßados por vogal, se for letras consecutivas fazer [a-x], x -> √∫ltima letra 
+	AND e.nome NOT LIKE '%n%'
+	AND d.localidade = 'Lisboa';
+
+-- k) Considere agora que cada departamento √© supervisionado por um empregado.
+	-- a) Escreva a instru√ß√£o SQL para que alterando a tabela departamento, tal possa ser poss√≠vel.
+	 ALTER TABLE departamento
+	 ADD supervisor INT;
+
+	 SELECT * FROM departamento;
+
+	/* 
+	b) Atribua a chefia do:
+		i. Departamento 10 ao ‚ÄòAntunes‚Äô;
+		ii. Departamento 20 ao ‚ÄòMoura‚Äô;
+		iii. Departamento 30 ao ‚ÄòNeto‚Äô;
+		iv. Departamento 40 ao ‚ÄòBrito‚Äô;
+	*/
+	UPDATE departamento
+	SET supervisor = 89
+	WHERE numdept = 10;
+
+	UPDATE departamento
+	SET supervisor = 77
+	WHERE numdept = 20;
+
+	UPDATE departamento
+	SET supervisor = 98
+	WHERE numdept = 30;
+
+	UPDATE departamento
+	SET supervisor = 30
+	WHERE numdept = 40;
+
+	
+	 SELECT * FROM departamento;
+
+-- l) Liste o nome dos departamentos com supervisores que tenham sido admitidos nos meses √≠mpares do ano 2001. No resultado dever√° 
+-- ainda mostrar o nome do supervisor e a respetiva data de admiss√£o. Ordene o resultado por antiguidade de admiss√£o.
+	SELECT d.nomedept, e.nome, e.data_adm
+	FROM emp e INNER JOIN departamento d
+		ON e.empnum = d.supervisor
+	WHERE MONTH(e.data_adm) IN (1,3,5,7,9,11) --> Para representar os n√∫meros √≠mpares tamb√©m se pode usar: MONTH(e.data_adm) % 2 != 0
+	AND YEAR(e.data_adm) = 2001
+	ORDER BY 3 ASC;
+
+-- m) Liste o nome dos supervisores, o sal√°rio, a comiss√£o, a data de admiss√£o e a fun√ß√£o, que n√£o recebam comiss√£o, e que o seu 
+-- sal√°rio seja inferior a 25000. Certifique-se que na solu√ß√£o n√£o constem supervisores que tenham a fun√ß√£o ‚ÄòChefe‚Äô. Ordene o resultado
+-- por data de admiss√£o do mais recente para o mais antigo.
+	SELECT e.nome, e.salario, e.comissao, e.data_adm, e.funcao
+	FROM emp e INNER JOIN departamento d
+		ON e.empnum = d.supervisor
+	WHERE e.comissao IS NULL 
+	AND e.salario < 25000
+	AND e.funcao != 'Chefe'
+	ORDER BY 4 DESC;
+
+-- n) Liste os nomes de empregados que tenham o mesmo n√∫mero de meses de antiguidade na empresa (isto √©, foram contratados no mesmo m√™s
+-- e ano).
+	SELECT e1.nome
+	FROM emp e1 CROSS JOIN emp e2 
+	WHERE MONTH(e1.data_adm) = MONTH(e2.data_adm) 
+	AND YEAR(e1.data_adm) = YEAR(e2.data_adm)
+	AND e1.empnum != e2.empnum
+	ORDER BY 1;
