@@ -3,7 +3,7 @@ package securest.app;
 
 import consola.SConsola;
 import p2.tempo.*;
-import securest.recurso.CentralControlo;
+import securest.recurso.*;
 
 /**
  * Classe que trata dos menus da central de comandos
@@ -65,36 +65,45 @@ public class MenuCentral {
 	 * imprime a informação de uma instalação 
 	 */
 	private void printInstalacao( ) {
-		// TODO substituir o Object pelo tipo de dados correto
-		Object inst = getInstalacao( "Código da instalação? ");
+		// TODO ZFEITO substituir o Object pelo tipo de dados correto
+		Instalacao inst = getInstalacao( "Código da instalação? ");
 		consola.clear();
-		// TODO Colocar os valores corretos nos vários locais
-		consola.println( "<NOME da instalação>" );		
-		consola.println("id: <ID inst>" );
-		consola.println("nivel acesso: <NIVEL inst>" );
-		consola.print("Autorizados: " );
+		
+		// TODO ZFEITO Colocar os valores corretos nos vários locais
+		consola.println(inst.getDescricao());		
+		consola.println("ID: " + inst.getId());
+		consola.println("NÍVEL: " + inst.getNivelAcesso());
+		
+		consola.print("Autorizados: ");
+		
 		// para todos os autorizados apresentar
-			consola.print( "<NOME FUNC>, " );
+		for (Funcionario f : inst.getAutorizados()) {
+			consola.print(f.getNome() + ", ");
+		}
 		consola.println();
 		consola.print("Presentes: " );
+		
 		// para todos os presentes apresentar
-			consola.print( "<NOME FUNC>, " );
+		for (Funcionario f : inst.getPresentes()) {
+			consola.print(f.getNome() + ", ");
+		}
 		consola.println();
+		
 		consola.println("Horário funcionamento");
-		// TODO chamar o método printHorario para imprimir o horario
+		// TODO ZFEITO chamar o método printHorario para imprimir o horario
 		//      pode ser necessário mudar os parâmetros de entrada
-		printHorario(  );
+		printHorario( inst.getHorarioFuncionamento() );
 		consola.readLine();
 	}
 	
 	/** imprime a informação de um horário
 	 */
-	private void printHorario( ) {
-		// TODO para todos os períodos do horário apresentá-los
-		for( int i=0; i < 1; i++ ) {
-			// TODO iniciar as horas com os valores corretos
-			Hora hi = null;
-			Hora hf = null;
+	private void printHorario( Horario h ) {
+		// TODO ZFEITO para todos os períodos do horário apresentá-los
+		for(Periodo p : h.getPeriodos()) {
+			// TODO ZFEITO iniciar as horas com os valores corretos
+			Hora hi = p.getInicio();
+			Hora hf = p.getFim();
 			consola.println( String.format("%02d:%02d - %02d:%02d",
 					         hi.getHoras(), hi.getMinutos(), hf.getHoras(), hf.getMinutos()) );
 		}
@@ -104,15 +113,15 @@ public class MenuCentral {
 	 * imprime a informação de um funcionário 
 	 */
 	private void printFuncionario( ) {
-		// TODO substituir o Object pelo tipo de dados correto		
-		Object f = getFuncionario( "Código do funcionário? ");
+		// TODO ZFEITO substituir o Object pelo tipo de dados correto		
+		Funcionario f = getFuncionario( "Código do funcionário? ");
 		consola.clear();
-		// TODO Colocar os valores corretos nos vários locais
-		consola.println( "<NOME FUNC>" );		
-		consola.println("id: <ID FUNC>" );
-		consola.println("nivel acesso: <NIVEL FUNC>" );
-		if( true /* se está presente numa instalação */ )
-			consola.print("Presente em <NOME INST>" );
+		// TODO ZFEITO Colocar os valores corretos nos vários locais
+		consola.println("NOME: " + f.getNome());		
+		consola.println("ID: " + f.getId());
+		consola.println("NÍVEL: " + f.getNivelAcesso() );
+		if( f.estaPresente() )
+			consola.print("Presente em " + f.getInstalacao() );
 		else
 			consola.print("Não está presente em nenhuma instalação" );
 		consola.readLine();
@@ -122,12 +131,12 @@ public class MenuCentral {
 	 * processa a entrada de um funcionário
 	 */
 	private void entradaFuncionario() {
-		// TODO substituir o Object pelo tipo de dados correto
-		Object f = getFuncionario( "Código do funcionário a entrar? ") ;
-		Object i = getInstalacao( "Código da instalação onde vai entrar? ");
+		// TODO ZFEITO substituir o Object pelo tipo de dados correto
+		Funcionario f = getFuncionario( "Código do funcionário a entrar? ") ;
+		Instalacao i = getInstalacao( "Código da instalação onde vai entrar? ");
 		
-		// TODO verificar se pode entrar
-		consola.println( /*pode entrar?*/ true? "Pode entrar" : "Impedido de entrar!");
+		// TODO AFEITO verificar se pode entrar
+		consola.println( i.podeEntrar(f, new Hora()) ? "Pode entrar" : "Impedido de entrar!");
 		consola.readLine();
 	}
 
@@ -156,9 +165,9 @@ public class MenuCentral {
 	 * @param msg a mensagem a pedir o funcionário
 	 * @return o funcionário pedido
 	 */
-	private Object getFuncionario( String msg ){
-		// TODO substituir o Object pelo tipo de dados correto
-		Object f = null;
+	private Funcionario getFuncionario( String msg ){
+		// TODO ZFEITO substituir o Object pelo tipo de dados correto
+		Funcionario f = null;
 		do {
 			consola.print( msg );
 			int id = consola.readInt();
@@ -177,9 +186,9 @@ public class MenuCentral {
 	 * @param msg a mensagem a pedir a instalação
 	 * @return a instalação pedida
 	 */
-	private Object getInstalacao( String msg ){
+	private Instalacao getInstalacao( String msg ){
 		// TODO substituir o Object pelo tipo de dados correto
-		Object i = null;
+		Instalacao i = null;
 		do {
 			consola.print( msg );
 			int id = consola.readInt();
