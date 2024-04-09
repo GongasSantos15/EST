@@ -1,3 +1,4 @@
+
 package securest.recurso;
 
 import java.util.Collection;
@@ -16,8 +17,8 @@ public class CentralControlo {
 	public static final int NIVEL_MIN = 1;
 	public static final int NIVEL_MAX = 5;
 
-	private Map<Integer,Object> instalacoes = new HashMap<Integer,Object>();
-	private Map<Integer,Object> funcionarios = new HashMap<Integer,Object>();
+	private Map<Integer,Instalacao> instalacoes = new HashMap<Integer,Instalacao>();
+	private Map<Integer,Funcionario> funcionarios = new HashMap<Integer,Funcionario>();
 
 	public CentralControlo(){			
 	}		
@@ -26,8 +27,8 @@ public class CentralControlo {
 	 * adicionar um funcionário à central de controlo
 	 * @param f funcionário a adicionar
 	 */
-	public void addFuncionario(Object f) {
-		
+	public void addFuncionario(Funcionario f) {
+		funcionarios.put(f.getId(),f);
 	}
 	
 	/**
@@ -35,7 +36,7 @@ public class CentralControlo {
 	 * @param id identificador do Funcionario a obter
 	 * @return Funcionário com o identificador especificado
 	 */
-	public Object getFuncionario(int id) {		
+	public Funcionario getFuncionario(int id) {		
 		return funcionarios.get(id);
 	}
 
@@ -51,7 +52,7 @@ public class CentralControlo {
 	 * devolve uma coleção com todos os funcionários existentes no sistema
 	 * @return uma coleção com todas os funcionários existentes no sistema
 	 */
-	public Collection<Object> getFuncionarios(){
+	public Collection<Funcionario> getFuncionarios(){
 		return Collections.unmodifiableCollection( funcionarios.values() );
 	}	
 
@@ -59,8 +60,8 @@ public class CentralControlo {
 	 * adiciona uma instalação ao sistema
 	 * @param inst instalação a adicionar
 	 */
-	public void addInstalacao(Object inst) {
-
+	public void addInstalacao(Instalacao inst) {
+		instalacoes.put(inst.getId(), inst);
 	}
 	
 	/**
@@ -68,7 +69,7 @@ public class CentralControlo {
 	 * @param id identificador da instalação pretendida
 	 * @return a instalação com o identificador especificado
 	 */
-	public Object getInstalacao(int id) {
+	public Instalacao getInstalacao(int id) {
 		return instalacoes.get( id );		
 	}
 	
@@ -84,7 +85,7 @@ public class CentralControlo {
 	 * devolve uma coleção com todas as instalações existentes no sistema
 	 * @return uma coleção com todas as instalações existentes no sistema
 	 */
-	public Collection<Object> getInstalacoes(){
+	public Collection<Instalacao> getInstalacoes(){
 		return Collections.unmodifiableCollection( instalacoes.values() );
 	}
 }
