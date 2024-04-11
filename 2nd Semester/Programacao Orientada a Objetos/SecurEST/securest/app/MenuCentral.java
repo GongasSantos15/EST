@@ -135,8 +135,8 @@ public class MenuCentral {
 		Funcionario f = getFuncionario( "Código do funcionário a entrar? ") ;
 		Instalacao i = getInstalacao( "Código da instalação onde vai entrar? ");
 		
-		// TODO AFEITO verificar se pode entrar
-		consola.println( i.podeEntrar(f, new Hora()) ? "Pode entrar" : "Impedido de entrar!");
+		// TODO ZFEITO verificar se pode entrar
+		consola.println( i.entrar(f) ? "Pode entrar" : "Impedido de entrar!");
 		consola.readLine();
 	}
 
@@ -144,16 +144,18 @@ public class MenuCentral {
 	 * processa a saída de um funcionário
 	 */
 	private void saidaFuncionario() {
-		// TODO substituir o Object pelo tipo de dados correto
-		Object f = getFuncionario( "Código do funcionário a sair? ") ;
+		// TODO ZFEITO substituir o Object pelo tipo de dados correto
+		Funcionario f = getFuncionario( "Código do funcionário a sair? ") ;
 		
-		// TODO verificar se pode entrar na instalação
-		if( true /* está presente numa instalação */ ){
+		// TODO ZFEITO verificar se pode entrar na instalação
+		if(f.estaPresente()){
 			// processar saída da instalação onde está
-			consola.println("O funcionário <NOME FUNC> saiu de <NOME INST>" );
+			Instalacao i = f.getInstalacao();
+			i.sair(f);
+			consola.println("O funcionário " + f.getNome() + "saiu de " + i.getDescricao() );
 		}
 		else {
-			consola.println("O funcionário <NOME FUNC> não está em nenhuma instalação!");
+			consola.println("O funcionário " + f.getNome() + "não está em nenhuma instalação!");
 		}
 		consola.readLine();
 	}
@@ -187,7 +189,7 @@ public class MenuCentral {
 	 * @return a instalação pedida
 	 */
 	private Instalacao getInstalacao( String msg ){
-		// TODO substituir o Object pelo tipo de dados correto
+		// TODO ZFEITO substituir o Object pelo tipo de dados correto
 		Instalacao i = null;
 		do {
 			consola.print( msg );
@@ -206,12 +208,17 @@ public class MenuCentral {
 	 */
 	private void listarPresencas() {
 		consola.clear();
-		// TODO completar com a informação correta
-		/* para todas as instalações */ {
-			consola.println( "presentes em <NOME INST>  (NIVEL INST>" );
-			/* para todos os funcionários */
-				consola.println( "<NOME FUNC>   (NIVEL FUNC)" );
-			consola.println( "-----------------" );
+		// TODO ZFEITO completar com a informação correta
+			/* Para todas as instalações */ {
+			for (Instalacao i : central.getInstalacoes()) {
+				consola.println( "presentes em " + i.getDescricao() + "(" + i.getNivelAcesso() + ")" );	
+				
+				/* Para todos os funcionários */
+				for (Funcionario f : i.getPresentes()) {
+					consola.println( f.getNome() + "(" + f.getNivelAcesso() + ")" );
+				}
+				consola.println( "-----------------" );
+			}
 		}		
 	}
 	
