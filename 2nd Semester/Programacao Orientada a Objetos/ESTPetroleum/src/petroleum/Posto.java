@@ -21,14 +21,13 @@ public class Posto {
 
 	/* ------------------------------------------ VARIÁVEIS ------------------------------------------------ */
 	private int id, quantidadeAtual, capacidade, gastoMedio;
-	private Point x, y;
+	private Point coordenada;
 	
 	/* ----------------------------------------- CONSTRUTOR ------------------------------------------------- */
-	public Posto(int id, Point x, Point y, int capacidade, int quantidadeAtual, int gastoMedio) {
+	public Posto(int id, Point coordenada, int gastoMedio, int quantidadeAtual, int capacidade) {
 		
 		this.id = id;
-		this.x = x;
-		this.y = y;
+		this.coordenada = coordenada;
 		setCapacidade(capacidade);
 		setQuantidadeAtual(quantidadeAtual);
 		setGastoMedio(gastoMedio);
@@ -70,21 +69,12 @@ public class Posto {
 	
 	// indica se o posto tem um pedido pendente -> @return true, se tiver um pedido */
 	public boolean temPedidoPendente() {
-		if (quantidadeAtual < OCUPACAO_MINIMA * capacidade || Math.random() < PROBABILIDADE_REABASTECIMENTO) {
-			return addPedido();
-		}
-		return false;
+		return quantidadeAtual < OCUPACAO_MINIMA * capacidade || Math.random() < PROBABILIDADE_REABASTECIMENTO;
 	}
 
 	// Laborar do posto. O posto processa os gastos e verifica se precisa de realizar um pedido de abastecimento
 	public void laborar() {
 		setQuantidadeAtual(quantidadeAtual-gastoMedio);
-		addPedido();
-	}
-	
-	// Adicionar o pedido, quando existe um pedido pendente
-	public boolean addPedido() {
-		return temPedidoPendente();
 	}
 	
 	/* --------------------------------------- GETTERS E SETTERS --------------------------------------------- */
@@ -111,7 +101,7 @@ public class Posto {
 	}
 
 
-	public double getGastoMedio() {
+	public int getGastoMedio() {
 		return gastoMedio;
 	}
 
@@ -128,13 +118,8 @@ public class Posto {
 	}
 
 
-	public Point getX() {
-		return x;
-	}
-
-
-	public Point getY() {
-		return y;
+	public Point getCoordenada() {
+		return coordenada;
 	}
 	
 }

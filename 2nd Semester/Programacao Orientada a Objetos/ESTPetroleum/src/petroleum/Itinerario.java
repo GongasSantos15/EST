@@ -2,6 +2,8 @@ package petroleum;
 
 import java.awt.Point;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 /** Um itinerário é um conjunto de paragens.
  * O itinerário assume que o ponto de início é sempre o mesmo e,
@@ -10,17 +12,15 @@ import java.util.ArrayList;
 public class Itinerario {
 	
 	/* ------------------------------------------ VARIÁVEIS ------------------------------------------------ */
-	private ArrayList<Paragem> paragens;
+	private ArrayList<Paragem> paragens = new ArrayList<Paragem>();
 	private int nLitros;
-	private Point x, y;
+	private Point coordenada;
 
 	/* ----------------------------------------- CONSTRUTOR ------------------------------------------------- */
 	
-	public Itinerario(ArrayList<Paragem> paragens, int nLitros, Point x, Point y) {
-		this.paragens = new ArrayList<Paragem>();
+	public Itinerario(int nLitros, Point coordenada) {
 		setnLitros(nLitros);
-		this.x = x;
-		this.y = y;
+		this.coordenada = coordenada;
 	}
 
 	/* ------------------------------------------- MÉTODOS -------------------------------------------------- */
@@ -28,7 +28,7 @@ public class Itinerario {
 	// retorna o ponto de inicio do itenerário -> @return o ponto de inicio do itenerário 
 	public Point getInicio() {
 		if (!paragens.isEmpty()) {
-			// TODO fazer o resto
+			// TODO
 		}
 		return null;
 	}
@@ -40,12 +40,8 @@ public class Itinerario {
 	}
 	
 	/* --------------------------------------- GETTERS E SETTERS --------------------------------------------- */
-	public ArrayList<Paragem> getParagens() {
-		return paragens;
-	}
-
-	public void setParagens(ArrayList<Paragem> paragens) {
-		this.paragens = paragens;
+	public List<Paragem> getParagens() {
+		return Collections.unmodifiableList(paragens);
 	}
 
 	public int getnLitros() {
@@ -57,14 +53,10 @@ public class Itinerario {
 	}
 
 	
-	public Point getX() {
-		return x;
+	public Point getCoordenada() {
+		return coordenada;
 	}
 
-	
-	public Point getY() {
-		return y;
-	}
 	
 	
 	

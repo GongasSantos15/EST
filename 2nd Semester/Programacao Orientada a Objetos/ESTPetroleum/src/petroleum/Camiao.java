@@ -1,6 +1,7 @@
 package petroleum;
 import java.awt.Point;
 import java.util.ArrayList;
+import java.util.List;
 
 import menu.Mapa;
 
@@ -48,7 +49,7 @@ public class Camiao {
 	
 		int tempoNecessario = litros / debito;
 		
-		if (litros > this.capacidadeMax) {
+		if (litros > this.quantidadeAtual) {
 			return Central.EXCEDE_CAPACIDADE_CAMIAO;
 		} else if (tempoNecessario > TEMPO_TURNO) {
 			return Central.EXCEDE_TEMPO_TURNO;
@@ -65,19 +66,18 @@ public class Camiao {
 	 *         EXCEDE_TEMPO_TURNO, se o pedido implicar um tempo maior que um turno      
 	 */
 	public int addPosto( Posto p, int litros ) {
-		
-		if (podeFazerPedido(p, litros) == Central.ACEITE) {
-			
-		}
-		return 0;
+		return podeFazerPedido(p, litros);
 	}
 
 	/** retorna o tempo, em segundos, que demora a fazer o itinerário
 	 * @return o tempo, em segundos, que demora a fazer o itinerário 
 	 */
-//	public double duracaoTurno( ) {
-//		
-//    }
+	
+	public double duracaoTurno() {
+	    // TODO 
+		return 0;
+	}
+
 	
 	/** retorna o tempo, em segundos, que demora a fazer o itinerário
 	 * acrescentando um posto extra
