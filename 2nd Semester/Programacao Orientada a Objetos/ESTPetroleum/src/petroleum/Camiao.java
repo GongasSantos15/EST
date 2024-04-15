@@ -23,13 +23,12 @@ public class Camiao {
 	private Itinerario itinerario;
 	
 	/* ----------------------------------------- CONSTRUTOR ------------------------------------------------- */
-	public Camiao(String matricula, int capacidadeMax, int quantidadeAtual, int velocidadeMedia, int debito
-			, Itinerario itinerario) {
+	public Camiao(String matricula, int capacidadeMax, int quantidadeAtual, int velocidadeMedia, int debito, Itinerario itinerario) {
 		this.matricula = matricula;
-		setCapacidadeMax(capacidadeMax);
+		this.capacidadeMax = capacidadeMax;
 		setQuantidadeAtual(quantidadeAtual);
-		setVelocidadeMedia(velocidadeMedia);
-		setDebito(debito);
+		this.velocidadeMedia = velocidadeMedia;
+		this.debito = debito;
 		setItinerario(itinerario);
 	}
 
@@ -45,12 +44,10 @@ public class Camiao {
 	 *          
 	 */
 	public int podeFazerPedido(Posto posto, int litros) {
-	
-		int tempoNecessario = litros / debito;
 		
 		if (litros > this.quantidadeAtual) {
 			return Central.EXCEDE_CAPACIDADE_CAMIAO;
-		} else if (tempoNecessario > TEMPO_TURNO) {
+		} else if (tempoDespejar(litros) > TEMPO_TURNO) {
 			return Central.EXCEDE_TEMPO_TURNO;
 		}
 		return Central.ACEITE;
@@ -65,6 +62,10 @@ public class Camiao {
 	 *         EXCEDE_TEMPO_TURNO, se o pedido implicar um tempo maior que um turno      
 	 */
 	public int addPosto( Posto p, int litros ) {
+		// TODO ZFEITO fazer este método
+		if (podeFazerPedido(p, litros) == Central.ACEITE) {
+			itinerario.addParagem(new Paragem(p, litros));
+		}
 		return podeFazerPedido(p, litros);
 	}
 
@@ -72,10 +73,8 @@ public class Camiao {
 	 * @return o tempo, em segundos, que demora a fazer o itinerário 
 	 */
 	public double duracaoTurno(Point inicio, Point fim){
-	    // TODO ZFEITO calcular uma distância, para depois retornar o tempo
-		double tempo = tempoPercorrer(inicio, fim);
-		
-		return tempo * 3600;
+	    // TODO ZFEITO calcular uma distância, para depois retornar o tempo		
+		return tempoPercorrer(inicio, fim);
 	}
 
 	
@@ -87,64 +86,32 @@ public class Camiao {
 	public double duracaoTurnoExtra( Posto extra, int nLitros ) {
 		// TODO ZFEITO fazer este método
 		
-		// Inicialização dos points a utilizar
-		Point inicio = new Point();
-		Point fim = new Point();
-		
-		// Cálculo dos tempo usando o método duracaoTurno()
-		double tempo1 = duracaoTurno(inicio, fim);
-		double tempo2 = duracaoTurno(fim, extra.getCoordenada());
-		
 		// Cálculo do tempo que o camião demora a abastecer
-		double tempoAbastecimento = tempoDespejar(nLitros);
-		
-		return tempo1 + tempo2 + tempoAbastecimento;
-		
+		return duracaoTurno(itinerario.getInicio(), itinerario.getFim()) +  duracaoTurno(itinerario.getFim(), extra.getCoordenada()) + 
+				tempoDespejar(nLitros);
 	}
 
 	// Efetua o transporte e transferência de combustível para todos os postos no itinerário
 	public void transporta() {
 	    
 		// TODO ZFEITO fazer este método
-		
-		// Obter a lista de postos no itinerário do camião
-	    List<Paragem> paragens = itinerario.getParagens();
-	    
-	    // Inicializar o ponto inicial como as coordenadas da central
-	    Point pontoAtual = itinerario.getInicio();
-	    
 	    // Percorrer cada posto no itinerário
-	    for (Paragem paragem : paragens) {
-	    	Posto posto = paragem.getPosto();
-	        // Calcular a distância e o tempo para chegar ao próximo posto
-	        double tempoViagem = tempoPercorrer(pontoAtual, posto.getCoordenada());
+	    for (Paragem paragem : itinerario.getParagens()) {
 	        
-	        // Verificar se o tempo de viagem excede o limite de 14 horas
-	        if (tempoViagem > TEMPO_TURNO) {
-	            // Se exceder, terminar o transporte
+	        if (tempoPercorrer(itinerario.getInicio(), paragem.getPosto().getCoordenada()) > TEMPO_TURNO) {
 	            return;
 	        }
 	        
-	        // Verificar se é possível fazer o abastecimento no posto
-	        int resultadoPedido = podeFazerPedido(posto, posto.getQuantidadeAtual());
-	        
-	        if (resultadoPedido == Central.ACEITE) {
-	            // Se o abastecimento for aceito, realizar o abastecimento
+	        if (podeFazerPedido(paragem.getPosto(), paragem.getPosto().capacidadeLivre()) == Central.ACEITE) {
 	        	do {
-	        		quantidadeAtual -= paragem.getnLitros();      			// DUVIDAS        
+	        		quantidadeAtual -= paragem.getnLitros();         // DUVIDAS
+	        		paragem.getPosto().enche(capacidadeLivre());
 	        	} while (this.quantidadeAtual <= this.capacidadeMax);		
 	        
 	        }
-		        // Atualizar o ponto atual para o próximo posto
-		        pontoAtual = posto.getCoordenada();
-	        
 	    }
-	    
-	    // Após visitar todos os postos, retornar à central
-	    double tempoItinerario = tempoPercorrer(pontoAtual, itinerario.getInicio());
-	    
-	    // Verificar se o tempo de retorno à central excede o limite de 14 horas
-	    if (tempoItinerario > TEMPO_TURNO) {
+	   //ver se o turno excede as 14 hrs
+	    if (tempoPercorrer(itinerario.getInicio(), itinerario.getFim()) > TEMPO_TURNO) {
 	        return;
 	    }
 	    
@@ -158,23 +125,23 @@ public class Camiao {
 	 */
 	private double tempoPercorrer( Point ini, Point fim ){
 		// TODO ZFEITO terminar este método (distância / velocidade)             	
-		return (Mapa.distancia(ini, fim)) / velocidadeMedia;
+		return ((Mapa.distancia(ini, fim)) /(double) velocidadeMedia) * 3600;
 	}
 	/** retorna quanto tempo demora, em segundos, a transferir a quantidade de liquido
 	 * @param nLitros a quantidade de liquido a transferir
 	 * @return o tempo que demora, em segundos, a transferir os nLitros
 	 */
 	private double tempoDespejar( int nLitros ){
-		// TODO ZFEITO fazer este método                          
-		return nLitros / debito;
+		// TODO ZFEITO fazer este método  (cast)                         
+		return (double) nLitros / debito;
 	}
 	
 	/** retorna a percentagem de ocupação do camião, entre 0 (0%) e 1 (100%)
 	 * @return a percentagem de ocupação 
 	 */
 	public float percentagemOcupacao() {
-		// TODO ZFEITO fazer este método                          
-		return quantidadeAtual / capacidadeMax;
+		// TODO ZFEITO fazer este método  (cast)                        
+		return (float) (quantidadeAtual / (double) capacidadeMax);
 	}
 	
 	/** retorna a capacidade livre, isto é, quantos litros ainda pode
@@ -191,12 +158,6 @@ public class Camiao {
 		return capacidadeMax;
 	}
 
-
-	public void setCapacidadeMax(int capacidadeMax) {
-		this.capacidadeMax = capacidadeMax;
-	}
-
-
 	public int getQuantidadeAtual() {
 		return quantidadeAtual;
 	}
@@ -211,21 +172,9 @@ public class Camiao {
 		return velocidadeMedia;
 	}
 
-
-	public void setVelocidadeMedia(int velocidadeMedia) {
-		this.velocidadeMedia = velocidadeMedia;
-	}
-
-
 	public int getDebito() {
 		return debito;
 	}
-
-
-	public void setDebito(int debito) {
-		this.debito = debito;
-	}
-
 	
 	public String getMatricula() {
 		return matricula;
