@@ -14,13 +14,13 @@ public class Itinerario {
 	/* ------------------------------------------ VARIÁVEIS ------------------------------------------------ */
 	private ArrayList<Paragem> paragens = new ArrayList<Paragem>();
 	private int nLitros;
-	private Point coordenada;
+	private Point pontoInicial;
 
 	/* ----------------------------------------- CONSTRUTOR ------------------------------------------------- */
 	
-	public Itinerario(int nLitros, Point coordenada) {
+	public Itinerario(int nLitros, Point pontoInicial) {
 		setnLitros(nLitros);
-		this.coordenada = coordenada;
+		this.pontoInicial = pontoInicial;
 	}
 
 	/* ------------------------------------------- MÉTODOS -------------------------------------------------- */
@@ -28,8 +28,19 @@ public class Itinerario {
 	// retorna o ponto de inicio do itenerário -> @return o ponto de inicio do itenerário 
 	public Point getInicio() {
 		if (!paragens.isEmpty()) {
-			// TODO Retornar a coordenada do posto da primeira paragem do ArrayList paragens
+			// TODO ZFEITO Retornar a pontoInicial do posto da primeira paragem do ArrayList paragens
 			return paragens.get(0).getPosto().getCoordenada();
+		}
+		return null;
+	}
+	
+	
+	
+	// retorna o fim do itenerário -> @return o ponto terminal do itenerário 
+	public Point getFim() {
+		if (!paragens.isEmpty()) {
+			// TODO ZFEITO Retornar a pontoInicial do posto da ultima paragem do ArrayList paragens
+			return paragens.get(paragens.size() - 1).getPosto().getCoordenada();
 		}
 		return null;
 	}
@@ -60,10 +71,9 @@ public class Itinerario {
 	public void setnLitros(int nLitros) {
 		this.nLitros = nLitros;
 	}
-
 	
-	public Point getCoordenada() {
-		return coordenada;
+	public Point getPontoInicial() {
+		return pontoInicial;
 	}
 
 	
