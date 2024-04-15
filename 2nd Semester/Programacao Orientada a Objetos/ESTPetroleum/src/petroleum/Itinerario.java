@@ -28,7 +28,8 @@ public class Itinerario {
 	// retorna o ponto de inicio do itenerário -> @return o ponto de inicio do itenerário 
 	public Point getInicio() {
 		if (!paragens.isEmpty()) {
-			// TODO
+			// TODO Retornar a coordenada do posto da primeira paragem do ArrayList paragens
+			return paragens.get(0).getPosto().getCoordenada();
 		}
 		return null;
 	}
@@ -37,6 +38,14 @@ public class Itinerario {
 	public void limpar() {
 		paragens.clear();
 		nLitros = 0;
+	}
+	
+	public void addParagem(Paragem p) {
+		paragens.add(p);
+	}
+	
+	public void removeParagem(Paragem p) {
+		paragens.remove(p);
 	}
 	
 	/* --------------------------------------- GETTERS E SETTERS --------------------------------------------- */

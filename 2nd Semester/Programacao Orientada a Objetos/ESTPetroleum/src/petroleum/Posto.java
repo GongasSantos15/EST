@@ -63,9 +63,8 @@ public class Posto {
 	 * do posto
 	 */
 	public float percentagemOcupacao() {
-		return quantidadeAtual/capacidade;
+		return quantidadeAtual / capacidade;
 	}
-
 	
 	// indica se o posto tem um pedido pendente -> @return true, se tiver um pedido */
 	public boolean temPedidoPendente() {
@@ -73,10 +72,11 @@ public class Posto {
 	}
 
 	// Laborar do posto. O posto processa os gastos e verifica se precisa de realizar um pedido de abastecimento
-	public void laborar() {
-		setQuantidadeAtual(quantidadeAtual-gastoMedio);
+	public void laborar() {								// DUVIDAS
+		setQuantidadeAtual(quantidadeAtual-= gastoMedio);
+		temPedidoPendente();
 	}
-	
+
 	/* --------------------------------------- GETTERS E SETTERS --------------------------------------------- */
 	public int getCapacidade() {
 		return capacidade;

@@ -44,7 +44,6 @@ public class Camiao {
 	 *         EXCEDE_TEMPO_TURNO, se o pedido implicar um tempo maior que um turno      
 	 *          
 	 */
-
 	public int podeFazerPedido(Posto posto, int litros) {
 	
 		int tempoNecessario = litros / debito;
@@ -72,29 +71,83 @@ public class Camiao {
 	/** retorna o tempo, em segundos, que demora a fazer o itinerário
 	 * @return o tempo, em segundos, que demora a fazer o itinerário 
 	 */
-	
-	public double duracaoTurno() {
-	    // TODO 
-		return 0;
+	public double duracaoTurno(Point inicio, Point fim){
+	    // TODO ZFEITO calcular uma distância, para depois retornar o tempo
+		double tempo = tempoPercorrer(inicio, fim);
+		
+		return tempo * 3600;
 	}
 
 	
-	/** retorna o tempo, em segundos, que demora a fazer o itinerário
-	 * acrescentando um posto extra
+	/** retorna o tempo, em segundos, que demora a fazer o itinerário acrescentando um posto extra
 	 * @param extra o posto extra a processar
 	 * @param nLitros oslitros que o posto extra precisa
 	 * @return tempo, em segundos, que demora a fazer o itinerário mais o posto extra
 	 */
 	public double duracaoTurnoExtra( Posto extra, int nLitros ) {
-		// TODO fazer este método
-		return 0;
+		// TODO ZFEITO fazer este método
+		
+		// Inicialização dos points a utilizar
+		Point inicio = new Point();
+		Point fim = new Point();
+		
+		// Cálculo dos tempo usando o método duracaoTurno()
+		double tempo1 = duracaoTurno(inicio, fim);
+		double tempo2 = duracaoTurno(fim, extra.getCoordenada());
+		
+		// Cálculo do tempo que o camião demora a abastecer
+		double tempoAbastecimento = tempoDespejar(nLitros);
+		
+		return tempo1 + tempo2 + tempoAbastecimento;
+		
 	}
 
-	/** Efetua o transporte e transferência de combustível
-	 * para todos os postos no itinerário
-	 */
-	public void transporta( ){
-		// TODO fazer este método
+	// Efetua o transporte e transferência de combustível para todos os postos no itinerário
+	public void transporta() {
+	    
+		// TODO ZFEITO fazer este método
+		
+		// Obter a lista de postos no itinerário do camião
+	    List<Paragem> paragens = itinerario.getParagens();
+	    
+	    // Inicializar o ponto inicial como as coordenadas da central
+	    Point pontoAtual = itinerario.getInicio();
+	    
+	    // Percorrer cada posto no itinerário
+	    for (Paragem paragem : paragens) {
+	    	Posto posto = paragem.getPosto();
+	        // Calcular a distância e o tempo para chegar ao próximo posto
+	        double tempoViagem = tempoPercorrer(pontoAtual, posto.getCoordenada());
+	        
+	        // Verificar se o tempo de viagem excede o limite de 14 horas
+	        if (tempoViagem > TEMPO_TURNO) {
+	            // Se exceder, terminar o transporte
+	            return;
+	        }
+	        
+	        // Verificar se é possível fazer o abastecimento no posto
+	        int resultadoPedido = podeFazerPedido(posto, posto.getQuantidadeAtual());
+	        
+	        if (resultadoPedido == Central.ACEITE) {
+	            // Se o abastecimento for aceito, realizar o abastecimento
+	        	do {
+	        		quantidadeAtual -= paragem.getnLitros();      			// DUVIDAS        
+	        	} while (this.quantidadeAtual <= this.capacidadeMax);		
+	        
+	        }
+		        // Atualizar o ponto atual para o próximo posto
+		        pontoAtual = posto.getCoordenada();
+	        
+	    }
+	    
+	    // Após visitar todos os postos, retornar à central
+	    double tempoItinerario = tempoPercorrer(pontoAtual, itinerario.getInicio());
+	    
+	    // Verificar se o tempo de retorno à central excede o limite de 14 horas
+	    if (tempoItinerario > TEMPO_TURNO) {
+	        return;
+	    }
+	    
 	}
 
 	/** retorna o tempo, em segundos, que demora a percorrer o caminho entre
@@ -104,25 +157,24 @@ public class Camiao {
 	 * @return o tempo que demora a ir de ini a fim.
 	 */
 	private double tempoPercorrer( Point ini, Point fim ){
-		// TODO terminar este método (distância / velocidade)
-		return Mapa.distancia(ini, fim);
+		// TODO ZFEITO terminar este método (distância / velocidade)             	
+		return (Mapa.distancia(ini, fim)) / velocidadeMedia;
 	}
-	
 	/** retorna quanto tempo demora, em segundos, a transferir a quantidade de liquido
 	 * @param nLitros a quantidade de liquido a transferir
 	 * @return o tempo que demora, em segundos, a transferir os nLitros
 	 */
 	private double tempoDespejar( int nLitros ){
-		// TODO fazer este método
-		return 0;
+		// TODO ZFEITO fazer este método                          
+		return nLitros / debito;
 	}
 	
 	/** retorna a percentagem de ocupação do camião, entre 0 (0%) e 1 (100%)
 	 * @return a percentagem de ocupação 
 	 */
 	public float percentagemOcupacao() {
-		// TODO fazer este método
-		return 0;
+		// TODO ZFEITO fazer este método                          
+		return quantidadeAtual / capacidadeMax;
 	}
 	
 	/** retorna a capacidade livre, isto é, quantos litros ainda pode
@@ -130,8 +182,8 @@ public class Camiao {
 	 * @return a capacidade livre, em litros
 	 */
 	public int capacidadeLivre() {
-		// TODO fazer este método
-		return 0;
+		// TODO ZFEITO fazer este método                          
+		return capacidadeMax - quantidadeAtual;
 	}
 	
 	/* --------------------------------------- GETTERS E SETTERS --------------------------------------------- */

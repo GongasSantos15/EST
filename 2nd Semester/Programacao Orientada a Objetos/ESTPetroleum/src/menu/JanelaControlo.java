@@ -69,12 +69,14 @@ public class JanelaControlo extends JFrame {
 	public JanelaControlo( Central c ) {
 		central = c;
 		
-		// TODO criar os marcadores de posto, um para cada posto (ciclo?)
-		Posto p = null;
-		MarcadorPosto mp = new MarcadorPosto(p);
-		// TODO adicionar o marcador à lista e descomentar a linha seguinte 
-		//      (está em comentário para não dar NullPointerException) 
-		// marcadores.add( mp ); 
+		// TODO ZFEITO criar os marcadores de posto, um para cada posto (ciclo?)
+		// TODO ZFEITO adicionar o marcador à lista e descomentar a linha seguinte 
+				//      (está em comentário para não dar NullPointerException)  
+		
+		for (Posto posto : central.getPostos()) {
+			MarcadorPosto mp = new MarcadorPosto(posto);
+			marcadores.add( mp );
+		}
 		
 		inicializarInterface();
 	}
@@ -101,19 +103,19 @@ public class JanelaControlo extends JFrame {
 		// desenhar o itinerário num ambiente especial (por causa das linhas)
 		Graphics2D ge = (Graphics2D)g.create();
 
-		// TODO ver o itinerário (não criar um novo como aqui)
-		Itinerario iti = new Itinerario(); 
-		Point p1 = iti.getInicio();  // começa no início
-		// TODO para cada ponto desenhar uma linha entre esse e o anterior
-		// p1 é sempre o anterior, p2 é sempre o atual
-		for( int i=0; i < 0; i++ ){ // TODO usar o for correto
-			Point p2 = null;        // TODO próximo ponto no itinerário
-			desenhaLinha(ge, p1, p2);
-			p1 = p2;
-		}
-		Point p2 = iti.getInicio(); // e acaba no início
-		desenhaLinha( ge, p1,  p2 );
-		ge.dispose();
+//		// TODO ver o itinerário (não criar um novo como aqui)
+//		Itinerario iti = new Itinerario(); 
+//		Point p1 = iti.getInicio();  // começa no início
+//		// TODO para cada ponto desenhar uma linha entre esse e o anterior
+//		// p1 é sempre o anterior, p2 é sempre o atual
+//		for( int i=0; i < 0; i++ ){ // TODO usar o for correto
+//			Point p2 = null;        // TODO próximo ponto no itinerário
+//			desenhaLinha(ge, p1, p2);
+//			p1 = p2;
+//		}
+//		Point p2 = iti.getInicio(); // e acaba no início
+//		desenhaLinha( ge, p1,  p2 );
+//		ge.dispose();
 	}
 
 	/** desenha uma linha entre dois pontos
