@@ -177,9 +177,9 @@ AND d.Localidade IN
 	(
 		SELECT d1.Localidade
 		FROM departamento d1
-		WHERE d.Localidade = 'Lisboa' OR d.Localidade = 'Porto' 
+		WHERE d.Localidade IN ('Lisboa', 'Porto')  
 	) 
-AND e.data_adm <ANY 
+AND e.data_adm < 
 	(
 		SELECT e2.data_adm
 		FROM emp e2
