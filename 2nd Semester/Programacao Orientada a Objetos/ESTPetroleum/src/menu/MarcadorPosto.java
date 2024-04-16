@@ -8,7 +8,7 @@ import java.awt.Rectangle;
 
 import javax.swing.ImageIcon;
 
-import petroleum.Posto;
+import edificios.Posto;
 
 /** Representa um marcador no mapa que representa um posto.
  * Foenece indicações visuais de como está o posto, se tem algum pedido,
@@ -33,7 +33,7 @@ public class MarcadorPosto {
 
 	private Posto posto;     // qual o posto associado a este marcador 
 	private Rectangle area;  // área ocupada pelo marcador
-	private boolean escolhido = false; // se o amrcador já foi escolhido
+	private boolean escolhido = false; // se o rcador já foi escolhido
 	private boolean expandido = false; // se deve apresentar a etiqueta ou só o marcador
 
 	/** Cria um marcador visual para um dado posto 
@@ -41,8 +41,8 @@ public class MarcadorPosto {
 	 */
 	public MarcadorPosto(Posto posto) {
 		this.posto = posto;
-		// TODO ver a posição do posto (não criar um novo como aqui)
-		Point pos = new Point();
+		// TODO ZFEITO ver a posição do posto (não criar um novo como aqui)
+		Point pos = posto.getPosicao();
 		
 		int offsetX = postoVerde.getIconWidth()/2;
 		int offsetY = postoVerde.getIconHeight();
@@ -55,12 +55,12 @@ public class MarcadorPosto {
 	public void desenhar( Graphics2D g ) {
 		// se for preciso mostrar a etiqueta
 		if( expandido ) {
-			// TODO colocar a informação correta nas seguintes variáveis
-			String nome = "Falta Nome";
-			int id = 1234;
-			int capacidade = 20000;
-			int quantidade = 20000;
-			int gastoMedio = 1000;
+			// TODO ZFEITO colocar a informação correta nas seguintes variáveis
+			String nome = posto.getNome();
+			int id = posto.getId();
+			int capacidade = posto.getCapacidade();
+			int quantidade = posto.getQuantidadeAtual();
+			int gastoMedio = posto.getGastoMedio();
 
 			// desenhar a informação na etiqueta
 			etiqueta.paintIcon(null, g, (int)area.getCenterX(), area.y);
@@ -78,8 +78,8 @@ public class MarcadorPosto {
 		if( escolhido )
 			destino.paintIcon(null, g, area.x, area.y-destino.getIconHeight());
 		
-		// TODO colocar a informação na variável
-		float percentagemOcupacao = 0.5f;
+		// TODO ZFEITO colocar a informação na variável
+		float percentagemOcupacao = posto.percentagemOcupacao();
 		ImageIcon icon;
 		// ver qual o icon a usar, de acordo com a percentagem de ocupação
 		if( percentagemOcupacao > 0.45f )
@@ -90,9 +90,10 @@ public class MarcadorPosto {
 			icon = postoVermelho;
 		icon.paintIcon(null, g, area.x, area.y);
 		
-		// TODO ver se posto tem pedido pendente
-		if( false )
+		// TODO ZFEITO ver se posto tem pedido pendente
+		if( posto.temPedidoPendente()) {
 			pedindo.paintIcon(null, g, area.x, area.y);
+		}
 	}
 	
 	/** define se o marcador deve ser visto expandido ou compacto 

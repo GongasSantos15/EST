@@ -11,7 +11,7 @@ import javax.swing.JPanel;
 import javax.swing.ListCellRenderer;
 import javax.swing.border.TitledBorder;
 
-import petroleum.Camiao;
+import transporte.Camiao;
 
 /** Renderer usado para apresentar as informações de um camião na lista de camiões
  */
@@ -62,14 +62,14 @@ public class RendererCamiao implements ListCellRenderer<Camiao> {
 	 * @param g ambiente onde desenhar
 	 */
 	private void desenharInfo(Graphics g) {
-		// TODO colocar os valores corretos nas variáveis
-		int quantidade = 25000;
-		int capacidadeLivre = 5000;
-		int velocidadeMedia = 60;
-		float percentOcupacao = 0.65f;
+		// TODO ZFEITO colocar os valores corretos nas variáveis
+		int quantidade = camiao.getQuantidadeAtual();
+		int capacidadeLivre = camiao.capacidadeLivre();
+		int velocidadeMedia = camiao.getVelocidadeMedia();
+		float percentOcupacao = camiao.percentagemOcupacao();
 		// duraçao do turno em horas e minutos
-		int duracaoHoras = 10;
-		int duracaoMinutos = 30;
+		int duracaoHoras = (int) (camiao.duracaoTurno() / 3600.0);
+		int duracaoMinutos = (int) (camiao.duracaoTurno() % 3600) / 60;
 		
 		// apresentar as infos
 		int numPixeis = (int)(percentOcupacao * PIXEIS_TANQUE);
@@ -90,8 +90,8 @@ public class RendererCamiao implements ListCellRenderer<Camiao> {
 			boolean isSelected, boolean cellHasFocus) {
 		camiao = value;
 		
-		// TODO colocar a informação nas variáveis
-		String matricula = "AA-00-AA";
+		// TODO ZFEITO colocar a informação nas variáveis
+		String matricula = camiao.getMatricula();
 		
 		((TitledBorder)painel.getBorder()).setTitle( matricula );
 		((TitledBorder)painel.getBorder()).setTitleColor( isSelected? Color.BLUE: Color.BLACK);

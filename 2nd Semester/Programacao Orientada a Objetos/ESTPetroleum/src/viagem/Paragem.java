@@ -1,4 +1,6 @@
-package petroleum;
+package viagem;
+
+import edificios.Posto;
 
 /** Uma paragem do itinerário deve indicar
  * o posto onde se deve parar e quantos litros
@@ -13,15 +15,15 @@ public class Paragem {
 	/* ----------------------------------------- CONSTRUTOR ------------------------------------------------- */
 	public Paragem(Posto posto, int nLitros) {
 		this.posto = posto;
-		setnLitros(nLitros);
+		setNLitros(nLitros);
 	}
 	
 	/* --------------------------------------- GETTERS E SETTERS --------------------------------------------- */
-	public int getnLitros() {
+	public int getNLitros() {
 		return nLitros;
 	}
 	
-	public void setnLitros(int nLitros) {
+	public void setNLitros(int nLitros) {
 		this.nLitros = nLitros;
 	}
 	

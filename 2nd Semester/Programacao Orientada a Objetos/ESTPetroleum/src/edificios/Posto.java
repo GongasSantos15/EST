@@ -1,6 +1,7 @@
-package petroleum;
+package edificios;
 
 import java.awt.Point;
+import java.util.Objects;
 
 	 /** Um posto do sistema. Um posto deve ter uma capacidade
 	 * máxima de combustível, assim como a quantidade de combustível que tem.
@@ -20,17 +21,35 @@ public class Posto {
 	
 
 	/* ------------------------------------------ VARIÁVEIS ------------------------------------------------ */
+	private String nome;
 	private int id, quantidadeAtual, capacidade, gastoMedio;
-	private Point coordenada;
+	private Point posicao;
 	
 	/* ----------------------------------------- CONSTRUTOR ------------------------------------------------- */
-	public Posto(int id, Point coordenada, int gastoMedio, int quantidadeAtual, int capacidade) {
+	public Posto(int id, String nome, Point posicao, int gastoMedio, int quantidadeAtual, int capacidade) {
 		
 		this.id = id;
-		this.coordenada = coordenada;
-		setCapacidade(capacidade);
-		setQuantidadeAtual(quantidadeAtual);
-		setGastoMedio(gastoMedio);
+		this.posicao = posicao;
+		
+		if (capacidade >= 0 && capacidade >= quantidadeAtual) {
+			this.capacidade = capacidade;
+		} else {
+			this.capacidade = quantidadeAtual;
+		}
+		
+		if (quantidadeAtual >= 0 && quantidadeAtual <= capacidade) {
+			setQuantidadeAtual(quantidadeAtual);
+		} else {
+			this.quantidadeAtual = capacidade;
+		}
+		
+		if (gastoMedio >= 0) {
+			this.gastoMedio = gastoMedio;
+		} else {
+			this.gastoMedio = 0;
+		}
+		
+		this.nome = nome;
 	}
 	
 	/* ------------------------------------------- MÉTODOS -------------------------------------------------- */
@@ -42,14 +61,15 @@ public class Posto {
 	 *         EXCEDE_CAPACIDADE_POSTO -> se o posto não tem capacidade de armazenar os litros indicados      
 	 */
 	public int enche( int nLitros ) {
-		if (temPedidoPendente()) {      
-			if (quantidadeAtual + nLitros < capacidade) {
+		if (temPedidoPendente() || percentagemOcupacao() < OCUPACAO_SUFICIENTE) {      
+			if (podeEncher(nLitros)) {
+				setQuantidadeAtual(quantidadeAtual + nLitros);
 				return Central.ACEITE;
-			} else if (quantidadeAtual == capacidade) {
-				return Central.POSTO_NAO_PRECISA;
+			} else {
+				return Central.EXCEDE_CAPACIDADE_POSTO;
 			}
 		}
-		return Central.EXCEDE_CAPACIDADE_POSTO;
+			return Central.POSTO_NAO_PRECISA;
 	}
 	
 	/** retorna a capacidade livre, isto é, quantos litros ainda podem ser armazenados no posto
@@ -63,63 +83,82 @@ public class Posto {
 	 * do posto
 	 */
 	public float percentagemOcupacao() {
-		return quantidadeAtual / capacidade;
+		return (float) quantidadeAtual / capacidade;
 	}
 	
 	// indica se o posto tem um pedido pendente -> @return true, se tiver um pedido */
 	public boolean temPedidoPendente() {
-		return quantidadeAtual < OCUPACAO_MINIMA * capacidade || Math.random() < PROBABILIDADE_REABASTECIMENTO;
+		if (percentagemOcupacao() < OCUPACAO_MINIMA) {
+			return true;
+		} else if ((percentagemOcupacao() < OCUPACAO_SUFICIENTE) && (Math.random() < PROBABILIDADE_REABASTECIMENTO)) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	// Laborar do posto. O posto processa os gastos e verifica se precisa de realizar um pedido de abastecimento
-	public void laborar() {								// DUVIDAS
-		setQuantidadeAtual(quantidadeAtual-= gastoMedio);
-		temPedidoPendente();
+	public void laborar() {	
+		
+		setQuantidadeAtual(quantidadeAtual - gastoMedio);
+		
+		if (quantidadeAtual < 0) {
+			setQuantidadeAtual(0);
+		} 
+	}
+	
+	public boolean podeEncher(int nLitros) {
+		if (quantidadeAtual + nLitros <= capacidade) {
+			return true;
+		}
+		return false;
 	}
 
 	/* --------------------------------------- GETTERS E SETTERS --------------------------------------------- */
 	public int getCapacidade() {
 		return capacidade;
 	}
-
-
-	public void setCapacidade(int capacidade) {
-		if (capacidade >= 0 && capacidade >= this.quantidadeAtual) {
-			this.capacidade = capacidade;
-		}
-	}
-
 	
 	public int getQuantidadeAtual() {
 		return quantidadeAtual;
 	}
 
-
 	public void setQuantidadeAtual(int quantidadeAtual) {
-		if (quantidadeAtual >= 0 && quantidadeAtual <= this.capacidade)
-			this.quantidadeAtual = quantidadeAtual;
+		this.quantidadeAtual = quantidadeAtual;
 	}
-
 
 	public int getGastoMedio() {
 		return gastoMedio;
 	}
 
-
-	public void setGastoMedio(int gastoMedio) {
-		if (gastoMedio >= 0) {
-			this.gastoMedio = gastoMedio;
-		}
-	}
-
-
 	public int getId() {
 		return id;
 	}
 
+	public Point getPosicao() {
+		return posicao;
+	}
+	
+	public String getNome() {
+		return nome;
+	}
 
-	public Point getCoordenada() {
-		return coordenada;
+	/* --------------------------------------- EQUALS e HASHCODE ---------------------------------------------- */
+	@Override
+	public int hashCode() {
+		return Objects.hash(id);
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Posto other = (Posto) obj;
+		return id == other.id;
 	}
 	
 }

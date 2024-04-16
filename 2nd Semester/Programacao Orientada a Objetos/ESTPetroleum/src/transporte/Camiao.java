@@ -1,9 +1,12 @@
-package petroleum;
+package transporte;
 import java.awt.Point;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Objects;
 
+import edificios.Central;
+import edificios.Posto;
 import menu.Mapa;
+import viagem.Itinerario;
+import viagem.Paragem;
 
 /** Esta classe representa um camião, que, neste contexto, se refere à capacidade de transportar
  * combústivel. Tem para isso um limite máximo de combústivel que pode transportar e a
@@ -13,8 +16,7 @@ import menu.Mapa;
  * do limite de tempo de um turno de 14 horas )2 condutores com turnos de 7 horas cada).
  */
 public class Camiao {
-	/** o tempo máximo de um turno, que são as 14 horas
-	 * (2 condutores), dadas em segundos */
+	// o tempo máximo de um turno, que são as 14 horas 2 condutores), dadas em segundos 
 	public static final int TEMPO_TURNO = 14 * 3600;
 	
 	/* ------------------------------------------ VARIÁVEIS ------------------------------------------------ */
@@ -25,10 +27,31 @@ public class Camiao {
 	/* ----------------------------------------- CONSTRUTOR ------------------------------------------------- */
 	public Camiao(String matricula, int capacidadeMax, int quantidadeAtual, int velocidadeMedia, int debito, Itinerario itinerario) {
 		this.matricula = matricula;
-		this.capacidadeMax = capacidadeMax;
-		setQuantidadeAtual(quantidadeAtual);
-		this.velocidadeMedia = velocidadeMedia;
-		this.debito = debito;
+		
+		if (capacidadeMax >= 0 && capacidadeMax >= quantidadeAtual) {
+			this.capacidadeMax = capacidadeMax;
+		} else {
+			this.capacidadeMax = quantidadeAtual;
+		}
+		
+		if (quantidadeAtual >= 0 && quantidadeAtual <= capacidadeMax) {
+			setQuantidadeAtual(quantidadeAtual);
+		} else {
+			this.quantidadeAtual = capacidadeMax;
+		}
+		
+		if (velocidadeMedia >= 0) {
+			this.velocidadeMedia = velocidadeMedia;
+		} else {
+			this.velocidadeMedia = 0;
+		}
+
+		if (debito >= 0) {
+			this.debito = debito;
+		} else {
+			this.debito = 0;
+		}
+		
 		setItinerario(itinerario);
 	}
 
@@ -45,9 +68,9 @@ public class Camiao {
 	 */
 	public int podeFazerPedido(Posto posto, int litros) {
 		
-		if (litros > this.quantidadeAtual) {
+		if (litros > capacidadeLivre()) {
 			return Central.EXCEDE_CAPACIDADE_CAMIAO;
-		} else if (tempoDespejar(litros) > TEMPO_TURNO) {
+		} else if (duracaoTurno() + tempoPercorrer(itinerario.getFim(), posto.getPosicao()) + tempoDespejar(litros) > TEMPO_TURNO) {
 			return Central.EXCEDE_TEMPO_TURNO;
 		}
 		return Central.ACEITE;
@@ -63,20 +86,44 @@ public class Camiao {
 	 */
 	public int addPosto( Posto p, int litros ) {
 		// TODO ZFEITO fazer este método
-		if (podeFazerPedido(p, litros) == Central.ACEITE) {
+		if (podeFazerPedido(p, litros) == Central.ACEITE && !itinerario.postoExiste(p)) {
 			itinerario.addParagem(new Paragem(p, litros));
+			this.quantidadeAtual += litros;
 		}
 		return podeFazerPedido(p, litros);
+	}
+	
+	/** retorna a capacidade livre, isto é, quantos litros ainda pode
+	 * adicionar à carga
+	 * @return a capacidade livre, em litros
+	 */
+	public int capacidadeLivre() {
+		// TODO ZFEITO fazer este método     
+		return capacidadeMax - quantidadeAtual;
 	}
 
 	/** retorna o tempo, em segundos, que demora a fazer o itinerário
 	 * @return o tempo, em segundos, que demora a fazer o itinerário 
 	 */
-	public double duracaoTurno(Point inicio, Point fim){
+	public double duracaoTurno(){
+		
 	    // TODO ZFEITO calcular uma distância, para depois retornar o tempo		
-		return tempoPercorrer(inicio, fim);
+		double tempo = 0;
+		Point pontoInicial = itinerario.getInicio();
+		
+		for (Paragem paragem : itinerario.getParagens()) {
+			Point pontoFinal = paragem.getPosto().getPosicao();
+			
+			tempo += tempoPercorrer(pontoInicial, pontoFinal);
+			
+			if (tempo > TEMPO_TURNO) {
+				return TEMPO_TURNO;
+			}
+			
+			pontoInicial = pontoFinal;
+		}
+		return tempo;
 	}
-
 	
 	/** retorna o tempo, em segundos, que demora a fazer o itinerário acrescentando um posto extra
 	 * @param extra o posto extra a processar
@@ -85,36 +132,24 @@ public class Camiao {
 	 */
 	public double duracaoTurnoExtra( Posto extra, int nLitros ) {
 		// TODO ZFEITO fazer este método
+		return duracaoTurno() + tempoPercorrer(itinerario.getFim(), extra.getPosicao()) + tempoDespejar(nLitros);
 		
-		// Cálculo do tempo que o camião demora a abastecer
-		return duracaoTurno(itinerario.getInicio(), itinerario.getFim()) +  duracaoTurno(itinerario.getFim(), extra.getCoordenada()) + 
-				tempoDespejar(nLitros);
 	}
 
 	// Efetua o transporte e transferência de combustível para todos os postos no itinerário
 	public void transporta() {
 	    
 		// TODO ZFEITO fazer este método
-	    // Percorrer cada posto no itinerário
 	    for (Paragem paragem : itinerario.getParagens()) {
+	    	 Posto postoParagem = paragem.getPosto();
 	        
-	        if (tempoPercorrer(itinerario.getInicio(), paragem.getPosto().getCoordenada()) > TEMPO_TURNO) {
+	        if (tempoPercorrer(itinerario.getInicio(), postoParagem.getPosicao()) > TEMPO_TURNO) {
 	            return;
 	        }
-	        
-	        if (podeFazerPedido(paragem.getPosto(), paragem.getPosto().capacidadeLivre()) == Central.ACEITE) {
-	        	do {
-	        		quantidadeAtual -= paragem.getnLitros();         // DUVIDAS
-	        		paragem.getPosto().enche(capacidadeLivre());
-	        	} while (this.quantidadeAtual <= this.capacidadeMax);		
-	        
-	        }
+    		postoParagem.enche(paragem.getNLitros());		
+    		setQuantidadeAtual(quantidadeAtual - paragem.getNLitros());
 	    }
-	   //ver se o turno excede as 14 hrs
-	    if (tempoPercorrer(itinerario.getInicio(), itinerario.getFim()) > TEMPO_TURNO) {
-	        return;
-	    }
-	    
+	    itinerario.limpar();
 	}
 
 	/** retorna o tempo, em segundos, que demora a percorrer o caminho entre
@@ -124,15 +159,17 @@ public class Camiao {
 	 * @return o tempo que demora a ir de ini a fim.
 	 */
 	private double tempoPercorrer( Point ini, Point fim ){
-		// TODO ZFEITO terminar este método (distância / velocidade)             	
-		return ((Mapa.distancia(ini, fim)) /(double) velocidadeMedia) * 3600;
+
+		// TODO ZFEITO terminar este método (distância / velocidade)
+			return (Mapa.distancia(ini, fim) / this.velocidadeMedia) * 3600;
 	}
+	
 	/** retorna quanto tempo demora, em segundos, a transferir a quantidade de liquido
 	 * @param nLitros a quantidade de liquido a transferir
 	 * @return o tempo que demora, em segundos, a transferir os nLitros
 	 */
 	private double tempoDespejar( int nLitros ){
-		// TODO ZFEITO fazer este método  (cast)                         
+		// TODO ZFEITO fazer este método                         
 		return (double) nLitros / debito;
 	}
 	
@@ -140,17 +177,8 @@ public class Camiao {
 	 * @return a percentagem de ocupação 
 	 */
 	public float percentagemOcupacao() {
-		// TODO ZFEITO fazer este método  (cast)                        
-		return (float) (quantidadeAtual / (double) capacidadeMax);
-	}
-	
-	/** retorna a capacidade livre, isto é, quantos litros ainda pode
-	 * adicionar à carga
-	 * @return a capacidade livre, em litros
-	 */
-	public int capacidadeLivre() {
-		// TODO ZFEITO fazer este método                          
-		return capacidadeMax - quantidadeAtual;
+		// TODO ZFEITO fazer este método                        
+		return (float) quantidadeAtual / capacidadeMax;
 	}
 	
 	/* --------------------------------------- GETTERS E SETTERS --------------------------------------------- */
@@ -162,11 +190,9 @@ public class Camiao {
 		return quantidadeAtual;
 	}
 
-
 	public void setQuantidadeAtual(int quantidadeAtual) {
 		this.quantidadeAtual = quantidadeAtual;
 	}
-
 
 	public int getVelocidadeMedia() {
 		return velocidadeMedia;
@@ -180,16 +206,31 @@ public class Camiao {
 		return matricula;
 	}
 
-	
 	public Itinerario getItinerario() {
 		return itinerario;
 	}
-
 	
 	public void setItinerario(Itinerario itinerario) {
 		this.itinerario = itinerario;
 	}
+
+	/* --------------------------------------- EQUALS e HASHCODE ---------------------------------------------- */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Camiao other = (Camiao) obj;
+		return Objects.equals(matricula, other.matricula);
+	}
 	
+	@Override
+	public int hashCode() {
+		return Objects.hash(matricula);
+	}
 	
 	
 	

@@ -1,16 +1,21 @@
-package petroleum;
+package edificios;
 import java.awt.Point;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
+import transporte.Camiao;
+
 /** Classe que representa a central de distribuição de combústivel.
  * Deve conter todas as informações, como os camiões, os postos, etc.
  * É ainda responsável por controlar todos os elemenots e operações
  */
 public class Central {
-	// constantes para os erros que podem surgir udurante a realização das operações
+	
+	/* ------------------------------------------ CONSTANTES ------------------------------------------------ */
+
+	// constantes para os erros que podem surgir durante a realização das operações
 	/** Correu tudo bem com a operação */
 	public static final int ACEITE = 0;
 	/** Usada quando se pretende adicionar um pedido a um posto, mas este não precisa */
@@ -22,18 +27,18 @@ public class Central {
 	/** Indica que o camião não pode satisfazer um pedido, pois este iria exceder o tempo de turno */ 
 	public static final int EXCEDE_TEMPO_TURNO = EXCEDE_CAPACIDADE_CAMIAO + 1;
 	
-	
+	/* ------------------------------------------ VARIÁVEIS ------------------------------------------------ */
 	private Point localizacao;
-	
-	public Central(Point localizacao) {
-		this.localizacao = localizacao;
-	}
 	
 	private Map<String,Camiao> camioes = new HashMap<String,Camiao>();
 	private Map<Integer,Posto> postos = new HashMap<Integer,Posto>();
-	
+	/* ----------------------------------------- CONSTRUTOR ------------------------------------------------- */
+	public Central(Point localizacao) {
+		this.localizacao = localizacao;
+	}
 
-	/** retorna o camião associado a uma matricula
+	/* ------------------------------------------- MÉTODOS -------------------------------------------------- */
+	/* retorna o camião associado a uma matricula
 	 * @param matricula matrícula a pesquisar matricula
 	 * @return o camião com a matrícula indicada, ou null se não existir
 	 */
@@ -42,7 +47,7 @@ public class Central {
 		return camioes.get(matricula);
 	}
 	
-	/** retorna o posto que tem um dado id
+	/* retorna o posto que tem um dado id
 	 * @param id id a pesquisar
 	 * @return o posto com o id, ou null se não existir
 	 */
@@ -51,7 +56,16 @@ public class Central {
 		return postos.get(id);
 	}
 
-
+	// Adicionar um posto ao HashMap
+	public void addPosto( Posto p ) {
+		postos.put(p.getId(), p);
+	}
+	
+	// Adicionar um camião ao HashMap
+	public void addCamiao( Camiao c ) {
+		camioes.put(c.getMatricula(), c);
+	}
+	
 	/** processa uma entrega, isto é, associa o pedido ao camião respetivo
 	 * @param posto posto onde entregar o combústivel
 	 * @param litros litros a entregar
@@ -69,19 +83,20 @@ public class Central {
 		
 	    // Criação das variáveis dos resultados
 	    int resultadoCamiao = camiao.podeFazerPedido(posto, litros);
-	    int resultadoPosto = posto.enche(litros);
 	    
 	    // Verificar se o camião pode fazer o pedido
 	    if (resultadoCamiao != Central.ACEITE) {
 	        return resultadoCamiao; 
-	    }
+	    } 
 	    
 	    // Verifica se o posto pode aceitar o pedido
-	    if (resultadoPosto != Central.ACEITE) {
-	        return resultadoPosto; 
+	    if (!posto.podeEncher(litros)) {
+	        return EXCEDE_CAPACIDADE_POSTO;
 	    }
 	    
-	    return Central.ACEITE;
+	    camiao.addPosto(posto, litros);
+	    
+ 	    return Central.ACEITE;
 	}
 	
 	/** finaliza um turno, isto é, realiza os itinerários e
@@ -98,20 +113,15 @@ public class Central {
 	private void realizarItinerarios() {
 		// TODO ZFEITO fazer este método
 		for (Camiao camiao : camioes.values()) {
-			if (camiao.getItinerario() != null) {
 				camiao.transporta();
-			}
 		}
 	}
 	
-	/** processa os gastos dos postos
-	 */
+	// Processa os gastos dos postos
 	private void processarGastosPostos() {
 		// TODO ZFEITO fazer este método
 		for (Posto posto : postos.values()) {
-			if (posto.getGastoMedio() != 0) {
 				posto.laborar();
-			}
 		}
 	}
 
@@ -120,12 +130,10 @@ public class Central {
 		return localizacao;
 	}
 
-	
 	public Collection<Camiao> getCamioes(){
 		return Collections.unmodifiableCollection( camioes.values() );
 	}	
 	
-
 	public Collection<Posto> getPostos(){
 		return Collections.unmodifiableCollection( postos.values() );
 	}	
