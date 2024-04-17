@@ -80,7 +80,11 @@ public class Central {
 	public int processarEntrega(Posto posto, int litros, Camiao camiao) {
 		
 		// TODO ZFEITO fazer este método
-		
+
+		if (posto.percentagemOcupacao() >= Posto.OCUPACAO_SUFICIENTE) {
+			return POSTO_NAO_PRECISA;
+		}
+
 	    // Criação das variáveis dos resultados
 	    int resultadoCamiao = camiao.podeFazerPedido(posto, litros);
 	    
