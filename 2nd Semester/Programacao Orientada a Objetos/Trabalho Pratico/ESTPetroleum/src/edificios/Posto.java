@@ -24,6 +24,7 @@ public class Posto {
 	private String nome;
 	private int id, quantidadeAtual, capacidade, gastoMedio;
 	private Point posicao;
+	private boolean pedido = false;
 	
 	/* ----------------------------------------- CONSTRUTOR ------------------------------------------------- */
 	public Posto(int id, String nome, Point posicao, int gastoMedio, int quantidadeAtual, int capacidade) {
@@ -61,7 +62,7 @@ public class Posto {
 	 *         EXCEDE_CAPACIDADE_POSTO -> se o posto não tem capacidade de armazenar os litros indicados      
 	 */
 	public int enche( int nLitros ) {
-		if (temPedidoPendente() || percentagemOcupacao() < OCUPACAO_SUFICIENTE) {      
+		if (temPedidoPendente()) {
 			if (podeEncher(nLitros)) {
 				setQuantidadeAtual(quantidadeAtual + nLitros);
 				return Central.ACEITE;
@@ -88,13 +89,7 @@ public class Posto {
 	
 	// indica se o posto tem um pedido pendente -> @return true, se tiver um pedido */
 	public boolean temPedidoPendente() {
-		if (percentagemOcupacao() < OCUPACAO_MINIMA) {
-			return true;
-		} else if ((percentagemOcupacao() < OCUPACAO_SUFICIENTE) && (Math.random() < PROBABILIDADE_REABASTECIMENTO)) {
-			return true;
-		} else {
-			return false;
-		}
+		return pedido;
 	}
 
 	// Laborar do posto. O posto processa os gastos e verifica se precisa de realizar um pedido de abastecimento
@@ -104,7 +99,15 @@ public class Posto {
 		
 		if (quantidadeAtual < 0) {
 			setQuantidadeAtual(0);
-		} 
+		}
+
+		if (percentagemOcupacao() < OCUPACAO_MINIMA) {
+			pedido = true;
+		} else if ((percentagemOcupacao() < OCUPACAO_SUFICIENTE) && (Math.random() < PROBABILIDADE_REABASTECIMENTO)) {
+			pedido = true;
+		} else {
+			pedido = false;
+		}
 	}
 	
 	public boolean podeEncher(int nLitros) {
