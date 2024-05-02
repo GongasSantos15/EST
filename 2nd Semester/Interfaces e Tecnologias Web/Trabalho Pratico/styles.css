@@ -1,0 +1,9 @@
+.fakeimg {
+    height: 200px;
+    background: #aaa;
+  }
+
+  #header {
+    height: 15em;
+    margin: auto;
+  }
