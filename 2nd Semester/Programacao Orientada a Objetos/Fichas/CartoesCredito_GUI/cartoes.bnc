@@ -1,0 +1,28 @@
+Neste ficheiro, cada linha que contenha um cartão
+deve começar por $cartao,tipo e depois pela
+informação do cartão, separada por ',' sem espaços. 
+Para cada tipo de cartão a informação é
+cartões Compras      $cartao,compras,id,idConta,plafond
+cartões Débito Plus  $cartao,debplus,id,idConta,plafond
+cartões Fim Mês      $cartao,fimmes,id,idConta,plafond
+
+$cartao,compras,100,10,800
+$cartao,fimmes,101,10,1000
+
+$cartao,debplus,120,20,800
+
+$cartao,debplus,130,30,5000
+$cartao,fimmes,131,30,5000
+
+$cartao,compras,140,40,1000
+
+$cartao,debplus,150,50,500
+$cartao,fimmes,151,50,1000
+
+$cartao,compras,155,55,800
+$cartao,fimmes,156,55,600
+
+$cartao,compras,160,60,1000
+$cartao,fimmes,161,60,5000
+
+$cartao,debplus,166,65,2000
