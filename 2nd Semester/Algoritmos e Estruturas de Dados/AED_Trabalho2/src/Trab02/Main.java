@@ -87,22 +87,26 @@ public class Main {
 				inicio = System.nanoTime();
 				
 				/* ADICIONEI DAQUI */
-				PrintWriter ficheiro = null;
+
+					// LIMPAR O FICHEIRO E DEPOIS FAZER UM CICLO PARA IR ADICIONANDO TODAS AS PALAVRAS DA TABELA HASH PARA O FICHEIRO COM O PUSH() DE CADA UMA DAS PALAVRAS
+					
+					PrintWriter ficheiro = null;
 				
-				try {
-					ficheiro = new PrintWriter(new FileWriter("palavras.txt", true));
-				} catch (Exception e) {
-					e.printStackTrace();
-					System.exit(0);
-				}
+					try {
+						ficheiro = new PrintWriter(new FileWriter("palavras.txt", true));
+					} catch (Exception e) {
+						e.printStackTrace();
+						System.exit(0);
+					}
 				
-				gravarParaFicheiro(ficheiro,"\nESTA É A PALAVRA\n");
-				ficheiro.close();
+					gravarParaFicheiro(ficheiro,"\nESTA É A PALAVRA\n");
+					ficheiro.close();
 				
-				fim = System.nanoTime();
-				tempo = fim - inicio;
-				System.out.println("Tempo de gravação do ficheiro: " + tempo + " nanossegundos\n");
-				break;
+					fim = System.nanoTime();
+					tempo = fim - inicio;
+					System.out.println("Tempo de gravação do ficheiro: " + tempo + " nanossegundos\n");
+					break;
+					
 				/* ATÉ AQUI */
 				
 			case 0:
