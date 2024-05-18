@@ -1,0 +1,15 @@
+Neste ficheiro, cada linha que contenha uma conta
+deve começar por $conta e ter a informação separada
+por ',' sem espaços e pela ordem $conta,id,saldo
+
+$conta,10,1000
+$conta,20,200
+$conta,30,30000
+$conta,40,4400
+$conta,50,500
+
+O ficheiro pode ter linhas em branco
+
+$conta,55,5555
+$conta,60,606060
+$conta,65,6500000
