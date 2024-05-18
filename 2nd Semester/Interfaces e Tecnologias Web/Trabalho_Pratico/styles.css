@@ -1,9 +1,38 @@
 .fakeimg {
-    height: 200px;
-    background: #aaa;
-  }
+  height: 200px;
+  background: #aaa;
+}
 
-  #header {
-    height: 15em;
-    margin: auto;
-  }
+#header {
+  height: 15em;
+  margin: auto;
+}
+
+.my-mx {
+  margin-right: 0;
+}
+
+.my-col {
+  width: 11%;
+}
+
+.cpu {
+  width: 80%;
+}
+
+.logo {
+  width: 15%;
+}
+
+.my-mt {
+  margin-top: 16%;
+}
+
+.my-mt-2 {
+  margin-top: 2%;;
+}
+
+.ge {
+  margin-top: 25%;
+  margin-left: 5%;
+}
