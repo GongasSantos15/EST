@@ -1,104 +1,399 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Bootstrap 5 Website Example</title>
+  <title>Tech4U</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="bootstrap-5.3.3-dist/css/bootstrap.min.css" rel="stylesheet"/>
   <link href="styles.css" rel="stylesheet">
   <script src="bootstrap-5.3.3-dist/js/bootstrap.min.js"></script>
 </head>
-<body>
+<body class="bg">
 
-  <nav class="navbar navbar-expand-lg fixed-top navbar-light bg-light">
-    <!-- Container wrapper -->
-    <div class="container-fluid">
-      <!-- Navbar brand -->
-      <a class="navbar-brand" href="index.html">
-        <img src="Images/logo.jpg" class="rounded-pill" height="50" alt="LOGO"/>
+<!-- Navbar-->
+<nav class="navbar navbar-expand-lg fixed-top navbar-light bg-light">
+  <div class="container-fluid">
+    <!-- Elementos à esquerda -->
+    <div class="d-flex">
+      <!-- Logo -->
+      <a class="navbar-brand me-2 d-flex align-items-center" href="index.html">
+        <img
+          class="rounded-circle"
+          src="Images/logo.jpg"
+          height="50"
+          alt="Logo"
+        />
       </a>
-  
-      <!-- Collapsible wrapper -->
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <!-- Left links -->
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Produtos</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Autor</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Contactos</a>
-          </li>
-        </ul>
-      </div>
+      <ul class="navbar-nav me-auto mt-2">
+        <li class="nav-item">
+          <a class="nav-link" href="#">Produtos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="autor.html">Autor</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Contactos</a>
+        </li>
+      </ul>
+      
     </div>
+    <!-- Elementos à esquerda -->
+
+    <!-- Search Bar -->
+      <form class="d-flex">
+          <input class="form-control me-2 rounded-pill border-primary" type="text" placeholder="Search">
+        <button class="btn btn-primary rounded-pill" type="button">Search</button>
+      </form>
+    <!-- Search Bar -->
+
+    <!-- Elementos à direta -->
+    <div class="d-flex align-items-center">
+      
+      <!-- Avatar Icon -->
+      <div class="zoom-img navbar-icon">
+        <a href="#">
+          <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" class="bi bi-person me-3" viewBox="0 0 16 16">
+            <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0m4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4m-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10s-3.516.68-4.168 1.332c-.678.678-.83 1.418-.832 1.664z"/>
+          </svg>
+        </a>
+      </div>
+
+       <!-- Carrinho Icon -->
+       <a class="zoom-img icon" href="#">
+        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" class="bi bi-cart" viewBox="0 0 16 16" style="vertical-align: middle;">
+          <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l1.313 7h8.17l1.313-7zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2"/>
+        </svg>
+          
+        <span class="badge rounded-circle bg-danger">1</span>
+      </a>
+    <!-- Elementos à direita -->
+
   </nav>
+<!-- Navbar -->
 
-<div class="p-5 bg-primary text-white text-center">
-  <h1>LOJA ONLINE</h1>
-  <p>Aqui encontra tudo aos melhores preços!</p> 
+<!-- CARROSSEL -->
+<div id="demo" class="carousel slide" data-bs-ride="carousel">
+
+  <!-- Indicadores carrossel -->
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#demo" data-bs-slide-to="0" class="active"></button>
+    <button type="button" data-bs-target="#demo" data-bs-slide-to="1"></button>
+    <button type="button" data-bs-target="#demo" data-bs-slide-to="2"></button>
+  </div>
+
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      
+      <a href="https://www.apple.com/newsroom/2024/05/apple-unveils-stunning-new-ipad-pro-with-m4-chip-and-apple-pencil-pro/" target="_blank">
+        <div class="description">
+          <h2>iPad Pro. A Potência Afinada</h2>
+          <p>Novo iPad Pro com o chipset mais avançado do mundo, M4 Chip e a nova Apple Pencil Pro</p>
+        </div>
+        <img src="Images/carousel1.png" alt="iPad Pro e Apple Pencil Pro" class="img-fluid mt-5 d-block w-100">
+      </a>
+    </div>
+    
+    <div class="carousel-item">
+      
+      <a href="https://www.apple.com/newsroom/2024/05/apple-unveils-stunning-new-ipad-pro-with-m4-chip-and-apple-pencil-pro/" target="_blank">
+        <div class="description">
+          <h2>Sente como se estivesses em campo!</h2>
+          <p>Descobre a televisão perfeita para veres os jogos da seleção no Euro 2024</p>
+        </div>
+        <img src="Images/carousel2.jpg" alt="iPad Pro e Apple Pencil Pro" class="img-fluid mt-5 d-block w-100">
+      </a>
+    </div>
+    <div class="carousel-item">
+      <a href="https://www.apple.com/newsroom/2024/05/apple-unveils-stunning-new-ipad-pro-with-m4-chip-and-apple-pencil-pro/" target="_blank">
+        <div class="description">
+          <h2>Até 60% de desconto direto</h2>
+          <p>Em toda a gama de Grandes Eletrodomésticos, desde frigoríficos, a máquinas de lavar roupa e loiça, etc...</p>
+        </div>
+        <img src="Images/carousel3.png" alt="iPad Pro e Apple Pencil Pro" class="d-block mt-5 w-100">
+      </a>
+    </div>
+  </div>
+
+  <!-- Controlos/ícones setas esquerda e direita -->
+  <button class="carousel-control-prev" type="button" data-bs-target="#demo" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon"></span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#demo" data-bs-slide="next">
+    <span class="carousel-control-next-icon"></span>
+  </button>
 </div>
+<!--FIM CAROUSEL -->
 
-<div class="container-fluid mt-4 my-mx">
+<!-- CATEGORIAS -->
+
+<div class="container-fluid mt-4 p-0">
   <div class="row justify-content-center">
-    <div class="mb-3 pt-3 position-relative">
-      <h2>Categorias</h1>
+    <div class="mb-3 pt-3">
+      <h1>Categorias</h1>
     </div>
-    <div class="col-sm-1 col-md-1 col-6 my-col align-items-center">
-      <div>
-        <a href="#"><img class="img-fluid" src="Images/smartphones.png"></a>
-      <p class="mt-4 text-center smartphone">Smartphones e Tablets</p>
+    <div class="container-fluid justify-content-center row">
+ 
+      <div class="card my-card-categories mx-3">
+        <a class="text-decoration-none card-title" href="#">
+          <img class="card-img-top zoom-img my-card-categories-img" src="Images/smartphones.png" alt="Smartphones e Tablets" style="width:100%">
+          <p class="my-card-description">Smartphones e Tablets</p>
+        </a>
       </div>
+
+    <div class="card my-card-categories mx-3">
+      <a class="text-decoration-none card-title" href="#">
+        <img class="card-img-top zoom-img my-card-categories-img" src="Images/wearables.png" alt="Wearables e Mobile Audio" style="width:100%">
+        <p class="my-card-description-2">Wearables e Mobile Audio</p>
+      </a>
     </div>
-    <div class="categorias col-sm-1 col-md-1 col-6 my-col">
-      <div>
-          <a href="#"><img class="img-fluid mt-3" src="Images/wearables.png"></a>
-      </div>
-      <p class="mt-2 text-center">Wearables e Mobile Audio</p>
+
+    <div class="card my-card-categories mx-3">
+      <a class="text-decoration-none card-title" href="#">
+        <img class="card-img-top zoom-img my-card-categories-img" src="Images/laptops.png" alt="Desktops e Laptops" style="width:100%">
+        <p class="my-card-description">Desktops e Laptops</p>
+      </a>
     </div>
-    <div class="categorias col-sm-1 col-md-1 col-6 my-col">
-      <div>
-        <a href="#"><img class="img-fluid mt-3" src="Images/laptops.png"></a>
-      </div>
-      <p class="mt-2 text-center">Desktops e Laptops</p>
+
+    <div class="card my-card-categories mx-3">
+      <a class="text-decoration-none card-title" href="#">
+        <img style="width: 70%" class="pt-4 my-card-categories-img cpu card-img-top zoom-img" src="Images/cpu.png" alt="Componentes PC" style="width:100%">
+        <p class="my-card-description">Componentes PC</p>
+      </a>
     </div>
-    <div class="categorias col-sm-1 col-md-1 col-6 my-col">
-      <div class="">
-        <a href="#"><img class="img-fluid mt-4 ms-3 cpu" src="Images/cpu.png"></a>
-      </div>
-      <p class="my-mt text-center">Componentes PC</p>
+
+    <div class="card my-card-categories mx-3">
+      <a class="text-decoration-none card-title" href="#">
+        <img class="my-card-categories-img card-img-top zoom-img" src="Images/tv.png" alt="Televisores e Projetores" style="width:100%">
+        <p class="my-card-description">Televisores e Projetores</p>
+      </a>
     </div>
-    <div class="categorias col-sm-1 col-md-1 col-6 my-col">
-      <div>
-        <a href="#"><img class="img-fluid mt-3" src="Images/tv.png"></a>
-      </div>
-      <p class="my-mt-2 text-center">Televisores e Projetores</p>
-    </div>    
-    <div class="categorias col-sm-1 col-md-1 col-6 my-col">
-      <div>
-        <a href="#"><img class="img-fluid mt-5" src="Images/microwave.png"></a>
-      </div>
-      <p class="mt-5 text-center">Pequenos Eletrodomésticos</p>
+
+    <div class="card my-card-categories mx-3">
+      <a class="text-decoration-none card-title" href="#">
+        <img class="pt-5 my-card-categories-img card-img-top zoom-img" src="Images/microwave.png" alt="Pequenos Eletrodomésticos" style="width:100%">
+        <p class="ps-4 my-card-description-2">Pequenos Eletrodomésticos</p>
+      </a>
     </div>
-    <div class="categorias col-sm-1 col-md-1 col-6 my-col">
-      <div>
-        <a href="#"><img class="img-fluid mt-5" src="Images/grandes_eletrodomesticos.png"></a>
-      </div>
-      <p class="mt-3 text-center">Grandes Eletrodomésticos</p>
+
+    <div class="card my-card-categories mx-3">
+      <a class="text-decoration-none card-title" href="#">
+        <img class="pt-4 my-card-categories-img card-img-top zoom-img" src="Images/grandes_eletrodomesticos.png" alt="Grandes Eletrodomésticos" style="width:100%">
+        <p class="ps-4 my-card-description-2">Grandes Eletrodomésticos</p>
+      </a>
     </div>
-    <div class="categorias col-sm-1 col-md-1 col-6 my-col">
-      <div>
-        <a href="#"><img class="img-fluid mt-5" src="Images/smarthome.png"></a>
-      </div>
-      <p class="mt-4 text-center">Smart Home e Iluminação</p>
+
+    <div class="card my-card-categories mx-3">
+      <a class="text-decoration-none card-title" href="#">
+        <img class="mt-5 card-img-top zoom-img" src="Images/smarthome.png" alt="Smart Home e Iluminação" style="width:100%">
+        <p class="ps-4 my-card-description-2">Smart Home e Iluminação</p>
+      </a>
+    </div>
+
+  </div>
+</div>
+<!-- CATEGORIAS -->
+
+<!-- PROMOÇÕES -->
+<!-- Linha do heading + botão -->
+<div class="container-fluid">
+  <div class="row my-4">
+    <h1 class="col text-left">Promoções</h1>
+    <div class=" align-items-center col d-flex justify-content-end me-2">
+      <button type="button" class="btn btn-primary rounded-pill border-primary">VER MAIS</button>
     </div>
   </div>
 </div>
+<!-- Linha do heading + botão -->
 
-<div class="mt-5 p-4 bg-dark text-white text-center">
-  <p>Footer</p>
+<div class="container-fluid justify-content-center row">
+ 
+  <div class="card my-card me-3">
+    <div class="d-flex justify-content-end">
+      <span class="badge rounded-pill orange w-25 novidade my-4 me-2">Promo</span>
+    </div>
+    <a class="my-card-title" href="#">
+      <img class="card-img-top zoom-new" src="Images/iphone-15-pro-max.jpg" alt="Card image" style="width:100%">
+      <div class="card-body mt-3">
+        <h5 class="card-title my-card-title">Smartphone Apple iPhone 15 Pro Max | 256GB | Titânio Preto</h5>
+          <p class="h2 price-promo">1299,99 €</p>
+          <p class="h5 price text-decoration-line-through">1499,99 €</p>
+      </div>
+    </a>
+  </div>
+
+  <div class="card my-card me-3">
+    <div class="d-flex justify-content-end">
+      <span class="badge rounded-pill orange w-25 novidade my-4 me-2">Promo</span>
+    </div>
+    <a class="my-card-title" href="#">
+      <img class="card-img-top zoom-new" src="Images/macbook-pro.jpg" alt="Card image" style="width:100%">
+      <div class="card-body mt-3">
+        <h5 class="card-title my-card-title">Apple Macbook Pro | SSD 512GB | 36GB RAM | Preto Sideral</h5>
+          <p class="h2 price-promo">3199,99 €</p>
+          <p class="h5 price text-decoration-line-through">3559,99 €</p>
+      </div>
+    </a>
+  </div>
+
+  <div class="card my-card me-3">
+    <div class="d-flex justify-content-end">
+      <span class="badge rounded-pill orange w-25 novidade my-4 me-2">Promo</span>
+    </div>
+    <a class="my-card-title" href="#">
+      <img class="card-img-top zoom-new" src="Images/redmi-note-13-pro-5g.jpg" alt="Card image" style="width:100%">
+      <div class="card-body mt-3">
+        <h5 class="card-title my-card-title">Smartphone Xiaomi Redmi Note 13 Pro 5G | 12/512GB | Preto Meia-Noite</h5>
+          <p class="h2 price-promo">379,99 €</p>
+          <p class="h5 price text-decoration-line-through">449,99 €</p>
+      </div>
+    </a>
+  </div>
+
+  <div class="card my-card me-3">
+    <div class="d-flex justify-content-end">
+      <span class="badge rounded-pill orange w-25 novidade my-4 me-2">Promo</span>
+    </div>
+    <a class="my-card-title" href="#">
+      <img class="card-img-top zoom-new" src="Images/hisense-65A6K.jpg" alt="Card image" style="width:100%">
+      <div class="card-body mt-3">
+        <h5 class="card-title my-card-title">Televisão Hisense 65A6K (2023) | SmartTV 65" LED 4K UHD</h5>
+          <p class="h2 price-promo">459,99 €</p>
+          <p class="h5 price text-decoration-line-through">499,99 €</p>
+      </div>
+    </a>
+  </div>
+
+  <div class="card my-card me-3">
+    <div class="d-flex justify-content-end">
+      <span class="badge rounded-pill orange w-25 novidade my-4 me-2">Promo</span>
+    </div>
+    <a class="my-card-title" href="#">
+      <img class="card-img-top zoom-new" src="Images/tp-link-tapo.jpg" alt="Card image" style="width:100%">
+      <div class="card-body mt-3">
+        <h5 class="card-title my-card-title">Câmera de Segurança TP-Link Tapo 7C71 | 2K Pan/Tilt Security | Wi-Fi</h5>
+          <p class="h2 price-promo">29,99 €</p>
+          <p class="h5 price text-decoration-line-through">39,99 €</p>
+      </div>
+    </a>
+  </div>
+  
+</div>
+<!-- PROMOÇÕES -->
+
+<!-- NOVIDADES -->
+<!-- Linha do heading + botão -->
+<div class="container-fluid">
+  <div class="row my-4">
+    <h1 class="col text-left">Novidades</h1>
+    <div class=" align-items-center col d-flex justify-content-end me-2">
+      <button type="button" class="btn btn-primary rounded-pill border-primary">VER MAIS</button>
+    </div>
+  </div>
+</div>
+<!-- Linha do heading + botão -->
+
+<div class="container-fluid justify-content-center row">
+ 
+  <div class="card my-card me-3">
+    <div class="d-flex justify-content-end">
+      <span class="badge rounded-pill bg-primary w-25 novidade my-4 me-2">Novidade</span>
+    </div>
+    <a class="my-card-title" href="#">
+      <img class="card-img-top zoom-new" src="Images/ps5.jpg" alt="Card image" style="width:100%">
+      <div class="card-body mt-3">
+        <h5 class="card-title my-card-title">Consola PlayStation 5 Slim 1TB | +  Hogwarts Legacy | + Uncharted: Legacy of Thieves</h5>
+        <p class="h2 price">579,99 €</p>
+      </div>
+    </a>
+  </div>
+
+  <div class="card my-card me-3">
+    <div class="d-flex justify-content-end">
+      <span class="badge rounded-pill bg-primary w-25 novidade my-4 me-2">Novidade</span>
+    </div>
+    <a class="my-card-title" href="#">
+      <img class="card-img-top zoom-new" src="Images/asus-zenbook-14.jpg" alt="Card image" style="width:100%">
+      <div class="card-body mt-3">
+        <h5 class="card-title my-card-title">Asus Zenbook 14 Flip OLED | UP3404VA-73BOHDAP1</h5>
+        <p class="h2 price">1599,99 €</p>
+      </div>
+    </a>
+  </div>
+
+  <div class="card my-card me-3">
+    <div class="d-flex justify-content-end">
+      <span class="badge rounded-pill bg-primary w-25 novidade my-4 me-2">Novidade</span>
+    </div>
+    <a class="my-card-title" href="#">
+      <img class="card-img-top zoom-new" src="Images/razer-headset.jpg" alt="Card image" style="width:100%">
+      <div class="card-body mt-3">
+        <h5 class="card-title my-card-title">Headset Razer Blackshark V2 X 7.1 | Branco</h5>
+        <p class="h2 price">59,99 €</p>
+      </div>
+    </a>
+  </div>
+
+  <div class="card my-card me-3">
+    <div class="d-flex justify-content-end">
+      <span class="badge rounded-pill bg-primary w-25 novidade my-4 me-2">Novidade</span>
+    </div>
+    <a class="my-card-title" href="#">
+      <img class="card-img-top zoom-new" src="Images/oneplus-nord-n30.jpg" alt="Card image" style="width:100%">
+      <div class="card-body mt-3">
+        <h5 class="card-title my-card-title">Smartphone Oneplus Nord N30 SE 5G | 4/128 GB | Preto</h5>
+        <p class="h2 price">249,99 €</p>
+      </div>
+    </a>
+  </div>
+
+  <div class="card my-card me-3">
+    <div class="d-flex justify-content-end">
+      <span class="badge rounded-pill bg-primary w-25 novidade my-4 me-2">Novidade</span>
+    </div>
+    <a class="my-card-title" href="#">
+      <img class="card-img-top zoom-new" src="Images/filtro.jpg" alt="Card image" style="width:100%">
+      <div class="card-body mt-3">
+        <h5 class="card-title my-card-title">Filtro de Água Karcher | 4.730-058.0 | p/ Lavadora Alta Pressão K2-K7</h5>
+        <p class="h2 price">19,99 €</p>
+      </div>
+    </a>
+  </div>
+  
+</div>
+<!-- NOVIDADES -->
+
+<div class="mt-5 p-4 bg-light text-dark container-fluid" style="width:100%">
+  <div class="row">
+    <div class="col-md-3 footer">
+      <h5>APOIO AO CLIENTE</h5>
+      <ul class="footer-col">
+        <li class="footer-list"><a class="nav-link" href="#">Centro de Ajuda</a></li>
+        <li class="footer-list"><a class="nav-link" href="#">Envio de Encomendas e Portes</a></li>
+        <li class="footer-list"><a class="nav-link" href="#">Trocas e Devoluções</a></li>
+        <li class="footer-list"><a class="nav-link" href="#">Garantia e RMAs</a></li>
+        <li class="footer-list"><a class="nav-link" href="#">Modos de Pagamento</a></li>
+      </ul>
+    </div>
+    <div class="col-md-3 footer">
+      <h5>INFORMAÇÃO LEGAL</h5>
+      <ul>
+        <li class="footer-list"><a class="nav-link" href="#">Política de Privacidade</a></li>
+        <li class="footer-list"><a class="nav-link" href="#">Política de Cookies</a></li>
+      </ul>
+    </div>
+    <div class="col-md-3 footer">
+      <h5>LINKS ÚTEIS</h5>
+      <ul>
+        <li class="footer-list"><a class="nav-link" href="#">Área de Cliente</a></li>
+      </ul>
+    </div>
+    <div class="col-md-3 footer">
+      <h5>Sobre</h5>
+      <ul>
+        <li class="footer-list"><a class="nav-link" href="#">Sobre Nós</a></li>
+      </ul>
+    </div>
+  </div>
 </div>
 
 </body>

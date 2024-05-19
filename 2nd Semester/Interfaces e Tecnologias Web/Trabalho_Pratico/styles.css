@@ -1,38 +1,143 @@
-.fakeimg {
-  height: 200px;
-  background: #aaa;
+.bg {
+  background-color: rgb(233, 233, 233);
 }
 
-#header {
-  height: 15em;
-  margin: auto;
+.description {
+  width: 22%;
+  position: absolute;
+  margin-top: 11%;
+  margin-left: 65%;
+  color: white;
 }
 
-.my-mx {
-  margin-right: 0;
+.my-card-categories {
+  background: none;
+  border: none;
+  width: 10%;
+  height: 250px;
 }
 
+.my-card-description {
+  position: absolute;
+  bottom: 5%;
+  padding: auto;
+}
+
+.my-card-description-2 {
+  position: absolute;
+  bottom: 0;
+  padding: auto;
+}
+
+.my-card-categories-img {
+  position: absolute;
+  top: 0;
+  padding: auto;
+}
+
+/* Tamanho das colunas das categorias personalizadas */
 .my-col {
   width: 11%;
 }
 
+.my-mt-dl {
+  margin-top: 2%;
+}
+
+/* Tamanho da imagem do processador */ 
 .cpu {
   width: 80%;
 }
 
-.logo {
-  width: 15%;
+/* Margem para o parágrafo "Componentes PC" */
+.my-mt-cpu {
+  margin-top: 8%;
 }
 
-.my-mt {
-  margin-top: 16%;
+/* Margem para o parágrafo "Televisores e Projetores" */
+
+/* Animação dura 0.2s e zoom de 115% "on hover" */
+.zoom-img, .zoom-new {
+  transition: transform 0.2s;
 }
 
-.my-mt-2 {
-  margin-top: 2%;;
+.zoom-img:hover {
+  transform: scale(1.15);
 }
 
-.ge {
-  margin-top: 25%;
-  margin-left: 5%;
+.zoom-new:hover {
+  transform: scale(1.05);
+}
+
+.icon {
+  color: white;
+}
+
+.my-card {
+  width: 300px;
+  height: 580px;
+}
+
+.my-card-title {
+  color: var(--current-color);
+  text-decoration: none;
+}
+
+.my-card-title p {
+  color: rgb(0, 61, 136);
+}
+
+.my-card-title h5:hover {
+  color: rgb(0, 61, 136);
+}
+
+.price {
+  position: absolute;
+  bottom: 5%;
+  right: 10%;
+}
+
+.price-promo {
+  position: absolute;
+  bottom: 5%;
+}
+
+.orange {
+  background-color: #fd7e14;
+}
+
+.footer {
+  margin: 0;
+  padding-left: 7%;
+}
+
+.footer-list {
+  list-style-type: none;
+}
+
+.footer-list:hover {
+  color: rgb(0, 76, 168);
+}
+
+/* PÁGINA DE AUTOR */
+.my-mt-main {
+  margin-top: 5%;
+}
+
+.aside {
+  width: 60%;
+}
+
+.cv {
+  font-size: 20px;
+}
+
+.hobbies {
+  width: 83px;
+  height: 80px;
+  margin: 0 2%;
+}
+
+.my-mt-footer {
+  margin-top: 18.3%;
 }
