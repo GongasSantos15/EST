@@ -243,15 +243,8 @@ public class Assaltante extends VisitanteDefault implements Cloneable {
 	/** cria um clone do visitante
 	 * @return um visitante igual ao original
 	 */
-	public Assaltante clone() {
-		try {
-			Assaltante v = (Assaltante) super.clone();
-			if( img != null )
-				v.img = img.clone();
-			return v;
-		} catch (CloneNotSupportedException e) {
-			return null;
-		}
+	public VisitanteDefault clone() {
+		return super.clone();
 	}
 
 }

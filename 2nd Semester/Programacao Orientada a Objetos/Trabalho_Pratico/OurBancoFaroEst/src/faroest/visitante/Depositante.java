@@ -266,18 +266,12 @@ public class Depositante extends VisitanteDefault implements Cloneable {
 	/** cria um clone do visitante
 	 * @return um visitante igual ao original
 	 */
-	public Depositante clone() {
-		try {
-			Depositante v = (Depositante) super.clone();
-			if( img != null )
-				v.img = img.clone();
-			v.extras = new ComponenteAnimado[ extras.length ];
-			for( int i=0; i < extras.length; i++ ){
-				v.extras[i] = extras[i].clone();
-			}
-			return v;
-		} catch (CloneNotSupportedException e) {
-			return null;
+	public VisitanteDefault clone() {
+		Depositante v = (Depositante) super.clone();
+		v.extras = new ComponenteAnimado[ extras.length ];
+		for( int i=0; i < extras.length; i++ ){
+			v.extras[i] = extras[i].clone();
 		}
+		return v;
 	}
 }

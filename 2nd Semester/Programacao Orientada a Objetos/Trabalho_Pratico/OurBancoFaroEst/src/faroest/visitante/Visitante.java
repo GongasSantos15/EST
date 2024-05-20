@@ -19,6 +19,7 @@ public interface Visitante {
 	void atualizar();
 	void desenhar( Graphics2D g );
 	void fezAsneira( String nomeImg );
+	Visitante clone();
 	
 	/* --------------------------------------------- Getters ------------------------------------ */
 	ComponenteVisual getImagem();

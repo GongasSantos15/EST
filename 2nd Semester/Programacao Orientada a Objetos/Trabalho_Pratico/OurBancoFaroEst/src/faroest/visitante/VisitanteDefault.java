@@ -7,7 +7,7 @@ import faroest.mundo.Porta;
 import prof.jogos2D.image.ComponenteVisual;
 import prof.jogos2D.util.ComponenteVisualLoader;
 
-public abstract class VisitanteDefault implements Visitante {
+public abstract class VisitanteDefault implements Visitante, Cloneable {
 	
 	/* ---------------------------------------------- Variáveis ------------------------------------ */
 	String nome;
@@ -89,6 +89,17 @@ public abstract class VisitanteDefault implements Visitante {
 		return pontos;
 	}
 	
+	@Override
+	public VisitanteDefault clone() {
+		try {
+			VisitanteDefault v = (VisitanteDefault) super.clone();
+			if( img != null )
+				v.img = img.clone();
+			return v;
+		} catch (CloneNotSupportedException e) {
+			return null;
+		}
+	}
 	
 
 }

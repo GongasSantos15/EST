@@ -49,8 +49,8 @@ public class LevelReader {
 				String p = "visitante_" + (i<10? "0": "") + i;
 				String info[] = props.getConfig( p ).split(",");
 					switch( info[0] ) {
-					case "depositante": mundo.addPossivelDepositante( criarDepositante(info) ); break;
-					case "assaltante": mundo.addPossivelAssaltante( criarAssaltante(info) ); break;
+					case "depositante": mundo.addPossivelVisitante( criarDepositante(info) ); break;
+					case "assaltante": mundo.addPossivelVisitante( criarAssaltante(info) ); break;
 					// TODO ler os restantes tipos de visitantes
 					default: throw new IOException();
 					}

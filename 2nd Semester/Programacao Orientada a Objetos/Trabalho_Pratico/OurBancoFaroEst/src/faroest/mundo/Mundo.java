@@ -53,9 +53,8 @@ public class Mundo {
 	private Porta portasVisiveis[] = new Porta[ NUM_PORTAS_VISIVEIS ];
 	
 	/** as possíveis visitas neste nível */
-	// TODO Será que esta é uma boa maneira de resolver o problema? Não me parece...
-	private ArrayList<Depositante> possiveisDepositantes = new ArrayList<Depositante>();
-	private ArrayList<Assaltante> possiveisAssaltantes = new ArrayList<Assaltante>();
+	// TODO ZFEITO Será que esta é uma boa maneira de resolver o problema? Não me parece...
+	private ArrayList<Visitante> possiveisVisitantes = new ArrayList<Visitante>();
 
 	/** a pontuação por completar o nível */
 	private int pontos;
@@ -289,15 +288,15 @@ public class Mundo {
 	 */
 	public void portaAbrindo(Porta porta) {
 		// para saber qual o próximo visitante somar tudo
-		int idx = ThreadLocalRandom.current().nextInt(possiveisDepositantes.size() + possiveisAssaltantes.size());
+		int idx = ThreadLocalRandom.current().nextInt(possiveisVisitantes.size() + possiveisVisitantes.size());
 		// TODO ZFEITO arranjar uma maneira mais simples (como será com 5 visitantes?)
 		// para decidir se è assaltante ou depositante, ver o valor gerado
-		if( idx < possiveisDepositantes.size() ) {
+		if( idx < possiveisVisitantes.size() ) {
 			// é depositante
-			porta.setVisitante( possiveisDepositantes.get(idx ).clone() );
+			porta.setVisitante( possiveisVisitantes.get(idx ).clone() );
 		} else {
 			// é assaltante
-			porta.setVisitante( possiveisAssaltantes.get(idx- possiveisDepositantes.size() ).clone() );
+			porta.setVisitante( possiveisVisitantes.get(idx- possiveisVisitantes.size() ).clone() );
 		}
 	}
 
@@ -350,20 +349,12 @@ public class Mundo {
 		this.delayFinal = System.currentTimeMillis() + delayFinal;
 	}
 
-	/** adiciona um possível assaltante
+	/** adiciona um possível visitante
 	 * @param v o visitante que pode aparecer numa das portas
 	 */
-	public void addPossivelAssaltante( Assaltante a ) {
-		// TODO ter estes métodos semelhantes repetidos NÃO é uma boa solução
-		possiveisAssaltantes.add( a );
-	}
-	
-	/** adiciona um possível Depositante
-	 * @param v o visitante que pode aparecer numa das portas
-	 */
-	public void addPossivelDepositante( Depositante a ) {
-		// TODO ter estes métodos semelhantes repetidos NÃO é uma boa solução
-		possiveisDepositantes.add( a );
+	public void addPossivelVisitante( Visitante a ) {
+		// TODO ZFEITO ter estes métodos semelhantes repetidos NÃO é uma boa solução
+		possiveisVisitantes.add( a );
 	}
 
 
