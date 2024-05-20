@@ -290,14 +290,14 @@ public class Mundo {
 	public void portaAbrindo(Porta porta) {
 		// para saber qual o próximo visitante somar tudo
 		int idx = ThreadLocalRandom.current().nextInt(possiveisDepositantes.size() + possiveisAssaltantes.size());
-		// TODO arranjar uma maneira mais simples (como será com 5 visitantes?)
+		// TODO ZFEITO arranjar uma maneira mais simples (como será com 5 visitantes?)
 		// para decidir se è assaltante ou depositante, ver o valor gerado
 		if( idx < possiveisDepositantes.size() ) {
 			// é depositante
-			porta.setDepositante( possiveisDepositantes.get(idx ).clone() );
+			porta.setVisitante( possiveisDepositantes.get(idx ).clone() );
 		} else {
 			// é assaltante
-			porta.setAssaltante( possiveisAssaltantes.get(idx- possiveisDepositantes.size() ).clone() );
+			porta.setVisitante( possiveisAssaltantes.get(idx- possiveisDepositantes.size() ).clone() );
 		}
 	}
 
