@@ -29,14 +29,10 @@ public class Porta {
 	                                 // a centrar as imagens dos visitantes 
 	private Mundo mundo;             // mundo a que a porta está associada
 
-	// TODO AFEITO? ter uma variável para cada tipo de visitante NÃO é uma boa ideia
-	
-	private Visitante visitante = null;
-//	private Depositante visitaDep = null; // quem é o depositante que está na porta 
-//	private Assaltante visitaAss = null; // quem é o assaltante que está na porta
+	// TODO ter uma variável para cada tipo de visitante NÃO é uma boa ideia
+	private Depositante visitaDep = null; // quem é o depositante que está na porta 
+	private Assaltante visitaAss = null; // quem é o assaltante que está na porta
 
-	/* MODIFIQUEI OS IFS COM CONDICOES IGUAIS E O setVisitante e setDepositante COLOQUEI tudo num só método (setVisitante) */
-	
 	/**
 	 * Construtor da porta
 	 * @param banco banco associado
@@ -59,7 +55,7 @@ public class Porta {
 	 * atualiza este elemento
 	 * @return a pontuação obtida neste ciclo
 	 */
-	public int atualizar() {
+	public int atualizar(){
 		// inicializa pontuação a 0
 		int pts = 0;
 		
@@ -82,26 +78,28 @@ public class Porta {
 				estado = ABERTA;
 				img.setAnim( ABERTA );
 				img.setFrameNum( 0 );
-				// TODO AFEITO? Este é um problema de ter duas variáveis (como será com 5??)
-				if( visitante != null )
-					visitante.portaAberta( );
-				}
+				// TODO Este é um problema de ter duas variáveis (como será com 5??)
+				if( visitaDep != null )
+					visitaDep.portaAberta( );
+				else
+					visitaAss.portaAberta( );
+			}
 			break;
 		case ABERTA:
 			// se está aberta tem de mandar atualizar também o visitante
-			// TODO AFEITO? Este é um problema de ter duas variáveis (será que vamos ter mais que duas?)
-			if( visitante != null ) visitante.atualizar();
-			else visitante.atualizar();
+			// TODO Este é um problema de ter duas variáveis (será que vamos ter mais que duas?)
+			if( visitaDep != null ) visitaDep.atualizar();
+			else visitaAss.atualizar();
 			// se está aberta ver se pode fechar
-			// TODO AFEITO? Este é um problema de ter duas variáveis (será que vamos ter mais que duas?)
-			boolean podeFechar = visitante.podeFechar(); 
-			if( podeFechar ){
+			// TODO Este é um problema de ter duas variáveis (será que vamos ter mais que duas?)
+			boolean pode = visitaDep != null? visitaDep.podeFechar(): visitaAss.podeFechar();  
+			if( pode ){
 				estado = FECHANDO;
 				img.setAnim( FECHANDO );
 				img.setFrameNum( 0 );
 				// como se vai fechar a porta isso pode dar pontos
-				// TODO AFEITO? Este é um problema de ter duas variáveis (será que vamos ter mais que duas?)
-				pts += visitante.fecharPorta();
+				// TODO Este é um problema de ter duas variáveis (será que vamos ter mais que duas?)
+				pts += visitaDep != null? visitaDep.fecharPorta( ): visitaAss.fecharPorta();
 			}
 			break;
 		case FECHANDO:
@@ -110,8 +108,9 @@ public class Porta {
 				estado = FECHADA;
 				img.setAnim( FECHADA );
 				img.setFrameNum( 0 );
-				// TODO AFEITO? Este é um problema de ter duas variáveis (e quando forem 5?)
-				visitante = null;
+				// TODO Este é um problema de ter duas variáveis (e quando forem 5?)
+				visitaDep = null;
+				visitaAss = null;
 				programarAbertura();
 			}
 			break;
@@ -124,9 +123,9 @@ public class Porta {
 	 * @return os pontos obtidos com o disparo
 	 */
 	public int disparo() {
-		// TODO AFEITO? Este é um problema de ter duas variáveis (será que dá para usar só uma?)
-		if( estado == ABERTA && visitante != null)
-			return visitante.baleado();
+		// TODO Este é um problema de ter duas variáveis (será que dá para usar só uma?)
+		if( estado == ABERTA && (visitaDep != null || visitaAss != null))
+			return visitaDep != null? visitaDep.baleado(): visitaAss.baleado();
 		return 0;
 	}
 	
@@ -137,8 +136,10 @@ public class Porta {
 	public void desenhar( Graphics2D g ){
 		// se tiver uma visita, desenhá-la também
 		// TODO Este é um problema de ter duas variáveis (e já vimos outros e ainda há mais!!)
-		if( visitante != null )
-			visitante.desenhar(g);
+		if( visitaDep != null )
+			visitaDep.desenhar(g);
+		else if( visitaAss != null )
+			visitaAss.desenhar(g);
 		// desenhar a imagem da porta
 		img.desenhar(g);
 	}
@@ -151,11 +152,13 @@ public class Porta {
 		img.setPosicao( p );
 		//se tem visita é preciso também alterar a posição desta
 		// TODO Este é um problema de ter duas variáveis (como será com 5??)
-		if( visitante != null){
+		if( visitaDep != null || visitaAss != null ){
 			Point pv = (Point)img.getPosicao().clone();
 			pv.translate( soleira.x, soleira.y);
-			if( visitante != null )
-				visitante.setPosicao( pv );
+			if( visitaDep != null )
+				visitaDep.setPosicao( pv );
+			else
+				visitaAss.setPosicao( pv );
 		}
 	}
 	
@@ -191,18 +194,36 @@ public class Porta {
 	 * Atribui um depositante à porta
 	 * @param visitante nova visita
 	 */
-	public void setVisitante(Visitante visitante) {
+	public void setDepositante(Depositante visitante) {
 		// TODO este método e o seguinte são muito semelhantes!
 		
-		this.visitante = visitante;
+		this.visitaDep = visitante;
 		
 		//centrar a visita na soleira da porta
 		Point pv = (Point)img.getPosicao().clone();
 		pv.translate( soleira.x + (soleira.width - visitante.getImagem().getComprimento())/2, soleira.y + soleira.height - visitante.getImagem().getAltura());
-		visitante.setPosicao( pv );
+		visitaDep.setPosicao( pv );
 		
 		// indicar à visita em que porta está
-		visitante.setPorta( this );
+		visitaDep.setPorta( this );
+	}
+	
+	/**
+	 * Atribui um assaltante à porta
+	 * @param visitante nova visita
+	 */
+	public void setAssaltante(Assaltante visitante) {
+		// TODO este método e o anterior são muito semelhantes!
+		
+		this.visitaAss = visitante;
+		
+		//centrar a visita na soleira da porta
+		Point pv = (Point)img.getPosicao().clone();
+		pv.translate( soleira.x + (soleira.width - visitante.getImagem().getComprimento())/2, soleira.y + soleira.height - visitante.getImagem().getAltura());
+		visitaAss.setPosicao( pv );
+		
+		// indicar à visita em que porta está
+		visitaAss.setPorta( this );
 	}
 
 	/**

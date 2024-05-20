@@ -1,4 +1,4 @@
-package faroest.visitante;
+   package faroest.visitante;
 
 import java.awt.Graphics2D;
 import java.awt.Point;
@@ -14,7 +14,7 @@ import prof.jogos2D.util.ComponenteVisualLoader;
  * quando fechar a porta. Pode ter vários extras que podem ser removidos.
  * Os extras não precisam de ser removidos para ele depositar mas valem pontos. 
  */
-public class Depositante extends VisitanteDefault{
+public class Depositante extends VisitanteDefault implements Cloneable {
 	/** constantes para os estados possíveis deste visitante */
 	private static final int OLA = 10;
 	private static final int ESPERA = 11;
@@ -48,8 +48,10 @@ public class Depositante extends VisitanteDefault{
 	 * @param minAberto mínimo de tempo que mantém a porta aberta
 	 * @param maxAberto máximo de tempo que mantém a porta aberta
 	 */
-	public Depositante( String nome, int pontos, int nExtras, int minAberto, int maxAberto) {
+	public Depositante( String nome, int pontos, int nExtras, int minAberto, int maxAberto ) {
+		
 		super(nome, pontos);
+		
 		this.nExtras = nExtras;
 		extras = new ComponenteAnimado[ this.nExtras ];
 		for( int i = 0; i < this.nExtras; i++){
@@ -78,7 +80,7 @@ public class Depositante extends VisitanteDefault{
 	 * @return a pontuação por esta ação
 	 */
 	public int fecharPorta() {
-		super.getPorta().setRecebeu( true );
+		porta.setRecebeu( true );
 		return getPontos();
 	}
 	
@@ -94,7 +96,7 @@ public class Depositante extends VisitanteDefault{
 			return getPontos();
 		}
 		
-		setImagem( super.getNome() + "_morte" );
+		setImagem( nome + "_morte" );
 		fezAsneira("oops");
 		setStatus(MORTO);
 		return 0;
@@ -105,11 +107,11 @@ public class Depositante extends VisitanteDefault{
 	public void atualizar() {
 		if( getStatus() == OLA && getImagem().numCiclosFeitos() > 0 ){
 			setStatus( ESPERA );
-			setImagem( super.getNome() + "_espera");
+			setImagem( nome + "_espera");
 		}
 		else if( getStatus() == ESPERA && fimEspera() ){
 			setStatus( ADEUS );
-			setImagem ( super.getNome() + "_adeus" );
+			setImagem ( nome + "_adeus" );
 			setImagemSaida( "dinheiro" );
 		}
 	}
@@ -123,10 +125,9 @@ public class Depositante extends VisitanteDefault{
 	 * @param g ambiente gráfico onde desenhar
 	 */
 	public void desenhar( Graphics2D g ){
-		super.desenhar( g );
+		super.desenhar(g);
 		if( imgSaida != null )
 			imgSaida.desenhar( g );
-		
 		for( int i = 0; i < nExtras; i++){
 			extras[i].desenhar( g );
 		}
@@ -141,28 +142,27 @@ public class Depositante extends VisitanteDefault{
 	/** retorna a imagem associada
 	 * @return a imagem associada
 	 */
-//	public ComponenteVisual getImagem() {
-//		return img;
-//	}
-//
-//	/** define a imagem que representa o visitante
-//	 * @param nome o nome da imagem
-//	 */
-//	public void setImagem(String nome) {
-//		Point p = img != null? img.getPosicao() : null;
-//		img = ComponenteVisualLoader.getCompVisual( nome );
-//		img.setPosicao( p );
-//	}
+	public ComponenteVisual getImagem() {
+		return img;
+	}
+
+	/** define a imagem que representa o visitante
+	 * @param nome o nome da imagem
+	 */
+	public void setImagem(String nome) {
+		Point p = img != null? img.getPosicao() : null;
+		img = ComponenteVisualLoader.getCompVisual( nome );
+		img.setPosicao( p );
+	}
 
 	/**
 	 * Define a posição do visitante no jogo. A posição é dada em pixeis.
 	 * @param point a posição do visitante
 	 */
 	public void setPosicao(Point posicao) {
-//		img.setPosicao( (Point)posicao.clone() );
-//		if( imgSaida != null )
-//			imgSaida.setPosicao( (Point)posicao.clone() );
-		// super.setPosicao( arg );
+		super.setPosicao(posicao);
+		if( imgSaida != null )
+			imgSaida.setPosicao( (Point)posicao.clone() );
 		for( int i = 0; i < nExtras; i++){
 			extras[i].setPosicao( (Point)posicao.clone() );
 		}
@@ -174,24 +174,24 @@ public class Depositante extends VisitanteDefault{
 //	public String getNome() {
 //		return nome;
 //	}
-	
-	/** Define o nome do visitante
-	 * @param nome novo nome
-	 */
+//	
+//	/** Define o nome do visitante
+//	 * @param nome novo nome
+//	 */
 //	public void setNome(String nome) {
 //		this.nome = nome;
 //	}
-	
-	/** retorna o status atual
-	 * @return  o status atual
-	 */
+//	
+//	/** retorna o status atual
+//	 * @return  o status atual
+//	 */
 //	private int getStatus() {
 //		return status;
 //	}
-	
-	/** muda o status do visitante
-	 * @param status o novo status
-	 */
+//	
+//	/** muda o status do visitante
+//	 * @param status o novo status
+//	 */
 //	private void setStatus(int status) {
 //		this.status = status;
 //	}
@@ -207,7 +207,7 @@ public class Depositante extends VisitanteDefault{
 	 */
 	private void reduzExtra(){
 		nExtras--;
-		extraSai = ComponenteVisualLoader.getCompVisual( super.getNome() + "_extra"+nExtras+"_sai"); 
+		extraSai = ComponenteVisualLoader.getCompVisual( nome + "_extra"+nExtras+"_sai"); 
 		extraSai.setPosicao( (Point)getImagem().getPosicao().clone() );
 	}
 
@@ -218,52 +218,11 @@ public class Depositante extends VisitanteDefault{
 		return nExtras > 0;
 	}
 	
-//	/** define qual a imagem de saída. A imagem de saída é um "efeito especial",
-//	 * que pode ser o dinheiro ou outra (num futuro) 
-//	 * @param nomeImg o nome da imagem de saida
-//	 */
-//	private void setImagemSaida( String nomeImg ){
-//		imgSaida = (ComponenteAnimado)ComponenteVisualLoader.getCompVisual( nomeImg );
-//		Rectangle r = getImagem().getBounds();
-//		imgSaida.setPosicao( new Point( r.x+(r.width - imgSaida.getComprimento())/2 , r.y) );
-//	}
-//	
-//	/** retorna a imagem de saída
-//	 * @return  a imagem de saída
-//	 */
-//	protected ComponenteAnimado getImagemSaida(){
-//		return imgSaida;
-//	}
-
-	/** Alguem fez asneira (matou o visitante ou deixou o visitante fazer asneira)
-	 * @param nomeImg imagem do tipo de asneira
+	/** define qual a imagem de saída. A imagem de saída é um "efeito especial",
+	 * que pode ser o dinheiro ou outra (num futuro) 
+	 * @param nomeImg o nome da imagem de saida
 	 */
-//	private void fezAsneira( String nomeImg ){
-//		porta.getMundo().perdeNivel( nomeImg );	
-//	}
-	
-	/** Coloca o visitante numa porta
-	 * @param p a porta onde o visitante aparece
-	 */
-//	public void setPorta(Porta p) {
-//		porta = p;
-//	}
-	
-	/** retorna a porta onde o visitante está 
-	 * @return a porta onde o visitante está
-	 */
-//	public Porta getPorta() {
-//		return porta;
-//	}
-	
-	/** Retorna o número de pontos que vale
-	 * @return o número de pontos que vale
-	 */
-//	public int getPontos() {
-//		return pontos;
-//	}
-	
-	public void setImagemSaida( String nomeImg ){
+	private void setImagemSaida( String nomeImg ){
 		imgSaida = (ComponenteAnimado)ComponenteVisualLoader.getCompVisual( nomeImg );
 		Rectangle r = getImagem().getBounds();
 		imgSaida.setPosicao( new Point( r.x+(r.width - imgSaida.getComprimento())/2 , r.y) );
@@ -275,15 +234,43 @@ public class Depositante extends VisitanteDefault{
 	protected ComponenteAnimado getImagemSaida(){
 		return imgSaida;
 	}
+
+	/** Alguem fez asneira (matou o visitante ou deixou o visitante fazer asneira)
+	 * @param nomeImg imagem do tipo de asneira
+	 */
+//	private void fezAsneira( String nomeImg ){
+//		porta.getMundo().perdeNivel( nomeImg );	
+//	}
+//	
+//	/** Coloca o visitante numa porta
+//	 * @param p a porta onde o visitante aparece
+//	 */
+//	public void setPorta(Porta p) {
+//		porta = p;
+//	}
+//	
+//	/** retorna a porta onde o visitante está 
+//	 * @return a porta onde o visitante está
+//	 */
+//	public Porta getPorta() {
+//		return porta;
+//	}
+//	
+//	/** Retorna o número de pontos que vale
+//	 * @return o número de pontos que vale
+//	 */
+//	public int getPontos() {
+//		return pontos;
+//	}
 	
-	// MODIFICADO (VERIFICAR DEPOIS)
 	/** cria um clone do visitante
 	 * @return um visitante igual ao original
-	 * @throws CloneNotSupportedException 
 	 */
 	public Depositante clone() {
-		try { 
+		try {
 			Depositante v = (Depositante) super.clone();
+			if( img != null )
+				v.img = img.clone();
 			v.extras = new ComponenteAnimado[ extras.length ];
 			for( int i=0; i < extras.length; i++ ){
 				v.extras[i] = extras[i].clone();

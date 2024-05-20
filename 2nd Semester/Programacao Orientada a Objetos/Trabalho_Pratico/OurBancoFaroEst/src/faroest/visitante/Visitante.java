@@ -6,21 +6,33 @@ import faroest.mundo.Porta;
 import prof.jogos2D.image.ComponenteVisual;
 
 public interface Visitante {
+
+	/* ---------------------------------------------- Porta ------------------------------------ */
 	int fecharPorta();
 	void portaAberta();
 	boolean podeFechar();
+	
+	/* -------------------------------------------- Visitante ------------------------------------ */
 	int baleado();
+	
+	// Sistema
 	void atualizar();
 	void desenhar( Graphics2D g );
+	void fezAsneira( String nomeImg );
+	
+	/* --------------------------------------------- Getters ------------------------------------ */
 	ComponenteVisual getImagem();
-	void setImagem( String nome );
-	void setPosicao( Point posicao );
 	String getNome();
-	void setNome( String nome );
 	int getStatus();
-	void setStatus( int status);
-	void fezAsneira( String nomeImg);
-	void setPorta( Porta p );
 	Porta getPorta();
 	int getPontos();
+	
+	/* --------------------------------------------- Setters ------------------------------------ */
+	void setImagem( String nome );
+	void setPosicao( Point posicao );
+	void setNome( String nome );
+	void setStatus( int status );
+	void setPorta( Porta p );
+	
+	
 }

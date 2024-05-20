@@ -22,8 +22,6 @@ import prof.jogos2D.util.ComponenteVisualLoader;
  */
 public class Mundo {
 
-	/* MODIFIQUEI ODE ESTAVA setVisitante e setDepositante para setVisitante */
-	
 	/** características do mapa */
 	private int comprimento, altura;      // comprimento e altura, em pixeis, do mapa
 
@@ -296,10 +294,10 @@ public class Mundo {
 		// para decidir se è assaltante ou depositante, ver o valor gerado
 		if( idx < possiveisDepositantes.size() ) {
 			// é depositante
-			porta.setVisitante( possiveisDepositantes.get(idx ).clone() );
+			porta.setDepositante( possiveisDepositantes.get(idx ).clone() );
 		} else {
 			// é assaltante
-			porta.setVisitante( possiveisAssaltantes.get(idx- possiveisDepositantes.size() ).clone() );
+			porta.setAssaltante( possiveisAssaltantes.get(idx- possiveisDepositantes.size() ).clone() );
 		}
 	}
 

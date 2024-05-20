@@ -60,7 +60,6 @@ public class ParteMundo {
 	/**
 	 * atualiza os elementos presentes nesta parte
 	 * @return a pontuação obtida neste processamento
-	 * @throws CloneNotSupportedException 
 	 */
 	public int atualizar() {
 		int pts = 0;

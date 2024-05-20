@@ -129,9 +129,8 @@ public class BancoFaroEst extends JFrame {
 	/** 
 	 * método chamado sempre que é necessário atualizar qualquer coisa na aplicação.
 	 * Atenção! Este método NÃO desenha nada. Usar o método desenharJogo para isso.
-	 * @throws CloneNotSupportedException 
 	 */
-	private void atualizarJogo() throws CloneNotSupportedException {	
+	private void atualizarJogo() {	
 		pontuacao += mundo.atualizar();
 		
 		// ver se roda para um lado ou para o outro
@@ -332,12 +331,7 @@ public class BancoFaroEst extends JFrame {
 			long target = mili + 33;
 			do {
 				do {
-					try {
-						atualizarJogo();
-					} catch (CloneNotSupportedException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}		
+					atualizarJogo();		
 					zonaJogo.repaint();
 					// esperar 33 milisegundos o que dá umas 30 frames por segundo
 					while( mili < target )

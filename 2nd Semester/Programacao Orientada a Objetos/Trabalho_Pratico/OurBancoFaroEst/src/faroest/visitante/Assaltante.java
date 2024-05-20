@@ -3,17 +3,15 @@ package faroest.visitante;
 import java.awt.Graphics2D;
 import java.awt.Point;
 
-import faroest.mundo.Porta;
 import faroest.util.GeradorAleatorio;
 import prof.jogos2D.image.ComponenteAnimado;
-import prof.jogos2D.image.ComponenteVisual;
-import prof.jogos2D.util.ComponenteVisualLoader;
+
 
 /** Representa um assaltante. Um assaltante irá disparar sobre
  * o jogador após algum tempo. Pode aparecer com as armas empunhadas
  * ou com as armas por sacar. Só pode ser morto quando as armas estão empunhadas.
  */
-public class Assaltante extends VisitanteDefault {
+public class Assaltante extends VisitanteDefault implements Cloneable {
 	/** constantes para os estados possíveis deste visitante */
 	private static final int ESPERA = 10;
 	private static final int SACANDO = 11;
@@ -36,8 +34,8 @@ public class Assaltante extends VisitanteDefault {
 //	private int pontos;   // quanto pontos vale
 	
 	private ComponenteAnimado imgSaida; // imagem de saida do visitante 
-//	 A imagem de saída é um "efeito especial",
-//	 que pode ser o dinheiro ou outra (num futuro)
+	// A imagem de saída é um "efeito especial",
+	// que pode ser o dinheiro ou outra (num futuro)
 	
 //	private Porta porta;  // a porta onde está       
 
@@ -49,8 +47,10 @@ public class Assaltante extends VisitanteDefault {
 	 * @param minDisparo tempo mínimo que demora a disparar (após sacar)
 	 * @param maxDisparo tempo máximo que demora a disparar (após sacar)
 	 */
-	public Assaltante( String nome, int pontos, int minSacar, int maxSacar, int minDisparo, int maxDisparo) {
+	public Assaltante( String nome, int pontos, int minSacar, int maxSacar, int minDisparo, int maxDisparo ) {
+		
 		super(nome, pontos);
+		
 		// ver se vem com as armas empunhadas ou não
 		if( maxSacar > 0){  // por sacar
 			setStatus( ESPERA );
@@ -100,11 +100,11 @@ public class Assaltante extends VisitanteDefault {
 		
 		float pontuacao = 0;
 		if( getStatus() < SACOU ){
-			setImagem( super.getNome() + "_morte1" );
+			setImagem( nome + "_morte1" );
 			fezAsneira("oops");
 		} 
 		else {
-			setImagem( super.getNome() + "_morte2" );
+			setImagem( nome + "_morte2" );
 			long tempo = (System.currentTimeMillis() - tempoSaque);
 			if( tempo < 100 )
 				pontuacao = getPontos();
@@ -133,11 +133,11 @@ public class Assaltante extends VisitanteDefault {
 	public void atualizar() {
 		if( getStatus() == ESPERA && System.currentTimeMillis() >= proxAto  ){
 			setStatus( SACANDO );
-			setImagem( super.getNome() + "_saca");
+			setImagem( nome + "_saca");
 		}
 		else if( getStatus() == SACANDO && getImagem().numCiclosFeitos() > 0 ){
 			setStatus( SACOU );
-			setImagem ( super.getNome() + "_sacada" );
+			setImagem ( nome + "_sacada" );
 			tempoSaque = System.currentTimeMillis();
 			proxAto = GeradorAleatorio.proxTempo(minDisparo, maxDisparo);
 		}
@@ -153,21 +153,21 @@ public class Assaltante extends VisitanteDefault {
 	 */
 	public void desenhar( Graphics2D g ){
 		super.desenhar(g);
-		if( imgSaida != null ) 
+		if( imgSaida != null )
 			imgSaida.desenhar( g );
 	}
 
 	
-	/** retorna a imagem associada
-	 * @return a imagem associada
-	 */
+//	/** retorna a imagem associada
+//	 * @return a imagem associada
+//	 */
 //	public ComponenteVisual getImagem() {
 //		return img;
 //	}
 
-	/** define a imagem que representa o visitante
-	 * @param nome o nome da imagem
-	 */
+//	/** define a imagem que representa o visitante
+//	 * @param nome o nome da imagem
+//	 */
 //	public void setImagem(String nome) {
 //		Point p = img != null? img.getPosicao() : null;
 //		img = ComponenteVisualLoader.getCompVisual( nome );
@@ -179,75 +179,76 @@ public class Assaltante extends VisitanteDefault {
 	 * @param point a posição do visitante
 	 */
 	public void setPosicao(Point posicao) {
-		super.getImagem().setPosicao( (Point)posicao.clone() );
+		super.setPosicao(posicao);
 		if( imgSaida != null )
 			imgSaida.setPosicao( (Point)posicao.clone() );
 	}
 	
-	/** retona o nome do visitante
-	 * @return o nome do visitante
-	 */
+//	/** retona o nome do visitante
+//	 * @return o nome do visitante
+//	 */
 //	public String getNome() {
 //		return nome;
 //	}
-	
-	/** Define o nome do visitante
-	 * @param nome novo nome
-	 */
+//	
+//	/** Define o nome do visitante
+//	 * @param nome novo nome
+//	 */
 //	public void setNome(String nome) {
 //		this.nome = nome;
 //	}
-	
-	/** retorna o status atual
-	 * @return  o status atual
-	 */
+//	
+//	/** retorna o status atual
+//	 * @return  o status atual
+//	 */
 //	private int getStatus() {
 //		return status;
 //	}
-	
-	/** muda o status do visitante
-	 * @param status o novo status
-	 */
+//	
+//	/** muda o status do visitante
+//	 * @param status o novo status
+//	 */
 //	private void setStatus(int status) {
 //		this.status = status;
 //	}
-	
-	/** Alguem fez asneira (matou o visitante ou deixou o visitante fazer asneira)
-	 * @param nomeImg imagem do tipo de asneira
-	 */
+//	
+//	/** Alguem fez asneira (matou o visitante ou deixou o visitante fazer asneira)
+//	 * @param nomeImg imagem do tipo de asneira
+//	 */
 //	private void fezAsneira( String nomeImg ){
 //		porta.getMundo().perdeNivel( nomeImg );	
 //	}
-	
-	/** Coloca o visitante numa porta
-	 * @param p a porta onde o visitante aparece
-	 */
+//	
+//	/** Coloca o visitante numa porta
+//	 * @param p a porta onde o visitante aparece
+//	 */
 //	public void setPorta(Porta p) {
 //		porta = p;
 //	}
-	
-	/** retorna a porta onde o visitante está 
-	 * @return a porta onde o visitante está
-	 */
+//	
+//	/** retorna a porta onde o visitante está 
+//	 * @return a porta onde o visitante está
+//	 */
 //	public Porta getPorta() {
 //		return porta;
 //	}
-	
-	/** Retorna o número de pontos que vale
-	 * @return o número de pontos que vale
-	 */
+//	
+//	/** Retorna o número de pontos que vale
+//	 * @return o número de pontos que vale
+//	 */
 //	public int getPontos() {
 //		return pontos;
 //	}
 	
-	// MODIFICADO (VERIFICAR DEPOIS)
 	/** cria um clone do visitante
 	 * @return um visitante igual ao original
-	 * @throws CloneNotSupportedException 
 	 */
 	public Assaltante clone() {
-		try { 
-			return (Assaltante) super.clone();
+		try {
+			Assaltante v = (Assaltante) super.clone();
+			if( img != null )
+				v.img = img.clone();
+			return v;
 		} catch (CloneNotSupportedException e) {
 			return null;
 		}
