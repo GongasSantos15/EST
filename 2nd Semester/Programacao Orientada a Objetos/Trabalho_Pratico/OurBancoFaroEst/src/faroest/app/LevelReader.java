@@ -46,13 +46,16 @@ public class LevelReader {
 		// ler os visitantes possíveis
 		try {
 			for( int i=1; i <= numVisitantes; i++ ) {
-				String p = "visitante_" + (i<10? "0": "") + i;
+				String p = "visitante_" + (i < 10 ? "0" : "") + i;
 				String info[] = props.getConfig( p ).split(",");
 					switch( info[0] ) {
-					case "depositante": mundo.addPossivelVisitante( criarDepositante(info) ); break;
-					case "assaltante": mundo.addPossivelVisitante( criarAssaltante(info) ); break;
-					// TODO ler os restantes tipos de visitantes
-					default: throw new IOException();
+						case "depositante": mundo.addPossivelVisitante( criarDepositante(info) ); break;
+						case "assaltante": mundo.addPossivelVisitante( criarAssaltante(info) ); break;
+						// TODO AFEITO ler os restantes tipos de visitantes
+						case "troca": mundo.addPossivelVisitante( criarTroca(info) ); break;
+						case "insatisfeito": mundo.addPossivelVisitante(criarInsatisfeito(info)); break;
+						case "aleatorio": mundo.addPossivelVisitante(criarAleatorio(info)); break;
+						default: throw new IOException();
 					}
 			}
 		} catch( Exception e ) {
@@ -88,5 +91,38 @@ public class LevelReader {
 		int minAberto = Integer.parseInt( info[5] );
 		int maxAberto = Integer.parseInt( info[6] );
 		return new Assaltante(nome, pontos, minSacar, maxSacar, minAberto, maxAberto );
+	}
+	
+	/** Cria um troca
+	 * @param info as informações sobre o troca
+	 * @return o troca criado
+	 */
+	private static Troca criarTroca( String info[] ) {
+		String nome = info[1];
+		int pontos = Integer.parseInt( info[4] );
+		return new Troca(nome, pontos);
+	}
+	
+	/** Cria um aleatorio
+	 * @param info as informações sobre o aleatorio
+	 * @return o aleatorio criado
+	 */
+	private static Aleatorio criarAleatorio( String info[] ) {
+		String nome = info[1];
+		int pontos = Integer.parseInt( info[4] );
+		return new Aleatorio (nome, pontos);
+	}
+	
+	/** Cria um insatisfeito
+	 * @param info as informações sobre o insatisfeito
+	 * @return o insatisfeito criado
+	 */
+	private static Insatisfeito criarInsatisfeito( String info[] ) {
+		String nome = info[1];
+		int pontos = Integer.parseInt( info[2] );
+		int extras = Integer.parseInt( info[3] );
+		int minAberto = Integer.parseInt( info[4] );
+		int maxAberto = Integer.parseInt( info[5] );
+		return new Insatisfeito(nome, pontos, extras, minAberto, maxAberto );
 	}
 }

@@ -6,6 +6,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
+import javax.swing.JOptionPane;
+
 /** Classe responsável por tratar das pontuações máximas. É ela que mantém 
  * as pontuações, as lê e grava no disco.
  */
@@ -74,6 +76,7 @@ public class HighScoreHandler {
 	 */
 	public void loadScores() throws IOException {
 		// TODO implementar este método
+		
 		// este código deve desaparecer, está cá só para não dar erros
 		addScore( "Sergio Barbosa",10000 );
 		addScore( "Lucky Luke", 6000 );
@@ -95,7 +98,7 @@ public class HighScoreHandler {
 		addScore( "Doc Hollyday", 300 );
 		addScore( "Joe Dalton", 200 );
 		addScore( "Pocahontas", 100 );
-	}
+}
 	
 	/** Classifica uma pontuação indicando em que posição da
 	 * lista ela deve ser colocada, ou -1 se não foi suficiente para atingir

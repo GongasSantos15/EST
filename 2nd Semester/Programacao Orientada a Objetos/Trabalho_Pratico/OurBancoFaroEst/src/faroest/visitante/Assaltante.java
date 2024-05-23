@@ -70,7 +70,7 @@ public class Assaltante extends VisitanteDefault implements Cloneable {
 	 * @return a pontuação por esta ação
 	 */
 	public int fecharPorta() {
-		return 0;
+		return pontos;
 	}
 	
 	/** informa o visitante que a porta abriu

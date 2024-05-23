@@ -84,12 +84,12 @@ public class Depositante extends VisitanteDefault implements Cloneable {
 		return getPontos();
 	}
 	
-	/** o visiatnte foi baleado 
+	/** o visitante foi baleado 
 	 * @return a pontuação obtida
 	 */
 	public int baleado() {
 		if( getStatus() == MORTO )
-			return 0 ;
+			return 0;
 		
 		if( temExtras() ){
 			reduzExtra();

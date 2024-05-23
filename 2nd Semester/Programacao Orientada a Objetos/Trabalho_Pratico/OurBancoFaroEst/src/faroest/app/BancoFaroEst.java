@@ -95,7 +95,7 @@ public class BancoFaroEst extends JFrame {
 	 */
 	public void comecar(){
 		closeSplash();
-		nivel = 1;      // alterar este valor se quiserem testar algum nível em particular
+		nivel = 5;      // alterar este valor se quiserem testar algum nível em particular
 		vidas = 3;      // alterar este valor para testes (nada de batotas!)
 		pontuacao = 0;  // começar em 0 (nada de batota para bater a melhor pontuação) 
 		jogarNivel();
