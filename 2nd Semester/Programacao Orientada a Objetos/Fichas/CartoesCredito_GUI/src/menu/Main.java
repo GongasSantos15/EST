@@ -13,7 +13,7 @@ public class Main {
 
 	public static void main(String[] args) {
 		Banco b = new Banco();
-		lerContas( b, "contas.bnc" );
+		lerContas( b, "contas_out.bnc" );
 		lerCartoes( b, "cartoes.bnc" );
 		
 		// cria a janela do operador e colocá-la no centro do écram
@@ -47,16 +47,20 @@ public class Main {
 	private static void lerContas(Banco b, String nomeFich ) {
 		try( BufferedReader fin = new BufferedReader( new FileReader( nomeFich ) )) {
 			
-			// TODO fazer a leitura da informação
+			// TODO ZFEITO fazer a leitura da informação
+			// Criar uma variável para ler linha a linha
 			String linha;
 			
 			// Enquanto a linha != null, se a linha começa com "$conta" (regra para ser uma conta), ler essa linha e passar à info seguinte. Separar a infomração por "," (regra também)
 			while((linha = fin.readLine()) != null ) {
 				if(!linha.startsWith("$conta")) {
+					
+					// Esta linha está comentada, porque incialmente lia-se a linha dentro do if, mas havia a opção de colocar esta linha dentro da condição do if, e optámos por essa
 					//linha = fin.readLine();
 					continue;
 				}
 				
+				// Dividir a informação da linha num array separados por ","
 				String info[] = linha.split(",");
 				
 				// Converter o número para INT, pois a seguir ao split fica como string
@@ -71,6 +75,8 @@ public class Main {
 				b.addConta(c);
 				
 				// Ler a próxima linha
+				
+				// Esta linha está comentada, porque incialmente lia-se a linha dentro do if, mas havia a opção de colocar esta linha dentro da condição do if, e optámos por essa
 				//linha = fin.readLine();
 
 				
@@ -90,8 +96,16 @@ public class Main {
 	 * @param nomeFich nome do ficheiro a gravar
 	 */
 	private static void gravarContas(Banco b, String nomeFich ) {
+		
+		// Recomendação de usar estes 3 métodos: PrintWriter (para ter os métodos relacionados a ele, como o println()), BufferedWriter (para tornar a escrita mais eficiente) e FileWriter (para escrever dados para um ficheiro)
 		try( PrintWriter fout = new PrintWriter( new BufferedWriter( new FileWriter( nomeFich ) ) ) ){
-			// TODO fazer a gravação da informação
+			// TODO ZFEITO fazer a gravação da informação
+			
+			// Fazero ciclo for para ler todas as conta que começam com "$conta" com o respetivo número e saldo
+			for (Conta c : b.getContas()) {
+				fout.println( "$conta," + c.getNumero() + "," + c.getSaldo() );
+			}
+			
 		} catch (IOException e) {
 			JOptionPane.showMessageDialog(null, "Erro na escrita do ficheiro das contas: " + nomeFich + "!" );
 		}
