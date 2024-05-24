@@ -41,20 +41,12 @@ public class Aleatorio extends VisitanteDefault {
 		for( int i = 0; i < this.nExtras; i++){
 			extras[i] = (ComponenteAnimado)ComponenteVisualLoader.getCompVisual( nome + "_extra" + i );
 		}
-		System.out.println("Construtor: " + nExtras);
-		
+
 		this.minAberto = minAberto;
 		this.maxAberto = maxAberto;
 		
 		setStatus(ENTRAR);
-//		ramdomImage(nome);
-		if(decideImagem()) {
-			setImagem(imgDeposita);
-			vaiDepositar = true;
-		} else {
-			setImagem(imgMata);
-			vaiDepositar = false;
-		}
+		ramdomImage(nome);
 	}
 	
 	private boolean decideImagem() {
