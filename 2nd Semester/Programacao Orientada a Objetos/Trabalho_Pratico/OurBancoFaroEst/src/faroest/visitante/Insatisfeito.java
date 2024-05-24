@@ -11,12 +11,16 @@ import prof.jogos2D.util.ComponenteVisualLoader;
 
 public class Insatisfeito extends VisitanteDefault {
 	
+	/* ---------------------------------------------- CONSTANTES ------------------------------------ */
+	
 	private static final int ENTRAR = 10;
 	private static final int ESPERA_ANTES = 11;
 	private static final int PACIFICANDO = 12;
 	private static final int ESPERA = 13;
 	private static final int SAIR = 14;
 	private static final int MORTE = 14;
+	
+	/* ---------------------------------------------- VARIÁVEIS ------------------------------------ */
 	
 	private ComponenteAnimado extras[]; // imagens dos extras
 	private int nExtras;                // número de extras que ainda tem
@@ -26,6 +30,8 @@ public class Insatisfeito extends VisitanteDefault {
 	private int maxAberto;  // máximo de tempo que mantém a porta aberta 
 	private long proxFecho; // quando vai fechar
 
+	/* ---------------------------------------------- CONSTRUTOR ------------------------------------ */
+	
 	public Insatisfeito(String nome, int pontos, int nExtras, int minAberto, int maxAberto) {
 		super(nome, pontos);
 		this.nExtras = nExtras;
@@ -40,10 +46,13 @@ public class Insatisfeito extends VisitanteDefault {
 		setImagem( nome + "_zangado");
 		
 	}
+	
+	/* ---------------------------------------------- MÉTODOS ------------------------------------ */
 
 	@Override
 	public int fecharPorta() {
-		return pontos;
+		porta.setRecebeu( true );
+		return getPontos();
 	}
 
 	@Override
@@ -53,7 +62,7 @@ public class Insatisfeito extends VisitanteDefault {
 
 	@Override
 	public boolean podeFechar() {
-		return getStatus() == SAIR && getImagem().numCiclosFeitos() > 1;
+		return getStatus() == SAIR && getImagem().numCiclosFeitos() > 0;
 	}
 
 	@Override
@@ -61,42 +70,29 @@ public class Insatisfeito extends VisitanteDefault {
 		if( getStatus() == MORTE )
 			return 0;
 		
-		if( getStatus() == ENTRAR || getStatus() == ESPERA_ANTES) {
-			setImagem(nome + "_pacificando");
+		if( getStatus() == ESPERA_ANTES) {
 			setStatus(PACIFICANDO);
+			setImagem(nome + "_pacificando");
 		}
-		
-//		while (nExtras > 0) {
-//			if( temExtras()){
-//				reduzExtra();
-//				getPontos();
-//			}
-//		}
-//		if(getStatus() == ZANGADO) {
-//			setImagem( nome + "_morte" );
-//			setStatus(MORTO);
-//		}
 		return 0;
 	}
 
 	@Override
 	public void atualizar() {
-			
-		if( getStatus() == ESPERA_ANTES && getImagem().numCiclosFeitos() > 0 ){
-			setStatus( PACIFICANDO );
-			setImagem( nome + "_pacificando");
+		if( getStatus() == ENTRAR && getImagem().numCiclosFeitos() > 0 ){
+			setStatus( ESPERA_ANTES );
+		}
+		else if( getStatus() == PACIFICANDO && getImagem().numCiclosFeitos() > 0 ){
+			setStatus( ESPERA );
+			setImagem(nome + "_espera");
 			setImagemSaida("dinheiro");
-			getPontos();
 		}
-		else if( getStatus() == ESPERA_ANTES && System.currentTimeMillis() >= proxFecho ){
+		else if( (getStatus() == ESPERA_ANTES ) && fimEspera()) {
 			fezAsneira("boom");
-			setStatus(PACIFICANDO);
-			setImagem(nome + "_pacificando");
-			
 		}
-		else if( (getStatus() == ESPERA || getStatus() == ENTRAR) && fimEspera() && nExtras == 0) {
-			fezAsneira("boom");	
-			
+		else if (getStatus() == ESPERA) {
+			setStatus(SAIR);
+			setImagem(nome + "_adeus");
 		}
 	}
 	

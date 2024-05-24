@@ -51,7 +51,7 @@ public class LevelReader {
 					switch( info[0] ) {
 						case "depositante": mundo.addPossivelVisitante( criarDepositante(info) ); break;
 						case "assaltante": mundo.addPossivelVisitante( criarAssaltante(info) ); break;
-						// TODO AFEITO ler os restantes tipos de visitantes
+						// TODO ZFEITO ler os restantes tipos de visitantes
 						case "troca": mundo.addPossivelVisitante( criarTroca(info) ); break;
 						case "insatisfeito": mundo.addPossivelVisitante(criarInsatisfeito(info)); break;
 						case "aleatorio": mundo.addPossivelVisitante(criarAleatorio(info)); break;
@@ -99,8 +99,10 @@ public class LevelReader {
 	 */
 	private static Troca criarTroca( String info[] ) {
 		String nome = info[1];
-		int pontos = Integer.parseInt( info[4] );
-		return new Troca(nome, pontos);
+		int pontos = Integer.parseInt( info[3] );
+		int tempoMinTroca = Integer.parseInt(info[4]);
+		int tempoMaxTroca = Integer.parseInt(info[5]);
+		return new Troca(nome, pontos, tempoMinTroca, tempoMaxTroca);
 	}
 	
 	/** Cria um aleatorio
@@ -109,8 +111,11 @@ public class LevelReader {
 	 */
 	private static Aleatorio criarAleatorio( String info[] ) {
 		String nome = info[1];
-		int pontos = Integer.parseInt( info[4] );
-		return new Aleatorio (nome, pontos);
+		int pontos = Integer.parseInt( info[2] );
+		int extras = Integer.parseInt( info[3] );
+		int minAberto = Integer.parseInt( info[4] );
+		int maxAberto = Integer.parseInt( info[5] );
+		return new Aleatorio (nome, pontos, extras, minAberto, maxAberto);
 	}
 	
 	/** Cria um insatisfeito

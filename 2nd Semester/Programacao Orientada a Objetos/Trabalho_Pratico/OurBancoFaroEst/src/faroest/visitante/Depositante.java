@@ -4,7 +4,6 @@ import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.Rectangle;
 
-import faroest.mundo.Porta;
 import faroest.util.GeradorAleatorio;
 import prof.jogos2D.image.ComponenteAnimado;
 import prof.jogos2D.image.ComponenteVisual;
@@ -15,32 +14,29 @@ import prof.jogos2D.util.ComponenteVisualLoader;
  * Os extras não precisam de ser removidos para ele depositar mas valem pontos. 
  */
 public class Depositante extends VisitanteDefault implements Cloneable {
-	/** constantes para os estados possíveis deste visitante */
+	
+	/* ---------------------------------------------- CONSTANTES ------------------------------------ */
+
+	// Estados possíveis o Depositante */
 	private static final int OLA = 10;
 	private static final int ESPERA = 11;
 	private static final int ADEUS = 12;
 	private static final int MORTO = 13;
 	
-	private int minAberto;  // mínimo de tempo que mantém a porta aberta
-	private int maxAberto;  // máximo de tempo que mantém a porta aberta 
-	private long proxFecho; // quando vai fechar
-	
-	/** imagem representativa do visitante, num dado momento */
-//	private ComponenteVisual img;   
-//	private String nome; // o nome do visitante (usado nas imagens)
-//	private int status;  // o estado atual do visitante
-//	private int pontos;  // quanto pontos vale
-	
-	private ComponenteVisual extraSai;  // imagem de um extra a sair
-	private ComponenteAnimado imgSaida; // imagem de saida do visitante 
-	// A imagem de saída é um "efeito especial",
-	// que pode ser o dinheiro ou outra (num futuro)
-	
-	private ComponenteAnimado extras[]; // imagens dos extras
-	private int nExtras;                // número de extras que ainda tem
-	
-//	private Porta porta;  // a porta onde está       
+	/* ---------------------------------------------- VARIÁVEIS ------------------------------------ */
 
+	private int minAberto;  
+	private int maxAberto; 
+	private long proxFecho;
+	
+	private ComponenteVisual extraSai;  
+	private ComponenteAnimado imgSaida; 
+	
+	private ComponenteAnimado extras[]; 
+	private int nExtras;               
+
+	/* ---------------------------------------------- CONSTRUTOR ------------------------------------ */
+	
 	/** Cria um visitante Depositante
 	 * @param nome nome do visitante (usado para as imagens)
 	 * @param pontos pontos que vale
@@ -63,6 +59,8 @@ public class Depositante extends VisitanteDefault implements Cloneable {
 		this.maxAberto = maxAberto;
 	}
 	
+	/* ---------------------------------------------- MÉTODOS ------------------------------------ */
+
 	/** informa o visitante que a porta abriu
 	 */
 	public void portaAberta() {
@@ -168,34 +166,6 @@ public class Depositante extends VisitanteDefault implements Cloneable {
 		}
 	}
 	
-	/** retona o nome do visitante
-	 * @return o nome do visitante
-	 */
-//	public String getNome() {
-//		return nome;
-//	}
-//	
-//	/** Define o nome do visitante
-//	 * @param nome novo nome
-//	 */
-//	public void setNome(String nome) {
-//		this.nome = nome;
-//	}
-//	
-//	/** retorna o status atual
-//	 * @return  o status atual
-//	 */
-//	private int getStatus() {
-//		return status;
-//	}
-//	
-//	/** muda o status do visitante
-//	 * @param status o novo status
-//	 */
-//	private void setStatus(int status) {
-//		this.status = status;
-//	}
-	
 	/** retorna o número de extras que ainda possui
 	 * @return o número de extras que ainda possui
 	 */
@@ -234,34 +204,6 @@ public class Depositante extends VisitanteDefault implements Cloneable {
 	protected ComponenteAnimado getImagemSaida(){
 		return imgSaida;
 	}
-
-	/** Alguem fez asneira (matou o visitante ou deixou o visitante fazer asneira)
-	 * @param nomeImg imagem do tipo de asneira
-	 */
-//	private void fezAsneira( String nomeImg ){
-//		porta.getMundo().perdeNivel( nomeImg );	
-//	}
-//	
-//	/** Coloca o visitante numa porta
-//	 * @param p a porta onde o visitante aparece
-//	 */
-//	public void setPorta(Porta p) {
-//		porta = p;
-//	}
-//	
-//	/** retorna a porta onde o visitante está 
-//	 * @return a porta onde o visitante está
-//	 */
-//	public Porta getPorta() {
-//		return porta;
-//	}
-//	
-//	/** Retorna o número de pontos que vale
-//	 * @return o número de pontos que vale
-//	 */
-//	public int getPontos() {
-//		return pontos;
-//	}
 	
 	/** cria um clone do visitante
 	 * @return um visitante igual ao original

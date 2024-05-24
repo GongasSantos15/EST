@@ -7,12 +7,12 @@ import prof.jogos2D.image.ComponenteVisual;
 
 public interface Visitante {
 
-	/* ---------------------------------------------- Porta ------------------------------------ */
+	/* ---------------------------------------------- PORTA ------------------------------------ */
 	int fecharPorta();
 	void portaAberta();
 	boolean podeFechar();
 	
-	/* -------------------------------------------- Visitante ------------------------------------ */
+	/* -------------------------------------------- VISITANTE ------------------------------------ */
 	int baleado();
 	
 	// Sistema
@@ -21,14 +21,14 @@ public interface Visitante {
 	void fezAsneira( String nomeImg );
 	Visitante clone();
 	
-	/* --------------------------------------------- Getters ------------------------------------ */
+	/* --------------------------------------------- GETTERS ------------------------------------ */
 	ComponenteVisual getImagem();
 	String getNome();
 	int getStatus();
 	Porta getPorta();
 	int getPontos();
 	
-	/* --------------------------------------------- Setters ------------------------------------ */
+	/* --------------------------------------------- SETTERS ------------------------------------ */
 	void setImagem( String nome );
 	void setPosicao( Point posicao );
 	void setNome( String nome );

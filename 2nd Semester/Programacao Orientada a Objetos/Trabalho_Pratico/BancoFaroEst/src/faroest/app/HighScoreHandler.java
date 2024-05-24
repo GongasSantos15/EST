@@ -6,6 +6,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
+import javax.swing.JOptionPane;
+
 /** Classe responsável por tratar das pontuações máximas. É ela que mantém 
  * as pontuações, as lê e grava no disco.
  */
@@ -73,29 +75,27 @@ public class HighScoreHandler {
 	 * @throws IOException se houver algum erro a ler o ficheiro
 	 */
 	public void loadScores() throws IOException {
-		// TODO implementar este método
-		// este código deve desaparecer, está cá só para não dar erros
-		addScore( "Sergio Barbosa",10000 );
-		addScore( "Lucky Luke", 6000 );
-		addScore( "Buffalo Bill", 5000 );
-		addScore( "Wyatt Earp", 4000 );
-		addScore( "Jesse James", 3000 );
-		addScore( "Billy the Kid", 2000 );
-		addScore( "David Crockett", 1800 );
-		addScore( "Sitting Bull", 1600 );
-		addScore( "Calamity Jane", 1400 );
-		addScore( "Crazy Horse", 1200 );
-		addScore( "Butch Cassidy", 1000 );
-		addScore( "Wild Bill Hickok", 900 );
-		addScore( "Annie Oakley", 800 );
-		addScore( "John Wayne", 700 );
-		addScore( "Blueberry", 600 );
-		addScore( "Clint Eastwood", 500 );
-		addScore( "Geronimo", 400 );
-		addScore( "Doc Hollyday", 300 );
-		addScore( "Joe Dalton", 200 );
-		addScore( "Pocahontas", 100 );
-	}
+		// TODO ZFEITO implementar este método
+		
+		try( BufferedReader fin = new BufferedReader( new FileReader( file ) )) {
+			
+			// TODO ZFEITO fazer a leitura da informação
+			String linha;
+			
+			while((linha = fin.readLine()) != null ) {
+					continue;
+				}
+				
+				// Dividir a informação da linha num array separados por ","
+				String nome = linha.substring(0, 20);
+				int pontuacao = Integer.parseInt(linha.substring(21,28));
+				
+				System.out.println(nome);
+				System.out.println(pontuacao);
+				
+				pontuacoes.add(new Score(nome, pontuacao));
+			}
+		}
 	
 	/** Classifica uma pontuação indicando em que posição da
 	 * lista ela deve ser colocada, ou -1 se não foi suficiente para atingir
@@ -128,7 +128,16 @@ public class HighScoreHandler {
 	 * @throws IOException se alguma coisa correr mal na gravação do ficheiro
 	 */
 	public void saveScores() throws IOException {
-		// TODO implementar este método
+		// TODO FEITO implementar este método
+		try(PrintWriter fout = new PrintWriter(new BufferedWriter(new FileWriter(file)))) {
+			
+			for (Score s: pontuacoes) {
+				fout.println(s);
+			}
+			
+		} catch (IOException e) {
+			JOptionPane.showMessageDialog(null, "Erro na escrita do ficheiro : " + file );
+		}
 	}
 
 	/** retorna a lista das pontuações

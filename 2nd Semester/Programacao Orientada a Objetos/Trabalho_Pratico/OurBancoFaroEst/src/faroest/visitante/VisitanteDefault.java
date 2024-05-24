@@ -69,6 +69,7 @@ public abstract class VisitanteDefault implements Visitante, Cloneable {
 		this.status = status;
 	}
 	
+	// Faz o utilizador perder um nível 
 	@Override
 	public void fezAsneira(String nomeImg) {
 		porta.getMundo().perdeNivel( nomeImg );	
