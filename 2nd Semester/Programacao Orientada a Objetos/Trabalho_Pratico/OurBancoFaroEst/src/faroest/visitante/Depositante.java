@@ -53,6 +53,7 @@ public class Depositante extends VisitanteDefault implements Cloneable {
 		for( int i = 0; i < this.nExtras; i++){
 			extras[i] = (ComponenteAnimado)ComponenteVisualLoader.getCompVisual( nome + "_extra" + i );
 		}
+		
 		setStatus( OLA );
 		setImagem( nome + "_ola" );
 		this.minAberto= minAberto;

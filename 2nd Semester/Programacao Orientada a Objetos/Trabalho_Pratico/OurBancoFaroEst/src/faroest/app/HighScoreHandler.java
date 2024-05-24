@@ -75,7 +75,23 @@ public class HighScoreHandler {
 	 * @throws IOException se houver algum erro a ler o ficheiro
 	 */
 	public void loadScores() throws IOException {
-		// TODO implementar este método
+//		// TODO implementar este método
+			
+//		try( BufferedReader reader = new BufferedReader( new FileReader( file ) )) {
+//			
+//			String linha;
+//			
+//			while((linha = reader.readLine()) != null ) {
+//				
+//				String nome = linha.substring(0, 20);
+//				
+//				int pontuacao = Integer.parseInt(linha.substring(21, 28));
+//				
+//				pontuacoes.add(new Score(nome, pontuacao));
+//			}
+//				
+//		}
+				
 		
 		// este código deve desaparecer, está cá só para não dar erros
 		addScore( "Sergio Barbosa",10000 );

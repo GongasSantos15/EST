@@ -99,10 +99,13 @@ public class LevelReader {
 	 */
 	private static Troca criarTroca( String info[] ) {
 		String nome = info[1];
+		String nomeAssaltante = info[2];
 		int pontos = Integer.parseInt( info[3] );
 		int tempoMinTroca = Integer.parseInt(info[4]);
 		int tempoMaxTroca = Integer.parseInt(info[5]);
-		return new Troca(nome, pontos, tempoMinTroca, tempoMaxTroca);
+		int minDisparo = Integer.parseInt(info[6]);
+		int maxDisparo = Integer.parseInt(info[7]);
+		return new Troca(nome, nomeAssaltante, pontos, tempoMinTroca, tempoMaxTroca, minDisparo, maxDisparo);
 	}
 	
 	/** Cria um aleatorio

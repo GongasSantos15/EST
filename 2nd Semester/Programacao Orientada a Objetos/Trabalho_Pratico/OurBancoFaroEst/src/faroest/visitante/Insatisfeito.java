@@ -18,7 +18,7 @@ public class Insatisfeito extends VisitanteDefault {
 	private static final int PACIFICANDO = 12;
 	private static final int ESPERA = 13;
 	private static final int SAIR = 14;
-	private static final int MORTE = 14;
+	private static final int MORTE = 15;
 	
 	/* ---------------------------------------------- VARIÁVEIS ------------------------------------ */
 	
@@ -70,10 +70,15 @@ public class Insatisfeito extends VisitanteDefault {
 		if( getStatus() == MORTE )
 			return 0;
 		
-		if( getStatus() == ESPERA_ANTES) {
+		if( temExtras() ){
+			reduzExtra();
+			return getPontos();
+		}
+		
+//		if( getStatus() == ESPERA_ANTES) {
 			setStatus(PACIFICANDO);
 			setImagem(nome + "_pacificando");
-		}
+//		}
 		return 0;
 	}
 

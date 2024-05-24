@@ -1,5 +1,6 @@
 package faroest.visitante;
 
+import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.Rectangle;
 
@@ -19,28 +20,41 @@ public class Aleatorio extends VisitanteDefault {
 	private int minAberto;  
 	private int maxAberto; 
 	private long proxFecho;
-	private boolean eDepositante = true;
 	
 	private ComponenteVisual extraSai; 
 	private int nExtras;
 	private ComponenteAnimado extras[]; 
-	private ComponenteAnimado imgSaida; // imagem de saida do visitante 
+	private ComponenteAnimado imgSaida;
+	
+	private boolean vaiDepositar = false;
+	
+	String imgDeposita = nome + "_deposita";
+	String imgMata = nome + "_mata";
 	
 	/* ---------------------------------------------- CONSTRUTOR ------------------------------------ */
 
 	public Aleatorio(String nome, int pontos, int nExtras, int minAberto, int maxAberto) {
 		super(nome, pontos);
+		
 		this.nExtras = nExtras;
 		extras = new ComponenteAnimado[ this.nExtras ];
 		for( int i = 0; i < this.nExtras; i++){
 			extras[i] = (ComponenteAnimado)ComponenteVisualLoader.getCompVisual( nome + "_extra" + i );
 		}
+		System.out.println("Construtor: " + nExtras);
 		
 		this.minAberto = minAberto;
 		this.maxAberto = maxAberto;
 		
 		setStatus(ENTRAR);
-		ramdomImage(nome);
+//		ramdomImage(nome);
+		if(decideImagem()) {
+			setImagem(imgDeposita);
+			vaiDepositar = true;
+		} else {
+			setImagem(imgMata);
+			vaiDepositar = false;
+		}
 	}
 	
 	private boolean decideImagem() {
@@ -48,13 +62,13 @@ public class Aleatorio extends VisitanteDefault {
 	}
 	
 	private void ramdomImage(String nome) {
-		String imgDepositante = nome + "_deposita";
-		String imgAssaltante = nome + "_mata";
 		
 		if(decideImagem()) {
-			setImagem(imgDepositante);
+			setImagem(imgDeposita);
+			vaiDepositar = true;
 		} else {
-			setImagem(imgAssaltante);
+			setImagem(imgMata);
+			vaiDepositar = false;
 		}
 	}
 
@@ -77,50 +91,52 @@ public class Aleatorio extends VisitanteDefault {
 	@Override
 	public int baleado() {
 		
-		if (eDepositante) {
-			fezAsneira("oops");
-			setStatus(SAIR);
-			setImagem("_deposita");
-		} else {
-			fezAsneira("boom");
-			setStatus(SAIR);
-			setImagem("_mata");	
-		}	
-			
 		if( getStatus() == SAIR )
 			return 0;
-		
+			
 		if( temExtras() ){
 			reduzExtra();
 			return getPontos();
-		}
+		} else if (vaiDepositar) {
+			setStatus(SAIR);
+			setImagem(nome + "_deposita");
+			setImagemSaida("dinheiro");
+		} else {
+			fezAsneira("boom");
+			setStatus(SAIR);
+			setImagem(nome + "_mata");	
+		}	
 		
-		setImagem( nome + "_morte" );
-		fezAsneira("oops");
-		setStatus(SAIR);
 		return 0;
 	}
 
 	@Override
 	public void atualizar() {
+		
 		if( getStatus() == ENTRAR && getImagem().numCiclosFeitos() > 0 ){
 			setStatus( ESPERA );
-		} else if( getStatus() == ESPERA && getImagem().numCiclosFeitos() > 0 ){
-			setStatus( ESPERA );
-			setImagem(nome + "_deposita");
-			setImagemSaida("dinheiro");
-		} else if (getStatus() == ESPERA && decideImagem()) {
+		} else if (getStatus() == ESPERA && fimEspera()) {
 			setStatus(SAIR);
-			setImagem(nome + "_deposita");
 		}
 	}
 	
-//	private boolean eDepositante() {
-//		
-//	}
-	
 	private boolean fimEspera(){
 		return System.currentTimeMillis() >= proxFecho;
+	}
+	
+	@Override
+	public void desenhar(Graphics2D g) {
+		super.desenhar(g);
+		if( imgSaida != null )
+			imgSaida.desenhar( g );
+		for( int i = 0; i < nExtras; i++){
+			extras[i].desenhar( g );
+		}
+		if( extraSai != null ){
+			extraSai.desenhar( g );
+			if( extraSai.numCiclosFeitos() > 0 )
+				extraSai = null;
+		}
 	}
 	
 	/** retorna o número de extras que ainda possui
@@ -143,6 +159,28 @@ public class Aleatorio extends VisitanteDefault {
 	 */
 	private boolean temExtras(){
 		return nExtras > 0;
+	}
+	
+	/** define a imagem que representa o visitante
+	 * @param nome o nome da imagem
+	 */
+	public void setImagem(String nome) {
+		Point p = img != null? img.getPosicao() : null;
+		img = ComponenteVisualLoader.getCompVisual( nome );
+		img.setPosicao( p );
+	}
+
+	/**
+	 * Define a posição do visitante no jogo. A posição é dada em pixeis.
+	 * @param point a posição do visitante
+	 */
+	public void setPosicao(Point posicao) {
+		super.setPosicao(posicao);
+		if( imgSaida != null )
+			imgSaida.setPosicao( (Point)posicao.clone() );
+		for( int i = 0; i < nExtras; i++){
+			extras[i].setPosicao( (Point)posicao.clone() );
+		}
 	}
 	
 	private void setImagemSaida( String nomeImg ){
