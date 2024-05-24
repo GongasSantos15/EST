@@ -13,13 +13,12 @@ public class Troca extends VisitanteDefault {
 	/* ---------------------------------------------- CONSTANTES ------------------------------------ */
 	
 	/** Estados possíveis do Troca */
-	private static final int MORTO = 10;
-	private static final int ENTRAR = 11;
-	private static final int ESPERA_APOS = 12;
-	private static final int TROCAR = 13;
+	private static final int ENTRAR = 10;
+	private static final int TROCAR_ANTES = 11;
+	private static final int TROCAR = 12;
+	private static final int TROCAR_APOS = 13;
 	private static final int MORTE_ANTES = 14;
-	private static final int MORTE_APOS = 14;
-	private static final int ESPERA_ANTES = 16;
+	private static final int MORTE_APOS = 15;
 		
 	/* ---------------------------------------------- VARIÁVEIS ------------------------------------ */
 	
@@ -28,10 +27,12 @@ public class Troca extends VisitanteDefault {
 	String nomeAssaltante;
 	private int minDisparo; 
 	private int maxDisparo;
+	private long tempoSaque; 
 	
 	private int tempoMinTroca, tempoMaxTroca;
 	private ComponenteAnimado imgSaida; 
 	private long proxFecho;
+	private long proxAto;  
 	
 	/* ---------------------------------------------- CONSTRUTOR ------------------------------------ */
 
@@ -63,36 +64,61 @@ public class Troca extends VisitanteDefault {
 
 	@Override
 	public boolean podeFechar() {
-		return getStatus() == MORTO && getImagem().numCiclosFeitos() > 0;
+		return getStatus() == MORTE_APOS && getImagem().numCiclosFeitos() > 0;
 	}
 
 	@Override
 	public int baleado() {
-		if( getStatus() == MORTO ) {
-			return pontos;
-		} else if (getStatus() == ESPERA_APOS) {
-			fezAsneira("oops");
-		}
 		
-		setImagem( nome + "_morte" );
-		fezAsneira("oops");
-		setStatus(MORTO);
-		return 0;
+		float pontuacao = 0;
+		
+		if( getStatus() == MORTE_APOS ) {
+			return pontos;
+		} else if (getStatus() == MORTE_ANTES) {
+			fezAsneira("oops");
+		} else if (getStatus() == MORTE_APOS) {
+			setStatus(MORTE_APOS);
+			setImagem(nomeAssaltante + "_morte");
+			
+			long tempo = (System.currentTimeMillis() - tempoSaque);
+			if( tempo < 100 )
+				pontuacao = getPontos();
+			else if( tempo < 200 )
+				pontuacao = getPontos() * 0.95f;
+			else if( tempo < 400 )
+				pontuacao = getPontos() * 0.8f;
+			else if( tempo < 600 )
+				pontuacao = getPontos() * 0.7f;
+			else if( tempo < 800 )
+				pontuacao = getPontos() * 0.6f;
+			else if( tempo < 1200 )
+				pontuacao = getPontos() * 0.5f;
+			else if( tempo < 1500 )
+				pontuacao = getPontos() * 0.4f;
+			else
+				pontuacao = getPontos() * 0.2f;
+		}
+		return (int)(pontuacao+0.5f);
 	}
-
+	
 	@Override
 	public void atualizar() {
+		
+		proxAto = GeradorAleatorio.proxTempo(minDisparo, maxDisparo);
+		
 		if( getStatus() == ENTRAR && getImagem().numCiclosFeitos() > 0 ){
-			setStatus( ESPERA_ANTES );
+			setStatus( TROCAR_ANTES );
 			setImagem( nome + "_espera");
-		} else if (getStatus() == ESPERA_ANTES) {
+		} else if (getStatus() == TROCAR_ANTES) {
 			setStatus(TROCAR);
 			setImagem(nome + "_troca");
 		} else if (getStatus() == TROCAR && getImagem().numCiclosFeitos() > 0 ) {
-			setStatus(MORTE_ANTES);
+			setStatus(TROCAR_APOS);
 			setImagem(nomeAssaltante + "_troca");
-		}
-		else if( getStatus() == ESPERA_APOS && fimEspera() ){
+			setImagem(nomeAssaltante + "_sacada");
+		} else if( getStatus() == TROCAR_APOS && System.currentTimeMillis() >= proxAto ){
+			setStatus(MORTE_APOS);
+		} else if (getStatus() == MORTE_APOS && fimEspera()) {
 			fezAsneira("bang");
 		}
 	}
@@ -104,12 +130,6 @@ public class Troca extends VisitanteDefault {
 	@Override
 	public void setImagem(String nome) {
 		super.setImagem(nome);
-	}
-	
-	private void setImagemSaida( String nomeImg ){
-		imgSaida = (ComponenteAnimado)ComponenteVisualLoader.getCompVisual( nomeImg );
-		Rectangle r = getImagem().getBounds();
-		imgSaida.setPosicao( new Point( r.x+(r.width - imgSaida.getComprimento())/2 , r.y) );
 	}
 	
 	@Override
