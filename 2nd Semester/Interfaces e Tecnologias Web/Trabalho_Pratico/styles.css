@@ -5,56 +5,32 @@
 .description {
   width: 22%;
   position: absolute;
-  margin-top: 11%;
+  margin-top: 10%;
   margin-left: 65%;
   color: white;
 }
 
+.card-title {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .my-card-categories {
+  display: block;
+  align-items: center;
   background: none;
   border: none;
-  width: 10%;
-  height: 250px;
+  height: 215px;
+  align-items: center;
 }
 
 .my-card-description {
-  position: absolute;
-  bottom: 5%;
-  padding: auto;
-}
-
-.my-card-description-2 {
+  height: 1px;
   position: absolute;
   bottom: 0;
-  padding: auto;
 }
-
-.my-card-categories-img {
-  position: absolute;
-  top: 0;
-  padding: auto;
-}
-
-/* Tamanho das colunas das categorias personalizadas */
-.my-col {
-  width: 11%;
-}
-
-.my-mt-dl {
-  margin-top: 2%;
-}
-
-/* Tamanho da imagem do processador */ 
-.cpu {
-  width: 80%;
-}
-
-/* Margem para o parágrafo "Componentes PC" */
-.my-mt-cpu {
-  margin-top: 8%;
-}
-
-/* Margem para o parágrafo "Televisores e Projetores" */
 
 /* Animação dura 0.2s e zoom de 115% "on hover" */
 .zoom-img, .zoom-new {
@@ -73,7 +49,9 @@
   color: white;
 }
 
-.my-card {
+.my-products-card {
+  margin-left: 10px;
+  margin-bottom: 20px;
   width: 300px;
   height: 580px;
 }
@@ -119,7 +97,124 @@
   color: rgb(0, 76, 168);
 }
 
-/* PÁGINA DE AUTOR */
+
+/* Tamanho das colunas das categorias personalizadas apenas para desktop e laptop */
+
+.my-card-categories-img {
+  margin-bottom: 5px;
+  object-fit: cover;
+  display: block;
+  margin-left: 0 auto;
+  width: 100%;
+}
+
+ /* Estilo padrão (mobile-first) */
+ .my-card-categories-img {
+  width: 50%; /* Padrão é 100% para dispositivos móveis */
+}
+
+.cpu {
+  width: 35%;
+}
+
+/* Estilo para dispositivos pequenos (≥ 576px) */
+@media (min-width: 576px) {
+  .my-card-categories-img {
+    width: 75%;
+  }
+}
+
+/* Estilo para dispositivos médios (≥ 768px) */
+@media (min-width: 768px) {
+  .my-card-categories-img {
+    width: 50%;
+  }
+  .cpu {
+    width: 35%;
+  }
+}
+
+@media (max-width: 768px) {
+  .custom-carousel {
+    margin-top: 28px;
+  }
+  .description {
+    width: 40%;
+    margin-top: 12%;
+    margin-left: 60%;
+  }
+  .carousel-control-prev, .carousel-control-next {
+    margin-top: 10%;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .custom-carousel {
+    margin-top: 28px; /* Ajuste este valor para tablets */
+  }
+  .description {
+    width: 38%;
+    margin-top: 8%;
+    margin-left: 60%;
+  }
+  .carousel-control-prev, .carousel-control-next {
+    margin-top: 10%;
+  }
+}
+
+/* Estilo para dispositivos grandes (≥ 992px) */
+@media (min-width: 992px) {
+  .my-card-categories-img {
+    width: 75%;
+  }
+  .cpu {
+    width: 55%;
+  }
+}
+
+
+
+/* Estilo para dispositivos extra grandes (≥ 1281px) */
+@media (min-width: 1281px) {
+  .my-col-xl {
+    width: 12%;
+  }
+  .cpu {
+    width: 55%;
+  }
+}
+
+/* Estilo para dispositivos extra grandes (≥ 1281px) */
+@media (min-width: 1440px) {
+  .my-col-xl {
+    width: 12%;
+  }
+  .cpu {
+    width: 40%px;
+  }
+}
+
+/* Estilo para dispositivos extra grandes (≥ 1281px) */
+@media (min-width: 1920px) {
+  .my-col-xl {
+    width: 12%;
+  }
+  .cpu {
+    width: 55%;
+  }
+}
+
+@media (min-width: 3840px) {
+  .my-col-xl {
+    width: 12%;
+  }
+  .cpu {
+    width: 55%;
+  }
+}
+
+
+/* ------------------------------------------------------------------- PÁGINA DE AUTOR -------------------------------------------------- */
 .my-mt-main {
   margin-top: 5%;
 }
@@ -141,3 +236,4 @@
 .my-mt-footer {
   margin-top: 18.3%;
 }
+
