@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi Range Slider</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="double-slider-box">
+        <h3 class="range-title">Price Range Slider</h3>
+        <div class="range-slider">
+            <span class="slider-track"></span>
+            <input type="range" name="min_val" class="min-val" min="0" max="3000" value="2000" oninput="slideMin()">
+            <input type="range" name="max_val" class="max-val" min="0" max="3000" value="7000" oninput="slideMax()">
+            <div class="tooltip min-tooltip"></div>
+            <div class="tooltip max-tooltip"></div>
+        </div>
+        <div class="input-box">
+            <div class="min-box">
+                <div class="input-wrap">
+                    <input type="text" name="min_input" class="input-field min-input" onchange="setMinInput()">
+                    <span class="input-addon">€</span>
+                </div>
+            </div>
+            <div class="max-box">
+                <div class="input-wrap">
+                    <input type="text" name="max_input" class="input-field max-input" onchange="setMaxInput()"> 
+                    <span class="input-addon">€</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
