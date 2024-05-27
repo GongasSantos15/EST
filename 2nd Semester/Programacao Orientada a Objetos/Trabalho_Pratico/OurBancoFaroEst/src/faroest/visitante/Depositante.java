@@ -86,6 +86,9 @@ public class Depositante extends VisitanteDefault implements Cloneable {
 	/** o visitante foi baleado 
 	 * @return a pontuação obtida
 	 */
+	
+	// Se tem extras, reduzir o extra quando o personagem for baleado e retornar os pontos. Ao fim disto, mudar a animação para "morte" e chamar o método fezAsneira para retirar
+	// uma vida e mudar o estado para MORTO
 	public int baleado() {
 		if( getStatus() == MORTO )
 			return 0;
@@ -103,6 +106,10 @@ public class Depositante extends VisitanteDefault implements Cloneable {
 	
 	/** efetua um ciclo do jogo
 	 */
+	
+	// Atualiza o personagem 
+		// Estado = OLA, mudando o estado para ESPERA, bem como a animação do personagem
+		// Estado = ESPERA, muda o estado para ADEUS, bem como a animação para "adeus" e a imagem de saída ("dinheiro")
 	public void atualizar() {
 		if( getStatus() == OLA && getImagem().numCiclosFeitos() > 0 ){
 			setStatus( ESPERA );
@@ -123,6 +130,8 @@ public class Depositante extends VisitanteDefault implements Cloneable {
 	 * desenha o visitante
 	 * @param g ambiente gráfico onde desenhar
 	 */
+	
+	// Desenhar o personagem bem como os seus extras
 	public void desenhar( Graphics2D g ){
 		super.desenhar(g);
 		if( imgSaida != null )

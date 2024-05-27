@@ -44,6 +44,8 @@ public class LevelReader {
 		Mundo mundo = new Mundo( imgFundo, imgPorta, numPortas, pontos );
 		
 		// ler os visitantes possíveis
+		
+		// Switch case para criar todos os possíveis visitantes do jogo
 		try {
 			for( int i=1; i <= numVisitantes; i++ ) {
 				String p = "visitante_" + (i < 10 ? "0" : "") + i;

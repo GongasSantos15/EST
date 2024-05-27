@@ -65,6 +65,7 @@ public class Insatisfeito extends VisitanteDefault {
 		return getStatus() == SAIR && getImagem().numCiclosFeitos() > 0;
 	}
 
+	// Verificar se o personagem tem extras, se sim reduzir os mesmos ao ser baleado e retornar os pontos, depois mudar o estado para PACIFICANDO bem como a sua animação
 	@Override
 	public int baleado() {
 		if( getStatus() == MORTE )
@@ -82,6 +83,13 @@ public class Insatisfeito extends VisitanteDefault {
 		return 0;
 	}
 
+	// Atualiza o personagem, quando:
+		// Estado = ENTRAR -> muda o estado para ESTADO_ANTES
+		// Estado = PACIFICANDO (quando se baleia o personagem com o explosivo) -> muda o estado para ESPERA, bem como a sua animação e a animação de saída (dinheiro)
+		// Estado = ESPERA_ANTES -> Se o personagem não for atingido quando é um depositante insatisfeito (passa o tempo que pode estar com o explosivo nas mãos), reduzir uma 
+			// vida ao jogador e colocar a animação "boom"
+		// Estado = ESPERA -> muda o estado para SAIR e muda a animação para "adeus"
+	
 	@Override
 	public void atualizar() {
 		if( getStatus() == ENTRAR && getImagem().numCiclosFeitos() > 0 ){
@@ -109,6 +117,8 @@ public class Insatisfeito extends VisitanteDefault {
 	 * desenha o visitante
 	 * @param g ambiente gráfico onde desenhar
 	 */
+	
+	// Desenhar o personagem bem como os seus extras
 	public void desenhar( Graphics2D g ){
 		super.desenhar(g);
 		if( imgSaida != null )

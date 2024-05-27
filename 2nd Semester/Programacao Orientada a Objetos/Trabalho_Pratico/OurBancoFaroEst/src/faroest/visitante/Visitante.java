@@ -7,6 +7,8 @@ import prof.jogos2D.image.ComponenteVisual;
 
 public interface Visitante {
 
+	// Colocar APENAS os métodos COMUNS a TODAS as SUBCLASSES 
+	
 	/* ---------------------------------------------- PORTA ------------------------------------ */
 	int fecharPorta();
 	void portaAberta();

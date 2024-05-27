@@ -9,6 +9,8 @@ import prof.jogos2D.util.ComponenteVisualLoader;
 
 public abstract class VisitanteDefault implements Visitante, Cloneable {
 	
+	// Herdar os métodos da SUPERCLASSE e escrever as variáveis COMUNS a todas as SUBCLASSES
+	
 	/* ---------------------------------------------- Variáveis ------------------------------------ */
 	String nome;
 	int pontos;
@@ -17,6 +19,8 @@ public abstract class VisitanteDefault implements Visitante, Cloneable {
 	ComponenteVisual img;
 
 	/* --------------------------------------------- Construtor ------------------------------------ */
+	
+	// Criar um construtor, que vá ser USADO POR TODAS AS SUBCLASSES
 	
 	public VisitanteDefault( String nome, int pontos) {
 		
@@ -27,6 +31,7 @@ public abstract class VisitanteDefault implements Visitante, Cloneable {
 	
 	/* --------------------------------------------- Métodos ------------------------------------ */
 
+	// Desenhar apenas o personagem
 	@Override
 	public void desenhar(Graphics2D g) {
 		img.desenhar(g);
@@ -90,6 +95,7 @@ public abstract class VisitanteDefault implements Visitante, Cloneable {
 		return pontos;
 	}
 	
+	// Colocar apenas o método clone inicial, mas sem os extras
 	@Override
 	public VisitanteDefault clone() {
 		try {

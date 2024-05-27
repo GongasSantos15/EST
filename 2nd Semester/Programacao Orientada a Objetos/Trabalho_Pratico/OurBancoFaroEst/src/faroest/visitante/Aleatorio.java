@@ -11,12 +11,12 @@ import prof.jogos2D.util.ComponenteVisualLoader;
 
 public class Aleatorio extends VisitanteDefault {
 	
-	/* ---------------------------------------------- CONSTANTES ------------------------------------ */
+	/* ----------------------------------------------------------------------------- CONSTANTES ----------------------------------------------------------------------------- */
 	private static final int ENTRAR = 10;
 	private static final int ESPERA = 11;
 	private static final int SAIR = 12;
 	
-	/* ---------------------------------------------- VARIÁVEIS ------------------------------------ */
+	/* ----------------------------------------------------------------------------- VARIÁVEIS ------------------------------------------------------------------------------- */
 	private int minAberto;  
 	private int maxAberto; 
 	private long proxFecho;
@@ -31,7 +31,7 @@ public class Aleatorio extends VisitanteDefault {
 	String imgDeposita = nome + "_deposita";
 	String imgMata = nome + "_mata";
 	
-	/* ---------------------------------------------- CONSTRUTOR ------------------------------------ */
+	/* ------------------------------------------------------------------------------- CONSTRUTOR --------------------------------------------------------------------------- */
 
 	public Aleatorio(String nome, int pontos, int nExtras, int minAberto, int maxAberto) {
 		super(nome, pontos);
@@ -49,10 +49,14 @@ public class Aleatorio extends VisitanteDefault {
 		ramdomImage(nome);
 	}
 	
+	/* ------------------------------------------------------------------------------- MÉTODOS ---------------------------------------------------------------------------- */
+
+	
 	private boolean decideImagem() {
 		return Math.random() < 0.5;
 	}
 	
+	// Este método gera uma imagem random entre assaltante e depositante, se for depositante muda a variável vaiDepositar para true
 	private void ramdomImage(String nome) {
 		
 		if(decideImagem()) {
@@ -80,6 +84,7 @@ public class Aleatorio extends VisitanteDefault {
 		return getStatus() == SAIR && getImagem().numCiclosFeitos() > 0;
 	}
 
+	// Este método verifica se o personagem temExtras, se tiver, ao ser baleado reduz esses extras e depois retorna os pontos
 	@Override
 	public int baleado() {
 		
@@ -89,6 +94,9 @@ public class Aleatorio extends VisitanteDefault {
 		if( temExtras() ){
 			reduzExtra();
 			return getPontos();
+			
+			// Se for um depositante (vaiDepositar == true) muda o estado para SAIR e muda a imagem para depositante, colocando também a imagem de saída para "dinheiro",
+			// se for um assaltante, muda o estado para SAIR e mete a animação do fezAsneira como "boom", muda também o estado para SAIR e muda a animação do personagem para "mata"
 		} else if (vaiDepositar) {
 			setStatus(SAIR);
 			setImagem(nome + "_deposita");
@@ -102,6 +110,7 @@ public class Aleatorio extends VisitanteDefault {
 		return 0;
 	}
 
+	// Atualiza o personagem se o estado do mesmo for igual a ENTRAR, se o estado do personagem for ESPERA, muda o estado para SAIR
 	@Override
 	public void atualizar() {
 		
@@ -116,6 +125,7 @@ public class Aleatorio extends VisitanteDefault {
 		return System.currentTimeMillis() >= proxFecho;
 	}
 	
+	// Desenha o personagem e os seus extras, bem como as imagens de saída (dinheiro)
 	@Override
 	public void desenhar(Graphics2D g) {
 		super.desenhar(g);

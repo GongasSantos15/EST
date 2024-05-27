@@ -67,6 +67,13 @@ public class Troca extends VisitanteDefault {
 		return getStatus() == MORTE_APOS && getImagem().numCiclosFeitos() > 0;
 	}
 
+	// Balear o personagem quando:
+		// O estado = MORTE_APOS (ou seja o personagem já realizou a troca e o assaltante já foi atingido) -> retornar os pontos
+		// O estado = MORTE_ANTES (ou seja o personagem ainda não realizou a troca) -> retirar uma vida ao jogador pois "atingiu um depositante"
+		// O estado = MORTE_APOS (ou seja o personagem ainda não realizou a troca) -> Mudar o estado do personagem para "MORTE_APOS" e mudar a imagem para morte (no assaltante),
+			// ou seja, o assaltante é morto
+		// Retornar os pontos consoante o tempo demorado para atirar no assaltante
+	
 	@Override
 	public int baleado() {
 		
@@ -100,6 +107,13 @@ public class Troca extends VisitanteDefault {
 		}
 		return (int)(pontuacao+0.5f);
 	}
+	
+	// Atualiza o personagem quando:
+		// Estado = ENTRAR -> muda o estado para TROCA_ANTES e coloca a animação respetiva
+		// Estado = TROCAR_ANTES -> muda o estado para TROCAR e coloca a animação respetiva
+		// Estado = TROCAR -> muda o estado para TROCAR_APOS e muda a imagem para o assaltante, colocando também a animação "sacada" (quando saca as 2 pistolas)
+		// Estado = TROCAR_APOS -> muda o estado para MORTE_APOS
+		// Estado = MORTE_APOS -> O jogador não disparou para o assaltante, como consequência o assaltante dispara e o jogador perde uma vida
 	
 	@Override
 	public void atualizar() {

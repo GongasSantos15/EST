@@ -90,9 +90,12 @@ public class Assaltante extends VisitanteDefault implements Cloneable {
 		return getStatus() == MORTO && getImagem().numCiclosFeitos() > 0;
 	}
 	
-	/** o visiatnte foi baleado 
+	/** o visitante foi baleado 
 	 * @return a pontuação obtida
 	 */
+	
+	// Verificar o estado do personagem e se < SACOU, mudar a animação para "morte1" e retirar uma vida ao jogador, senão matar o personagem e retornar os pontos correpondentes
+	// ao tempo demorado, bem como mudar o estado do personagem para MORTO
 	public int baleado() {
 		if( getStatus() == MORTO )
 			return 0;
@@ -129,6 +132,11 @@ public class Assaltante extends VisitanteDefault implements Cloneable {
 	
 	/** efetua um ciclo do jogo
 	 */
+	
+	// Atualizar o personagem 
+		// Se ao sacar a arma, mudando o estado para ESPERA e a animação para "saca"
+		// Depois dessa animação, mudar o estado para SACANDO e a animação para "sacada", bem como calcular o tempo que demora a disparar
+		// Se o jogador não tiver baleado o personagem, este dispara e muda o ESTADO para DISPARO bem como a animação do jogo para "bang"
 	public void atualizar() {
 		if( getStatus() == ESPERA && System.currentTimeMillis() >= proxAto  ){
 			setStatus( SACANDO );
