@@ -7,6 +7,7 @@
   <link rel="icon" type="image/png" href="/GitHub/EST/2nd Semester/Interfaces e Tecnologias Web/Trabalho_Pratico/Images/logo.png"/>
   <link href="bootstrap-5.3.3-dist/css/bootstrap.min.css" rel="stylesheet"/>
   <link href="styles.css" rel="stylesheet">
+  <link href="index.css" rel="stylesheet">
   <script src="bootstrap-5.3.3-dist/js/bootstrap.min.js"></script>
 </head>
 <body class="bg">
@@ -40,7 +41,7 @@
       </ul>
 
       <!-- Search Bar -->
-      <form class="d-flex align-items-center me-5 nav-search-mobile">
+      <form class="d-flex align-items-center search-bar me-5 nav-search-mobile">
         <input class="form-control me-2 rounded-pill border-primary" type="text" placeholder="Search">
         <button class="btn btn-primary rounded-pill" type="button">Search</button>
       </form>
@@ -48,7 +49,7 @@
       <!-- Elementos à direita -->
       <div class="d-flex align-items-center">
         <!-- Avatar Icon -->
-        <a class="zoom-img navbar-icon me-3 nav-mobile" href="#">
+        <a class="zoom-img navbar-icon icon me-3 nav-mobile" href="#">
           <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" class="bi bi-person me-3" viewBox="0 0 16 16">
             <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0m4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4m-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10s-3.516.68-4.168 1.332c-.678.678-.83 1.418-.832 1.664z"/>
           </svg>
@@ -235,8 +236,8 @@
     <div class="d-flex justify-content-end">
       <span class="badge rounded-pill orange w-25 my-4 me-2">Promo</span>
     </div>
-    <a class="my-card-title" href="#">
-      <img class="card-img-top zoom-new" src="Images/iphone-15-pro-max.jpg" alt="Card image" style="width:100%">
+    <a class="my-card-title" href="iPhone_15_Pro_Max.html">
+      <img class="card-img-top zoom-new" src="Images/iphone-15-pro-max.jpg" alt="iPhone 15 Pro Max" style="width:100%">
       <div class="card-body">
         <h5 class="card-title my-card-title">Smartphone Apple iPhone 15 Pro Max | 256GB | Titânio Preto</h5>
           <p class="h2 price">1299,99 €</p>
@@ -250,7 +251,7 @@
       <span class="badge rounded-pill orange w-25 my-4 me-2">Promo</span>
     </div>
     <a class="my-card-title" href="#">
-      <img class="card-img-top zoom-new" src="Images/macbook-pro.jpg" alt="Card image" style="width:100%">
+      <img class="card-img-top zoom-new" src="Images/macbook-pro.jpg" alt="Apple Macbook Pro" style="width:100%">
       <div class="card-body mt-3">
         <h5 class="card-title my-card-title">Apple Macbook Pro | SSD 512GB | 36GB RAM | Preto Sideral</h5>
           <p class="h2 price">3199,99 €</p>
@@ -263,8 +264,8 @@
     <div class="d-flex justify-content-end">
       <span class="badge rounded-pill orange w-25 my-4 me-2">Promo</span>
     </div>
-    <a class="my-card-title" href="#">
-      <img class="card-img-top zoom-new" src="Images/redmi-note-13-pro-5g.jpg" alt="Card image" style="width:100%">
+    <a class="my-card-title" href="redmi_note_13_pro.html">
+      <img class="card-img-top zoom-new" src="Images/redmi-note-13-pro-5g.jpg" alt="Xiaomi Redmi Note 13 Pro 5G" style="width:100%">
       <div class="card-body mt-3">
         <h5 class="card-title my-card-title">Smartphone Xiaomi Redmi Note 13 Pro 5G | 12/512GB | Preto Meia-Noite</h5>
           <p class="h2 price">379,99 €</p>
@@ -277,8 +278,8 @@
     <div class="d-flex justify-content-end">
       <span class="badge rounded-pill orange w-25 my-4 me-2">Promo</span>
     </div>
-    <a class="my-card-title" href="#">
-      <img class="card-img-top zoom-new" src="Images/hisense-65A6K.jpg" alt="Card image" style="width:100%">
+    <a class="my-card-title" href="hisense-65a6k.html">
+      <img class="card-img-top zoom-new" src="Images/hisense-65A6K.jpg" alt="Hisense 65A6K" style="width:100%">
       <div class="card-body mt-3">
         <h5 class="card-title my-card-title">Televisão Hisense 65A6K (2023) | SmartTV 65" LED 4K UHD</h5>
           <p class="h2 price">459,99 €</p>
@@ -310,7 +311,7 @@
       <span class="badge rounded-pill bg-primary w-25 my-4 me-2">New</span>
     </div>
     <a class="my-card-title" href="#">
-      <img class="card-img-top zoom-new" src="Images/ps5.jpg" alt="Card image" style="width:100%">
+      <img class="card-img-top zoom-new" src="Images/ps5.jpg" alt="PlayStation 5 Slim" style="width:100%">
       <div class="card-body mt-3">
         <h5 class="card-title my-card-title">Consola PlayStation 5 Slim 1TB | +  Hogwarts Legacy | + Uncharted: Legacy of Thieves</h5>
         <p class="h2 price">579,99 €</p>
@@ -323,7 +324,7 @@
       <span class="badge rounded-pill bg-primary w-25 my-4 me-2">New</span>
     </div>
     <a class="my-card-title" href="#">
-      <img class="card-img-top zoom-new" src="Images/asus-zenbook-14.jpg" alt="Card image" style="width:100%">
+      <img class="card-img-top zoom-new" src="Images/asus-zenbook-14.jpg" alt="Asus Zenbook 14 Flip OLED" style="width:100%">
       <div class="card-body mt-3">
         <h5 class="card-title my-card-title">Asus Zenbook 14 Flip OLED | UP3404VA-73BOHDAP1</h5>
         <p class="h2 price">1599,99 €</p>
@@ -336,7 +337,7 @@
       <span class="badge rounded-pill bg-primary w-25 my-4 me-2">New</span>
     </div>
     <a class="my-card-title" href="#">
-      <img class="card-img-top zoom-new" src="Images/razer-headset.jpg" alt="Card image" style="width:100%">
+      <img class="card-img-top zoom-new" src="Images/razer-headset.jpg" alt="Razer Blackshark V2" style="width:100%">
       <div class="card-body mt-3">
         <h5 class="card-title my-card-title">Headset Razer Blackshark V2 X 7.1 | Branco</h5>
         <p class="h2 price">59,99 €</p>
@@ -349,9 +350,9 @@
       <span class="badge rounded-pill bg-primary w-25 my-4 me-2">New</span>
     </div>
     <a class="my-card-title" href="#">
-      <img class="card-img-top zoom-new" src="Images/oneplus-nord-n30.jpg" alt="Card image" style="width:100%">
+      <img class="card-img-top zoom-new" src="Images/oneplus-nord-ce3-lite.jpg" alt="Oneplus Nord CE 3 Lite 5G" style="width:100%">
       <div class="card-body mt-3">
-        <h5 class="card-title my-card-title">Smartphone Oneplus Nord N30 SE 5G | 4/128 GB | Preto</h5>
+        <h5 class="card-title my-card-title">Smartphone Oneplus Nord CE 3 Lite 5G | 8/128 GB | Cinza Cromático</h5>
         <p class="h2 price">249,99 €</p>
       </div>
     </a>

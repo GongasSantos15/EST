@@ -1,0 +1,131 @@
+/* ----------------------------------------------------------------- CAROUSEL ----------------------------------------------------------- */
+
+@media (max-width: 768px) {
+    .custom-carousel {
+      margin-top: 28px;
+    }
+    .description {
+      width: 40%;
+      margin-top: 12%;
+      margin-left: 60%;
+    }
+    .carousel-control-prev, .carousel-control-next {
+      margin-top: 10%;
+    }
+  }
+  
+  @media (min-width: 768px) and (max-width: 991.98px) {
+    .custom-carousel {
+      margin-top: 28px; /* Ajuste este valor para tablets */
+    }
+    .description {
+      width: 38%;
+      margin-top: 8%;
+      margin-left: 60%;
+    }
+    .carousel-control-prev, .carousel-control-next {
+      margin-top: 10%;
+    }
+  }
+/* ----------------------------------------------------------------- CATEGORIAS --------------------------------------------------------- */
+  
+.my-card-categories {
+    display: block;
+    align-items: center;
+    background: none;
+    border: none;
+    height: 215px;
+    align-items: center;
+  }
+  
+  .my-card-description {
+    height: 1px;
+    position: absolute;
+    bottom: 0;
+    text-align: center;
+  }
+  
+/* Tamanho das colunas das categorias personalizadas apenas para desktop e laptop */
+
+.my-card-categories-img {
+    margin-bottom: 5px;
+    object-fit: cover;
+    display: block;
+    margin-left: 0 auto;
+    width: 100%;
+  }
+  
+   /* Estilo padrão (mobile-first) */
+   .my-card-categories-img {
+    width: 50%;
+  }
+
+  .cpu {
+    width: 35%;
+  }
+  
+  /* Estilo para dispositivos pequenos (≥ 576px) */
+  @media (min-width: 576px) {
+    .my-card-categories-img {
+      width: 75%;
+    }
+  }
+  
+  /* Estilo para dispositivos médios (≥ 768px) */
+  @media (min-width: 768px) {
+    .my-card-categories-img {
+      width: 50%;
+    }
+    .cpu {
+      width: 35%;
+    }
+  }
+  
+  /* Estilo para dispositivos grandes (≥ 992px) */
+  @media (min-width: 992px) {
+    .my-card-categories-img {
+      width: 75%;
+    }
+    .cpu {
+      width: 55%;
+    }
+  }
+
+  /* Estilo para dispositivos extra grandes (≥ 1281px) */
+@media (min-width: 1281px) {
+    .my-col-xl {
+      width: 12%;
+    }
+    .cpu {
+      width: 55%;
+    }
+  }
+  
+  /* Estilo para dispositivos extra grandes (≥ 1281px) */
+  @media (min-width: 1440px) {
+    .my-col-xl {
+      width: 12%;
+    }
+    .cpu {
+      width: 40%px;
+    }
+  }
+  
+  /* Estilo para dispositivos extra grandes (≥ 1281px) */
+  @media (min-width: 1920px) {
+    .my-col-xl {
+      width: 12%;
+    }
+    .cpu {
+      width: 55%;
+    }
+  }
+  
+  @media (min-width: 3840px) {
+    .my-col-xl {
+      width: 12%;
+    }
+    .cpu {
+      width: 55%;
+    }
+  }

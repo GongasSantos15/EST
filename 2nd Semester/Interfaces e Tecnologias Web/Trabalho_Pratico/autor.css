@@ -1,0 +1,22 @@
+.my-mt-main {
+    margin-top: 5%;
+  }
+  
+  .aside {
+    width: 60%;
+  }
+  
+  .cv {
+    font-size: 20px;
+  }
+  
+  .hobbies {
+    width: 83px;
+    height: 80px;
+    margin: 0 2%;
+  }
+  
+  .my-mt-footer {
+    position: absolute;
+    bottom:0;
+  }

@@ -1,0 +1,101 @@
+
+
+.price-product {
+    color: rgb(0, 61, 136);
+}
+
+.my-col-discount-price {
+    width: 200px;
+}
+
+.specs {
+    width: 46%;
+}
+
+.specs-col {
+    width: 215px;
+    height: 120px
+}
+
+.margin-icon {
+    margin-left: 22%;
+}
+
+.specs-top {
+    margin-top: 3%;
+}
+
+/* Mobile- First */
+.title-top {
+    margin-top: 25%;
+    padding: 0 10px;
+}
+.button-col {
+    width: 45%;
+}
+.my-col-price {
+    width: 40%;
+}
+
+
+@media (min-width: 768px) {
+    .title-top {
+        margin-top: 13%;
+        padding: 0 1rem;
+    }
+    .button-col {
+        width: 25%;
+    }
+    .my-col-price {
+        width: 30%;
+    }
+  }
+
+@media (min-width: 992px) {
+    .title-top {
+        margin-top: 8%;
+        padding: 0 1rem;
+    }
+    .button-col {
+        width: 15%;
+    }
+    .my-col-price {
+        width: 20%;
+    }
+}
+  
+@media (min-width: 1920px) {
+    .title-top {
+        margin-top: 6%;
+    }
+    
+    
+    .my-col-price {
+        width: 250px;
+    }
+    
+    
+    .button-col {
+        width: 10%;
+    }
+}
+
+.margin-phone-fill {
+    margin-top: 5%;
+}
+
+.margin-phone-i15 {
+    margin-top: 10%;
+}
+
+.margin-phone-rn13 {
+    margin-top: 10%;
+}
+
+.margin-camera-i15 {
+    margin-top: 10%;
+}
+
+.margin-camera-rn13 {
+    margin-top: 7%;
+}
