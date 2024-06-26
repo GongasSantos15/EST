@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Redmi Note 13 Pro 5G</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/png" href="/GitHub/EST/2nd Semester/Interfaces e Tecnologias Web/Trabalho_Pratico/Images/logo.png"/>
+  <link href="bootstrap-5.3.3-dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="styles.css" rel="stylesheet">
+  <link href="itens.css" rel="stylesheet">
+  <script src="bootstrap-5.3.3-dist/js/bootstrap.min.js"></script>
+</head>
+<body class="bg">
+
+<!-- Navbar-->
+<nav class="navbar navbar-expand-lg fixed-top navbar-light bg-light">
+  <div class="container-fluid">
+    <!-- Logo -->
+    <a class="navbar-brand d-flex align-items-center" href="index.html">
+      <img class="rounded-circle" src="Images/logo.png" height="50" alt="Logo" />
+    </a>
+    
+    <!-- Botão de colapso para dispositivos móveis -->
+    <button class="navbar-toggler me-3 border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Conteúdo colapsável -->
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <!-- Elementos à esquerda -->
+      <ul class="navbar-nav me-auto mt-2">
+        <li class="nav-item">
+          <a class="nav-link" href="produtos.html">Produtos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="autor.html">Autor</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="contactos.html">Contactos</a>
+        </li>
+      </ul>
+
+      <!-- Search Bar -->
+      <form class="d-flex align-items-center me-5 nav-search-mobile">
+        <input class="form-control me-2 rounded-pill border-primary" type="text" placeholder="Search">
+        <button class="btn btn-primary rounded-pill" type="button">Search</button>
+      </form>
+
+      <!-- Elementos à direita -->
+      <div class="d-flex align-items-center">
+        <!-- Avatar Icon -->
+        <a class="zoom-img navbar-icon me-3 nav-mobile" href="#">
+          <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" class="bi bi-person me-3" viewBox="0 0 16 16">
+            <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0m4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4m-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10s-3.516.68-4.168 1.332c-.678.678-.83 1.418-.832 1.664z"/>
+          </svg>
+        </a>
+
+        <!-- Carrinho Icon -->
+        <a class="zoom-img icon position-relative me-3 nav-mobile" href="#">
+          <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" class="bi bi-cart" viewBox="0 0 16 16" style="vertical-align: middle;">
+            <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l1.313 7h8.17l1.313-7zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2"/>
+          </svg>
+          <span class="badge rounded-circle bg-danger position-absolute translate-middle">1</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</nav>
+<!-- Navbar -->
+<div class="title-top">
+    <h1 class="d-flex justify-content-center text-uppercase">Smartphone Xiaomi Redmi Note 13 Pro 5G 6.67" | 12GB/512GB | Azul</h1>
+        
+    <div class="row d-flex justify-content-center">
+        <div class="my-col-price mt-3">
+            <p class="display-4 price-product">379,99 €</p>
+        </div>
+        <div class="my-col-discount-price mt-5">
+            <p class="h2 price-product text-decoration-line-through">449,99 €</p>
+        </div>
+    </div>
+    <div class="row d-flex justify-content-center">
+        <div class="button-col mt-4">
+            <button type="button" class="rounded-pill btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#buy">Comprar 
+                <span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="25" fill="currentColor" class="bi bi-cart ms-2" viewBox="0 0 16 16">
+                        <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l1.313 7h8.17l1.313-7zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2"/>
+                    </svg>
+                </span>
+            </button>
+
+            <!-- Modal p/ Comprar -->
+            <div class="modal" id="buy">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+
+                    <div class="modal-header">
+                        <h4 class="modal-title">Compraste 1 artigo!</h4>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+
+                        <div class="modal-body">
+                            Continua a ver artigos na loja!
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="rounded-pill btn btn-danger" data-bs-dismiss="modal">Close</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="button-col mt-4">
+            <button type="button" class="rounded-pill btn btn-warning btn-lg" data-bs-toggle="modal" data-bs-target="#add">Adicionar
+                <span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="25" fill="currentColor" class="bi bi-cart-plus-fill ms-2" viewBox="0 0 16 16">
+                        <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0m7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0M9 5.5V7h1.5a.5.5 0 0 1 0 1H9v1.5a.5.5 0 0 1-1 0V8H6.5a.5.5 0 0 1 0-1H8V5.5a.5.5 0 0 1 1 0"/>
+                    </svg>
+                </span>
+            </button>
+
+            <!-- Modal p/ Adicionar -->
+            <div class="modal" id="add">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+
+                    <div class="modal-header">
+                        <h4 class="modal-title">Adicionaste 1 artigo!</h4>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+
+                        <div class="modal-body">
+                            Continua a ver artigos na loja!
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="rounded-pill btn btn-danger" data-bs-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-6">
+        <div class="container-fluid image-grid">
+            <div class="row mt-5">
+                <div class="col-md-6 mb-3">
+                    <div class="card h-100 rounded-3">
+                        <img class="rounded-3" src="Images/redmi-note-13-pro-5g-front-back.jpg" alt="Redmi Note 13 Pro 5G Frente e Trás">
+                    </div>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <div class="card h-100 rounded-3">
+                        <img class="rounded-3" src="Images/redmi-note-13-pro-5g-front.jpg" alt="Redmi Note 13 Pro 5G Frente">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <div class="card h-100 rounded-3">
+                        <img class="rounded-3" src="Images/redmi-note-13-pro-5g-front2.jpg" alt="Redmi Note 13 Pro Frente Inclinada">
+                    </div>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <div class="row h-50 pb-3">
+                        <div class="col-12">
+                            <div class="card h-100 rounded-3">
+                                <img class="rounded-3" src="Images/redmi-note-13-pro-5g-back.jpg" alt="Redmi Note 13 Pro Traseira">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row h-50">
+                        <div class="col-12">
+                            <div class="card h-100 rounded-3">
+                                <img class="rounded-3" src="Images/redmi-note-13-pro-5g-side.jpg" alt="Redmi Note 13 Pro Lado">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <div class="row h-50 pb-3">
+                        <div class="col-12">
+                            <div class="card h-100 rounded-3">
+                                <img class="rounded-3 mt-5" src="Images/redmi-note-13-pro-5g-colors.webp" alt="Redmi Note 13 Pro Cores">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row h-50">
+                        <div class="col-12">
+                            <div class="card h-100 rounded-3">
+                                <img class="rounded-3 p-2" src="Images/rn13-fingerprint.webp" alt="Redmi Note 13 Pro Caixa">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-5">
+                    <iframe
+                        class="ms-2" 
+                        width="650" 
+                        height="495" 
+                        src="https://www.youtube.com/embed/5J_PvUw_Yoo?si=ytc3Cbhlr8cViTwQ" 
+                        title="YouTube video player" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                        referrerpolicy="strict-origin-when-cross-origin" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+                <div class="row mt-5">
+                    <iframe 
+                        class="ms-2"
+                        width="650" 
+                        height="495" 
+                        src="https://www.youtube.com/embed/wr0RXjvZcxo?si=ahSD44W8KCJC__je" 
+                        title="YouTube video player" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                        referrerpolicy="strict-origin-when-cross-origin" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+   
+    <div class="specs rounded-3 col-6 mt-5">
+        <div class="card w-100">
+            <div class="card-body">
+                <div class="row">
+                    <div class="specs-col">
+                        <div class="d-flex justify-content-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-phone" viewBox="0 0 16 16">
+                                <path d="M11 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM5 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"/>
+                                <path d="M8 14a1 1 0 1 0 0-2 1 1 0 0 0 0 2"/>
+                            </svg>
+                        </div>
+                            
+                        <div class="row mt-2">
+                            <h3 class="d-flex justify-content-center main-description">6.67"</h3>
+                            <p class=" d-flex justify-content-center">1220x2712</p>
+                        </div>
+                    </div>
+                    <div class="specs-col">
+                        <div class="d-flex justify-content-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-camera" viewBox="0 0 16 16">
+                                <path d="M15 12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h1.172a3 3 0 0 0 2.12-.879l.83-.828A1 1 0 0 1 6.827 3h2.344a1 1 0 0 1 .707.293l.828.828A3 3 0 0 0 12.828 5H14a1 1 0 0 1 1 1zM2 4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-1.172a2 2 0 0 1-1.414-.586l-.828-.828A2 2 0 0 0 9.172 2H6.828a2 2 0 0 0-1.414.586l-.828.828A2 2 0 0 1 3.172 4z"/>
+                                <path d="M8 11a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5m0 1a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7M3 6.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0"/>
+                            </svg>
+                        </div>
+                            
+                        <div class="row mt-2">
+                            <h3 class="d-flex justify-content-center main-description">200 MP</h3>
+                            <p class=" d-flex justify-content-center">2160p</p>
+                        </div>
+                    </div>
+                    <div class="specs-col">
+                        <div class="d-flex justify-content-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-cpu" viewBox="0 0 16 16">
+                                <path d="M5 0a.5.5 0 0 1 .5.5V2h1V.5a.5.5 0 0 1 1 0V2h1V.5a.5.5 0 0 1 1 0V2h1V.5a.5.5 0 0 1 1 0V2A2.5 2.5 0 0 1 14 4.5h1.5a.5.5 0 0 1 0 1H14v1h1.5a.5.5 0 0 1 0 1H14v1h1.5a.5.5 0 0 1 0 1H14v1h1.5a.5.5 0 0 1 0 1H14a2.5 2.5 0 0 1-2.5 2.5v1.5a.5.5 0 0 1-1 0V14h-1v1.5a.5.5 0 0 1-1 0V14h-1v1.5a.5.5 0 0 1-1 0V14h-1v1.5a.5.5 0 0 1-1 0V14A2.5 2.5 0 0 1 2 11.5H.5a.5.5 0 0 1 0-1H2v-1H.5a.5.5 0 0 1 0-1H2v-1H.5a.5.5 0 0 1 0-1H2v-1H.5a.5.5 0 0 1 0-1H2A2.5 2.5 0 0 1 4.5 2V.5A.5.5 0 0 1 5 0m-.5 3A1.5 1.5 0 0 0 3 4.5v7A1.5 1.5 0 0 0 4.5 13h7a1.5 1.5 0 0 0 1.5-1.5v-7A1.5 1.5 0 0 0 11.5 3zM5 6.5A1.5 1.5 0 0 1 6.5 5h3A1.5 1.5 0 0 1 11 6.5v3A1.5 1.5 0 0 1 9.5 11h-3A1.5 1.5 0 0 1 5 9.5zM6.5 6a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5z"/>
+                            </svg>
+                        </div>
+                            
+                        <div class="row mt-2">
+                            <h3 class="d-flex justify-content-center main-description">SD 7s Gen 2</h3>
+                            <p class=" d-flex justify-content-center">8/16 GB RAM</p>
+                        </div>
+                    </div>
+                    <div class="specs-col">
+                        <div class="d-flex justify-content-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-battery-full" viewBox="0 0 16 16">
+                                <path d="M2 6h10v4H2z"/>
+                                <path d="M2 4a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm10 1a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1zm4 3a1.5 1.5 0 0 1-1.5 1.5v-3A1.5 1.5 0 0 1 16 8"/>
+                                </svg>
+                        </div>
+                            
+                        <div class="row mt-2">
+                            <h3 class="d-flex justify-content-center main-description">5100 mAh</h3>
+                            <p class=" d-flex justify-content-center">67W</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+          </div>
+          
+          <div class="card w-100 mt-2">
+            <div class="card-body">
+                <ul class="list-group list-group-flush">
+                    
+                    <li class="list-group-item">
+                        <div class="row">
+                            <div class="col-1">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-wifi" viewBox="0 0 16 16">
+                                    <path d="M15.384 6.115a.485.485 0 0 0-.047-.736A12.44 12.44 0 0 0 8 3C5.259 3 2.723 3.882.663 5.379a.485.485 0 0 0-.048.736.52.52 0 0 0 .668.05A11.45 11.45 0 0 1 8 4c2.507 0 4.827.802 6.716 2.164.205.148.49.13.668-.049"/>
+                                    <path d="M13.229 8.271a.482.482 0 0 0-.063-.745A9.46 9.46 0 0 0 8 6c-1.905 0-3.68.56-5.166 1.526a.48.48 0 0 0-.063.745.525.525 0 0 0 .652.065A8.46 8.46 0 0 1 8 7a8.46 8.46 0 0 1 4.576 1.336c.206.132.48.108.653-.065m-2.183 2.183c.226-.226.185-.605-.1-.75A6.5 6.5 0 0 0 8 9c-1.06 0-2.062.254-2.946.704-.285.145-.326.524-.1.75l.015.015c.16.16.407.19.611.09A5.5 5.5 0 0 1 8 10c.868 0 1.69.201 2.42.56.203.1.45.07.61-.091zM9.06 12.44c.196-.196.198-.52-.04-.66A2 2 0 0 0 8 11.5a2 2 0 0 0-1.02.28c-.238.14-.236.464-.04.66l.706.706a.5.5 0 0 0 .707 0l.707-.707z"/>
+                                </svg>
+                            </div>
+                            <div class="col-11 mt-1">
+                                <span class="specs-top">GSM / CDMA / HSPA / EVDO / LTE / 5G</span>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="list-group-item">
+                        <div class="row">
+                            <div class="col-1">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-rocket-takeoff" viewBox="0 0 16 16">
+                                    <path d="M9.752 6.193c.599.6 1.73.437 2.528-.362s.96-1.932.362-2.531c-.599-.6-1.73-.438-2.528.361-.798.8-.96 1.933-.362 2.532"/>
+                                    <path d="M15.811 3.312c-.363 1.534-1.334 3.626-3.64 6.218l-.24 2.408a2.56 2.56 0 0 1-.732 1.526L8.817 15.85a.51.51 0 0 1-.867-.434l.27-1.899c.04-.28-.013-.593-.131-.956a9 9 0 0 0-.249-.657l-.082-.202c-.815-.197-1.578-.662-2.191-1.277-.614-.615-1.079-1.379-1.275-2.195l-.203-.083a10 10 0 0 0-.655-.248c-.363-.119-.675-.172-.955-.132l-1.896.27A.51.51 0 0 1 .15 7.17l2.382-2.386c.41-.41.947-.67 1.524-.734h.006l2.4-.238C9.005 1.55 11.087.582 12.623.208c.89-.217 1.59-.232 2.08-.188.244.023.435.06.57.093q.1.026.16.045c.184.06.279.13.351.295l.029.073a3.5 3.5 0 0 1 .157.721c.055.485.051 1.178-.159 2.065m-4.828 7.475.04-.04-.107 1.081a1.54 1.54 0 0 1-.44.913l-1.298 1.3.054-.38c.072-.506-.034-.993-.172-1.418a9 9 0 0 0-.164-.45c.738-.065 1.462-.38 2.087-1.006M5.205 5c-.625.626-.94 1.351-1.004 2.09a9 9 0 0 0-.45-.164c-.424-.138-.91-.244-1.416-.172l-.38.054 1.3-1.3c.245-.246.566-.401.91-.44l1.08-.107zm9.406-3.961c-.38-.034-.967-.027-1.746.163-1.558.38-3.917 1.496-6.937 4.521-.62.62-.799 1.34-.687 2.051.107.676.483 1.362 1.048 1.928.564.565 1.25.941 1.924 1.049.71.112 1.429-.067 2.048-.688 3.079-3.083 4.192-5.444 4.556-6.987.183-.771.18-1.345.138-1.713a3 3 0 0 0-.045-.283 3 3 0 0 0-.3-.041Z"/>
+                                    <path d="M7.009 12.139a7.6 7.6 0 0 1-1.804-1.352A7.6 7.6 0 0 1 3.794 8.86c-1.102.992-1.965 5.054-1.839 5.18.125.126 3.936-.896 5.054-1.902Z"/>
+                                </svg>
+                            </div>
+                            <div class="col-11 mt-1">
+                                <span class="specs-top">21 Setembro de 2023</span>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="row">
+                            <div class="col-1">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-arrows-vertical" viewBox="0 0 16 16">
+                                    <path d="M8.354 14.854a.5.5 0 0 1-.708 0l-2-2a.5.5 0 0 1 .708-.708L7.5 13.293V2.707L6.354 3.854a.5.5 0 1 1-.708-.708l2-2a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1-.708.708L8.5 2.707v10.586l1.146-1.147a.5.5 0 0 1 .708.708z"/>
+                                  </svg>
+                            </div>
+                            <div class="col-11 mt-1">
+                                <span class="specs-top">161.2 x 74.2 x 8 mm (6.35 x 2.92 x 0.31 inches)</span>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="row">
+                            <div class="col-1">
+                                <img src="Images/weight.png" height="30" width="30">
+                            </div>
+                            <div class="col-11 mt-1">
+                                <span class="specs-top">187 g (6.60 ounce)</span>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="row">
+                            <div class="col-1 margin-phone-fill">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-phone-fill" viewBox="0 0 16 16">
+                                    <path d="M3 2a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2zm6 11a1 1 0 1 0-2 0 1 1 0 0 0 2 0"/>
+                                </svg>
+                            </div>
+                            <div class="col-11 mt-1">
+                                <span class="specs-top">
+                                    <ul class="ps-3">
+                                        <li>Vidro Frontal (Gorilla Glass Victus)</li>
+                                        <li>Moldura em Plástico</li>
+                                        <li>Vidro Traseiro</li>
+                                        <li>Resistência a água e poeira IP54</li>
+                                    </ul>
+                                </span>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="row">
+                            <div class="col-1 mt-4 pe-3">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-sim" viewBox="0 0 16 16">
+                                    <path d="M2 1.5A1.5 1.5 0 0 1 3.5 0h7.086a1.5 1.5 0 0 1 1.06.44l1.915 1.914A1.5 1.5 0 0 1 14 3.414V14.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 14.5zM3.5 1a.5.5 0 0 0-.5.5v13a.5.5 0 0 0 .5.5h9a.5.5 0 0 0 .5-.5V3.414a.5.5 0 0 0-.146-.353l-1.915-1.915A.5.5 0 0 0 10.586 1z"/>
+                                    <path d="M5.5 4a.5.5 0 0 0-.5.5V6h2.5V4zm3 0v2H11V4.5a.5.5 0 0 0-.5-.5zM11 7H5v2h6zm0 3H8.5v2h2a.5.5 0 0 0 .5-.5zm-3.5 2v-2H5v1.5a.5.5 0 0 0 .5.5zM4 4.5A1.5 1.5 0 0 1 5.5 3h5A1.5 1.5 0 0 1 12 4.5v7a1.5 1.5 0 0 1-1.5 1.5h-5A1.5 1.5 0 0 1 4 11.5z"/>
+                                </svg>
+                            </div>
+                            <div class="col-11 mt-1">
+                                <span class="specs-top">
+                                    <ul class="ps-3">
+                                        <li>Nano e-SIM e e-SIM internacional</li>
+                                        <li>Dual e-SIM com múltiplos números (EUA)</li>
+                                        <li>Dual SIM (Nano-SIM)</li>
+                                    </ul>
+                                </span>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="row">
+                            <div class="col-1 margin-phone-rn13 pe-3">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-phone" viewBox="0 0 16 16">
+                                    <path d="M11 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM5 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"/>
+                                    <path d="M8 14a1 1 0 1 0 0-2 1 1 0 0 0 0 2"/>
+                                </svg>
+                            </div>
+                            <div class="col-11 mt-1">
+                                <span class="specs-top">
+                                    <ul class="ps-3">
+                                        <li>6.67 polegadas, 107.4 cm<sup>2</sup> (~89.8% screen-to-body ratio)</li>
+                                        <li>1290 x 2796 pixels, 19.5:9 ratio (~460 ppi density)</li>
+                                        <li>AMOLED, 68B de cores</li>
+                                        <li>Refresh-Rate de 120Hz</li>
+                                        <li>HDR10</li>
+                                        <li>Dolby Vision</li>
+                                        <li>Brilho de 500 nits e máximo de 1800 nits</li>
+                                        <li>Always on Display</li>
+                                        <li>Sensor de impressões digitais no ecrã, ótico</li> 
+                                    </ul>
+                                </span>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="row">
+                            <div class="col-1 pe-3 mt-5">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-cpu" viewBox="0 0 16 16">
+                                    <path d="M5 0a.5.5 0 0 1 .5.5V2h1V.5a.5.5 0 0 1 1 0V2h1V.5a.5.5 0 0 1 1 0V2h1V.5a.5.5 0 0 1 1 0V2A2.5 2.5 0 0 1 14 4.5h1.5a.5.5 0 0 1 0 1H14v1h1.5a.5.5 0 0 1 0 1H14v1h1.5a.5.5 0 0 1 0 1H14v1h1.5a.5.5 0 0 1 0 1H14a2.5 2.5 0 0 1-2.5 2.5v1.5a.5.5 0 0 1-1 0V14h-1v1.5a.5.5 0 0 1-1 0V14h-1v1.5a.5.5 0 0 1-1 0V14h-1v1.5a.5.5 0 0 1-1 0V14A2.5 2.5 0 0 1 2 11.5H.5a.5.5 0 0 1 0-1H2v-1H.5a.5.5 0 0 1 0-1H2v-1H.5a.5.5 0 0 1 0-1H2v-1H.5a.5.5 0 0 1 0-1H2A2.5 2.5 0 0 1 4.5 2V.5A.5.5 0 0 1 5 0m-.5 3A1.5 1.5 0 0 0 3 4.5v7A1.5 1.5 0 0 0 4.5 13h7a1.5 1.5 0 0 0 1.5-1.5v-7A1.5 1.5 0 0 0 11.5 3zM5 6.5A1.5 1.5 0 0 1 6.5 5h3A1.5 1.5 0 0 1 11 6.5v3A1.5 1.5 0 0 1 9.5 11h-3A1.5 1.5 0 0 1 5 9.5zM6.5 6a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5z"/>
+                                </svg>
+                            </div>
+                            <div class="col-11 mt-1">
+                                <span class="specs-top">
+                                    <ul class="ps-3">
+                                        <li>HyperOS (Android 13), atualização para o Android 14</li>
+                                        <li>Snapdragon 7s Gen 2 (4nm)</li>
+                                        <li>Octa-Core (4x2.40 GHz + 4x1.95 GHz)</li>
+                                        <li>Adreno 710</li>
+                                        <li>8/16 GB RAM</li>
+                                    </ul>  
+                                </span>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="row">
+                            <div class="col-1 pe-3 margin-camera-rn13">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-camera" viewBox="0 0 16 16">
+                                    <path d="M15 12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h1.172a3 3 0 0 0 2.12-.879l.83-.828A1 1 0 0 1 6.827 3h2.344a1 1 0 0 1 .707.293l.828.828A3 3 0 0 0 12.828 5H14a1 1 0 0 1 1 1zM2 4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-1.172a2 2 0 0 1-1.414-.586l-.828-.828A2 2 0 0 0 9.172 2H6.828a2 2 0 0 0-1.414.586l-.828.828A2 2 0 0 1 3.172 4z"/>
+                                    <path d="M8 11a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5m0 1a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7M3 6.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0"/>
+                                </svg>
+                            </div>
+                            <div class="col-11 mt-1">
+                                <span class="specs-top">
+                                    <ul class="ps-3">
+                                        <li>200 MP, f/1.7, 23mm (wide), 1/1.4", 0.56µm, multi-directional PDAF, OIS</li>
+                                        <li>8 MP, f/2.2, 118˚ (ultrawide)</li>
+                                        <li>2 MP, f/2.4, (macro)</li>
+                                        <li>Dual-LED dual-tone flash, HDR, panorama</li>
+                                        <li>4K@30fps, 1080p@30/60/120fps, gyro-EIS</li>
+                                    </ul>  
+                                </span>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="row">
+                            <div class="col-1 pe-3 mt-4">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-webcam" viewBox="0 0 16 16">
+                                    <path d="M0 6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H9.269c.144.162.33.324.531.475a7 7 0 0 0 .907.57l.014.006.003.002A.5.5 0 0 1 10.5 13h-5a.5.5 0 0 1-.224-.947l.003-.002.014-.007a5 5 0 0 0 .268-.148 7 7 0 0 0 .639-.421c.2-.15.387-.313.531-.475H2a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V6a1 1 0 0 0-1-1z"/>
+                                    <path d="M8 6.5a1 1 0 1 0 0 2 1 1 0 0 0 0-2m-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0m7 0a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0"/>
+                                </svg>
+                            </div>
+                            <div class="col-11 mt-1">
+                                <span class="specs-top">
+                                    <ul class="ps-3">
+                                        <li>16 MP, f/2.4, (wide), 1/3.06", 1.0µm</li>
+                                        <li>HDR, panorama</li>
+                                        <li>1080p@30/60fps</li>
+                                    </ul>  
+                                </span>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="row">
+                            <div class="col-1 pe-3 mt-4">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-volume-up" viewBox="0 0 16 16">
+                                    <path d="M11.536 14.01A8.47 8.47 0 0 0 14.026 8a8.47 8.47 0 0 0-2.49-6.01l-.708.707A7.48 7.48 0 0 1 13.025 8c0 2.071-.84 3.946-2.197 5.303z"/>
+                                    <path d="M10.121 12.596A6.48 6.48 0 0 0 12.025 8a6.48 6.48 0 0 0-1.904-4.596l-.707.707A5.48 5.48 0 0 1 11.025 8a5.48 5.48 0 0 1-1.61 3.89z"/>
+                                    <path d="M10.025 8a4.5 4.5 0 0 1-1.318 3.182L8 10.475A3.5 3.5 0 0 0 9.025 8c0-.966-.392-1.841-1.025-2.475l.707-.707A4.5 4.5 0 0 1 10.025 8M7 4a.5.5 0 0 0-.812-.39L3.825 5.5H1.5A.5.5 0 0 0 1 6v4a.5.5 0 0 0 .5.5h2.325l2.363 1.89A.5.5 0 0 0 7 12zM4.312 6.39 6 5.04v5.92L4.312 9.61A.5.5 0 0 0 4 9.5H2v-3h2a.5.5 0 0 0 .312-.11"/>
+                                </svg>
+                            </div>
+                            <div class="col-11 mt-1">
+                                <span class="specs-top">
+                                    <ul class="ps-3">
+                                        <li>Stereo speakers</li>
+                                        <li>Com entrada 3.5mm jack</li>
+                                        <li>24-bit/192kHz Hi-Res & Hi-Res wireless audio</li>
+                                    </ul>  
+                                </span>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="row">
+                            <div class="col-1 pe-3 mt-5">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-wifi" viewBox="0 0 16 16">
+                                    <path d="M15.384 6.115a.485.485 0 0 0-.047-.736A12.44 12.44 0 0 0 8 3C5.259 3 2.723 3.882.663 5.379a.485.485 0 0 0-.048.736.52.52 0 0 0 .668.05A11.45 11.45 0 0 1 8 4c2.507 0 4.827.802 6.716 2.164.205.148.49.13.668-.049"/>
+                                    <path d="M13.229 8.271a.482.482 0 0 0-.063-.745A9.46 9.46 0 0 0 8 6c-1.905 0-3.68.56-5.166 1.526a.48.48 0 0 0-.063.745.525.525 0 0 0 .652.065A8.46 8.46 0 0 1 8 7a8.46 8.46 0 0 1 4.576 1.336c.206.132.48.108.653-.065m-2.183 2.183c.226-.226.185-.605-.1-.75A6.5 6.5 0 0 0 8 9c-1.06 0-2.062.254-2.946.704-.285.145-.326.524-.1.75l.015.015c.16.16.407.19.611.09A5.5 5.5 0 0 1 8 10c.868 0 1.69.201 2.42.56.203.1.45.07.61-.091zM9.06 12.44c.196-.196.198-.52-.04-.66A2 2 0 0 0 8 11.5a2 2 0 0 0-1.02.28c-.238.14-.236.464-.04.66l.706.706a.5.5 0 0 0 .707 0l.707-.707z"/>
+                                  </svg>
+                            </div>
+                            <div class="col-11 mt-1">
+                                <span class="specs-top">
+                                    <ul class="ps-3">
+                                        <li>Wi-Fi 802.11 a/b/g/n/ac, dual-band</li>
+                                        <li>Bluetooth 5.2, A2DP, LE</li>
+                                        <li>GPS, GLONASS, BDS (B1I+B1c), GALILEO, QZSS</li>
+                                        <li>NFC</li>
+                                        <li>Com IR</li>
+                                        <li>USB Type-C 2.0, OTG</li>
+                                    </ul>  
+                                </span>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="row">
+                            <div class="col-1 pe-3 mt-3">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-battery-full" viewBox="0 0 16 16">
+                                    <path d="M2 6h10v4H2z"/>
+                                    <path d="M2 4a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm10 1a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1zm4 3a1.5 1.5 0 0 1-1.5 1.5v-3A1.5 1.5 0 0 1 16 8"/>
+                                </svg>
+                            </div>
+                            <div class="col-11 mt-1">
+                                <span class="specs-top">
+                                    <ul class="ps-3">
+                                        <li>Li-Po 5100 mAh, non-removable</li>
+                                        <li>67W wired, PD3.0, 50% em 17 min, 100% em 44 min</li>
+                                    </ul>  
+                                </span>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="row">
+                            <div class="col-1 pe-3 mt-5">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-file-earmark" viewBox="0 0 16 16">
+                                    <path d="M14 4.5V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h5.5zm-3 0A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5z"/>
+                                </svg>
+                            </div>
+                            <div class="col-11 mt-1">
+                                <span class="specs-top">
+                                    <ul class="ps-3">
+                                        <li>AnTuTu: 523746 (v9), 581979 (v10)</li>
+                                        <li>GeekBench: 2695 (v5), 2751 (v6)</li>
+                                        <li>GPS (L1+L5), GLONASS, GALILEO, BDS, QZSS, NavIC</li>
+                                        <li>-26.0 LUFS (Very good)</li>
+                                        <li>Uso ativo: 10:16h</li>
+                                    </ul>  
+                                </span>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+          </div>
+    </div>
+</div>
+
+
+
+<!-- FOOTER -->
+<div class="mt-5 p-4 bg-light text-dark container-fluid" style="width:100%">
+    <div class="row">
+      <div class="col-md-3 footer">
+        <h5>APOIO AO CLIENTE</h5>
+        <ul class="footer-col">
+          <li class="footer-list"><a class="nav-link" href="#">Centro de Ajuda</a></li>
+          <li class="footer-list"><a class="nav-link" href="#">Envio de Encomendas e Portes</a></li>
+          <li class="footer-list"><a class="nav-link" href="#">Trocas e Devoluções</a></li>
+          <li class="footer-list"><a class="nav-link" href="#">Garantia e RMAs</a></li>
+          <li class="footer-list"><a class="nav-link" href="#">Modos de Pagamento</a></li>
+        </ul>
+      </div>
+      <div class="col-md-3 footer">
+        <h5>INFORMAÇÃO LEGAL</h5>
+        <ul>
+          <li class="footer-list"><a class="nav-link" href="#">Política de Privacidade</a></li>
+          <li class="footer-list"><a class="nav-link" href="#">Política de Cookies</a></li>
+        </ul>
+      </div>
+      <div class="col-md-3 footer">
+        <h5>LINKS ÚTEIS</h5>
+        <ul>
+          <li class="footer-list"><a class="nav-link" href="#">Área de Cliente</a></li>
+        </ul>
+      </div>
+      <div class="col-md-3 footer">
+        <h5>Sobre</h5>
+        <ul>
+          <li class="footer-list"><a class="nav-link" href="#">Sobre Nós</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  
+  </body>
+  </html>
+  

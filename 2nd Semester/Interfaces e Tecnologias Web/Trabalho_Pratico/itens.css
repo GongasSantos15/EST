@@ -13,8 +13,8 @@
 }
 
 .specs-col {
-    width: 215px;
-    height: 120px
+    width: 170px;
+    height: 120px;
 }
 
 .margin-icon {
@@ -98,4 +98,12 @@
 
 .margin-camera-rn13 {
     margin-top: 7%;
+}
+
+.margin-tv-connect {
+    margin-top: 12%;
+}
+
+.margin-ps5-connect {
+    margin-top: 10%;
 }

@@ -104,11 +104,10 @@ color: black;
   }
   
   .min-box, .max-box {
-    width: 30%;
+    width: 38%;
   }
   
   .min-box {
-    padding-right: .5rem;
     margin-right: .5rem; 
   }
   
@@ -137,8 +136,8 @@ color: black;
   }
   
   .input-field {
-    margin-left: -1px;
-    padding: .425rem ;
+    margin-left: -0.5px;
+    padding: .425rem;
     font-size: 0.8125rem;
     border-radius: .25rem;
     position: relative;
