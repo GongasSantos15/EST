@@ -58,8 +58,8 @@ public class Ticket {
 		return pagamento != null;
 	}
 	
-	/** retorna quanto tempo se passou, em minutos, desde que foi pago. <br>Se ainda não foi pago retorna -1.
-	 * @return quantos minutos passsaram desde que pagou ou -1 se ainda não pagou
+	/** retorna quanto tempo se passou, em minutos, desde que foi pago. <br>Se ainda não foi pago o método não pode ser chamado.
+	 * @return quantos minutos passsaram desde que pagou
 	 */
 	public long tempoAposPagamento() {
 		// TODO FEITO implementar este método
