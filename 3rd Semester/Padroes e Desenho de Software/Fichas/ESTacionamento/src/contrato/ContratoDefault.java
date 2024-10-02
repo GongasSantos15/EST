@@ -1,33 +1,34 @@
 package contrato;
 
+
 /* ---------------------------------------------------------------------------- IMPORTS -------------------------------------------------------------------------------- */
-import java.time.LocalTime;
+import java.time.LocalDateTime;
 import java.util.Objects;
+import estacionamento.ESTacionamento;
 import estacionamento.Ticket;
 
 public abstract class ContratoDefault implements Contrato {
 
-	public static final int CUSTO_FRACAO = 10;
-	public static final int TEMPO_FRACAO = 15;
 	/* ------------------------------------------------------------------------ VARIÁVEIS ------------------------------------------------------------------------------ */
 	private String matricula;
-	/* ------------------------------------------------------------------------ CONSTRUTOR ----------------------------------------------------------------------------- */
 	
+	/* ------------------------------------------------------------------------ CONSTRUTOR ----------------------------------------------------------------------------- */
 	public ContratoDefault(String matricula) {
 		this.matricula = Objects.requireNonNull( matricula );
 	}
 
+	/* -------------------------------------------------------------------------- MÉTODOS ------------------------------------------------------------------------------ */
 	@Override
 	public long calcularCusto(Ticket t) {
 		long tempoEstacionamento = t.tempoAposEntrada();
-		return ((tempoEstacionamento % TEMPO_FRACAO == 0 ? 0 : 1) + (tempoEstacionamento / TEMPO_FRACAO)) * CUSTO_FRACAO;
+		return ((tempoEstacionamento % ESTacionamento.TEMPO_FRACAO == 0 ? 0 : 1) + (tempoEstacionamento / ESTacionamento.TEMPO_FRACAO)) * ESTacionamento.CUSTO_FRACAO;
 	}
 
 	@Override
 	public void pagar(Ticket t) {
 		if (t.estaPago() )
-			throw new TicketPagoException();
-		t.setPagamento( LocalTime.now() );
+			throw new PagamentoTicketException();
+		t.setPagamento( LocalDateTime.now() );
 		t.setCusto( calcularCusto(t) );
 
 	}
@@ -36,13 +37,17 @@ public abstract class ContratoDefault implements Contrato {
 	// método da forma correta em cada classe
 
 	@Override
-	public void sair(Ticket t) {
-		t.setSaida( LocalTime.now() );
+	public void sair(Ticket t) throws TempoExcedidoException {
+		t.setSaida( LocalDateTime.now() );
 	}
 
 	@Override
 	public String getMatricula() {
 		return matricula;
+	}
+	
+	protected boolean excedeuTempoSaida(Ticket t) {
+		return t.tempoAposPagamento() > ESTacionamento.TEMPO_RETIRADA;
 	}
 
 }

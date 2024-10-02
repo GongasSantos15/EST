@@ -10,6 +10,10 @@ public class ESTacionamento {
 	
 	private int lugaresOcupados = 0;
 	
+	public static final int TEMPO_RETIRADA = 10;
+	public static final int CUSTO_FRACAO = 10;
+	public static final int TEMPO_FRACAO = 15;
+	
 	public ESTacionamento() {		
 	}
 

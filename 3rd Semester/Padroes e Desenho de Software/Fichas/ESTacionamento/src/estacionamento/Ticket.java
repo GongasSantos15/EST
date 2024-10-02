@@ -2,7 +2,7 @@ package estacionamento;
 
 /* ---------------------------------------------------------------------------- IMPORTS -------------------------------------------------------------------------------- */
 
-import java.time.LocalTime;
+import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.Objects;
 import contrato.Contrato;
@@ -14,16 +14,16 @@ public class Ticket {
 	/* ------------------------------------------------------------------------ VARIÁVEIS ------------------------------------------------------------------------------ */
 	
 	private String matricula;
-	private LocalTime entrada;
-	private LocalTime pagamento;
-	private LocalTime saida;
+	private LocalDateTime entrada;
+	private LocalDateTime pagamento;
+	private LocalDateTime saida;
 	private long custo;
 	private Contrato contrato;
 	
 	/* ------------------------------------------------------------------------ CONSTRUTOR ----------------------------------------------------------------------------- */
 	
 	// Ticket com a hora a introduzir
-	public Ticket(String matricula, Contrato contrato, LocalTime entrada) {
+	public Ticket(String matricula, Contrato contrato, LocalDateTime entrada) {
 		
 		// Verificar se as variáveis introduzidas pelo utilizador são nulas
 		this.matricula = Objects.requireNonNull( matricula );
@@ -36,7 +36,7 @@ public class Ticket {
 	
 	// Ticket com a hora atual, definida pelo sistema
 	public Ticket(String matricula, Contrato contrato) {
-		this( matricula, contrato, LocalTime.now() );
+		this( matricula, contrato, LocalDateTime.now() );
 	}
 
 	/* -------------------------------------------------------------------------- MÉTODOS ------------------------------------------------------------------------------ */
@@ -47,7 +47,7 @@ public class Ticket {
 	public long tempoAposEntrada() {
 		// TODO FEITO implementar este método
 		// return  entrada.until(LocalTime.now(), ChronoUnit.MINUTES);
-		return ChronoUnit.MINUTES.between( entrada, LocalTime.now() );
+		return ChronoUnit.MINUTES.between( entrada, LocalDateTime.now() );
 	}
 	
 	/** Indica se o ticket já está pago
@@ -63,16 +63,16 @@ public class Ticket {
 	 */
 	public long tempoAposPagamento() {
 		// TODO FEITO implementar este método
-		return ChronoUnit.MINUTES.between( pagamento, LocalTime.now() );
+		return ChronoUnit.MINUTES.between( pagamento, LocalDateTime.now() );
 	}
 	
 	/* ---------------------------------------------------------------------- GETTERS E SETTERS ----------------------------------------------------------------------- */
 	
-	public LocalTime getPagamento() {
+	public LocalDateTime getPagamento() {
 		return pagamento;
 	}
 
-	public void setPagamento(LocalTime pagamento) {
+	public void setPagamento(LocalDateTime pagamento) {
 		
 		// Objects.requireNonNull( pagamento );
 		if( pagamento.isBefore(entrada) )
@@ -80,11 +80,11 @@ public class Ticket {
 		this.pagamento = pagamento;
 	}
 
-	public LocalTime getSaida() {
+	public LocalDateTime getSaida() {
 		return saida;
 	}
 
-	public void setSaida(LocalTime saida) {
+	public void setSaida(LocalDateTime saida) {
 		if ( !estaPago() || saida.isBefore(pagamento) )
 			throw new IllegalArgumentException( "Saída antes do pagamento" );
 		this.saida = saida;
@@ -104,7 +104,7 @@ public class Ticket {
 		return matricula;
 	}
 
-	public LocalTime getEntrada() {
+	public LocalDateTime getEntrada() {
 		return entrada;
 	}
 

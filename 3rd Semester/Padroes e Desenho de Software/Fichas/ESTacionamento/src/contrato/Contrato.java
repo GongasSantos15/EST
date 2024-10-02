@@ -22,8 +22,9 @@ public interface Contrato {
 	
 	/** procedimento para sair do parque
 	 * @param t ticket a sair
+	 * @throws TempoExcedidoException 
 	 */
-	public void sair( Ticket t );
+	public void sair( Ticket t ) throws TempoExcedidoException;
 	
 	/** indica qual o valor a pagar no final do mês
 	 * @return qual o valor a pagar no final do mês
