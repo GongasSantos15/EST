@@ -121,3 +121,7 @@ def substitui_vogais(palavra):
             nova += x
         
     return nova
+
+""" PROBLEMA 4.2 - Os numerologistas afirmam que são capazes de determinar os traços de personalidade de uma pessoa através do valor numérico do seu 
+nome. Este valor obtém-se somando o índice alfabético dos caracteres do nome. Por exemplo, o ’a’ vale 1 , o ’b’, vale 2, . . . , o ’z’ vale 26. Escreva 
+um programa que determine o valor numérico de um nome formado por uma só palavra contendo apenas caracteres minúsculos. """
