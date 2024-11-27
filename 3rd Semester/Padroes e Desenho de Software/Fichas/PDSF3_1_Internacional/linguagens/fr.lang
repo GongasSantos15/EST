@@ -1,0 +1,61 @@
+Français (France)
+# Tradução feita por Valentim Gomes
+TITLE=Ventes et peu importe, SARL
+FILE=Fichier
+NEW=Nouveau...
+NEWHINT=Nouveau document
+OPEN=Ouvrir...
+OPENHINT=Ouvrir document
+SAVE=Enregister
+SAVEHINT=Sauvegarder document
+SAVEAS=Sauvegarder comme...
+EXIT=Fermer
+EDIT=Éditer
+UNDO=Annuler
+UNDOHINT=Annuler dernière instruction
+REDO=Rehacer
+REDOHINT=Répéter dernière instruction
+CUT=Couper
+COPY=Copier
+PASTE=Coller
+CONFIGURE=Réglages
+LANGUAGE=Langue ...
+HELP=Aide
+ABOUT=Sur le logiciel
+
+OK=Accepter
+CANCEL=Annuler
+
+MANAGING=Gestion
+OUTPROD=Sortie de produit...
+INPROD=Entrée de produit...
+NEWPROD=Nouveau produit...
+
+#-- Definicao dos dialogos --
+#- Lingua -
+LANGDIALOG=Définir la langue
+LANGCHOOSE=Choisissez la langue
+LANGNEWEXECUTION=Les changements prennent effet dans la prochaine exécution
+
+#-- diálogo saída de produto
+OUTMENU_TITLE=Sortie de produit
+PROD_ID=Id du produit:
+QUANTITY=Quantité
+DESCRIPTION=Description
+QUANT_POS=La quantité doit être positive
+NO_STOCK=I'll y a pas de stock pour la demande
+QUANT_NUM=La quantité doit être un número
+NO_STOCKREFILL=Ce produit ne permet pas le réapprovisionnement des stocks
+NO_STOCKREMOVE=Ce produit ne permet pas de déstockage
+ID_NUM=Le ID doit être un número
+NO_PRODUCT=Le produit n'existe pas!
+
+
+#-- diálogo entrada de produto
+NEWPROD_TITLE=Nouveau produit
+SALE_PRICE=Prix de vente:
+RETAIL_PRICE=Prix de revient:
+EMPTY_DESC=La description ne peut pas être vide
+SAME_PROD=Produit existant
+PRICE_QUANT_POS=Les prix et quantités doivent être positifs
+PRICE_QUANT_NUM=Les prix et les quantités doivent être des nombres entiers

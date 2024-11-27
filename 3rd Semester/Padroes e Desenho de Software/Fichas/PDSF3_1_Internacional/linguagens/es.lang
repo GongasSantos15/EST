@@ -1,0 +1,61 @@
+Español (españa)
+# Tradução feita por Margarida Ventura
+TITLE=Ventas y Sea lo que Sea, S.L.
+FILE=Archivo
+NEW=Nuevo...
+NEWHINT=Nuevo documento
+OPEN=Abrir...
+OPENHINT=Abrir documento
+SAVE=Grabar
+SAVEHINT=Guardar documento
+SAVEAS=Grabar como...
+EXIT=Salir
+EDIT=Editar
+UNDO=Deshacer
+UNDOHINT=Deshacer última instrucción
+REDO=Rehacer
+REDOHINT=Rehacer última instrucción
+CUT=Cortar
+COPY=Copiar
+PASTE=Pegar
+CONFIGURE=Configurar
+LANGUAGE=Lenguaje ...
+HELP=Ayuda
+ABOUT=Acerca de
+
+OK=Aceptar
+CANCEL=Cancelar
+
+MANAGING=Gestión
+OUTPROD=Salida del producto...
+INPROD=Entrada del producto...
+NEWPROD=Nuevo producto...
+
+#-- Definicao dos dialogos --
+#- Lingua -
+LANGDIALOG=Definir Lenguaje
+LANGCHOOSE=Elegir Lenguaje
+LANGNEWEXECUTION=Los cambios tendrán efecto en la práxima ejecución
+
+#-- diálogo saída de produto
+OUTMENU_TITLE=Salida del producto
+PROD_ID=Id del producto: 
+QUANTITY=Cantidad
+DESCRIPTION=Descripción
+QUANT_POS=La cantidad tiene que ser positiva
+NO_STOCK=No hay stock para esta solicitud
+QUANT_NUM=La cuantía debe ser un número
+NO_STOCKREFILL=Este producto no permite el reabastecimiento de stock
+NO_STOCKREMOVE=Este producto no permite la reducción de stock
+ID_NUM=El ID debe ser un número
+NO_PRODUCT=El producto no existe
+
+
+#-- diálogo entrada de produto
+NEWPROD_TITLE=Menú nuevo producto
+SALE_PRICE=Precio de venta: 
+RETAIL_PRICE=Precio de coste: 
+EMPTY_DESC=La descripción no puede estar vacía
+SAME_PROD=Producto ya existe
+PRICE_QUANT_POS=Los precios y cantidades deben ser positivos
+PRICE_QUANT_NUM=Los precios y cantidades deben ser números enteros

@@ -1,0 +1,60 @@
+English (UK)
+TITLE=Sells & Whatever, Lda
+FILE=File
+NEW=New...
+NEWHINT=New document
+OPEN=Open...
+OPENHINT=Open document
+SAVE=Save
+SAVEHINT=Save document
+SAVEAS=Save as...
+EXIT=Exit
+EDIT=Edit
+UNDO=Undo
+UNDOHINT=Undo last command
+REDO=Redo
+REDOHINT=redo last command
+CUT=Cut
+COPY=Copy
+PASTE=Paste
+CONFIGURE=Config
+LANGUAGE=Language ...
+HELP=Help
+ABOUT=About
+
+OK=OK
+CANCEL=Cancel
+
+MANAGING=Managing
+OUTPROD=Product out...
+INPROD=Product in...
+NEWPROD=New product...
+
+#-- Definicao dos dialogos --
+#- Lingua -
+LANGDIALOG=Define Language
+LANGCHOOSE=Choose Language
+LANGNEWEXECUTION=Changes will be in effect in next execution
+
+#-- diálogo entrada/saída de produto
+OUTMENU_TITLE=Product out
+INMENU_TITLE=Product in
+PROD_ID=Product ID: 
+QUANTITY=Quantity
+DESCRIPTION=Description
+QUANT_POS=Quantity must be a positive number
+NO_STOCK=No stock to satisfy this request
+QUANT_NUM=Amount must be a number
+NO_STOCKREFILL=This product does not allow stock refill
+NO_STOCKREMOVE=This product does not allow stock reduction
+ID_NUM=ID must be a number
+NO_PRODUCT=Product does not exist
+
+#-- diálogo criação de produto
+NEWPROD_TITLE=New Product Menu
+SALE_PRICE=Sale price: 
+RETAIL_PRICE=retail price: 
+EMPTY_DESC=Description cannot be empty
+SAME_PROD=Product already exists
+PRICE_QUANT_POS=Prices and quantities must be positive
+PRICE_QUANT_NUM=Prices and quantities must be numbers

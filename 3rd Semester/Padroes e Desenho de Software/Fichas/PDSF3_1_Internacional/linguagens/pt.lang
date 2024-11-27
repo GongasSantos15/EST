@@ -1,0 +1,72 @@
+Português (portugal)
+# Na primeira linha deve aparecer o nome da linguagem que está descrita neste ficheiro
+# Nas restantes estão pares de chaves e valores no formato: chave=valor
+# As chaves representam o nome pela qual o texto é utilizado dentro da aplicação
+# O valor representa o texto que deve ser colocado na aplicação
+# A classe LanguageLocale é reponsável por ler estes ficheiros
+# ATENÇÃO: Para que isto funcione bem as chaves não podem ter qualquer espaço no nome
+#          recomenda-se que os nomes das chaves sejam em maiúsculas 
+#          Os valores devem começar imediatamente após o = e podem conter espaços
+# As linhas de comentário são ignoradas pelo leitor do ficheiro mas o sinal de comentário #
+# deve ser o primeiro caracter da linha
+#
+#Menus da janela principal
+TITLE=Vendas & Cia, S.A.
+FILE=Ficheiro
+NEW=Novo...
+NEWHINT=Novo documento
+OPEN=Abrir...
+OPENHINT=Abrir documento
+SAVE=Gravar
+SAVEHINT=Gravar documento
+SAVEAS=Gravar como...
+EXIT=Sair
+EDIT=Editar
+UNDO=Desfazer
+UNDOHINT=Desfazer último comando
+REDO=Refazer
+REDOHINT=Refazer último comando
+CUT=Cortar
+COPY=Copiar
+PASTE=Colar
+CONFIGURE=Configurar
+LANGUAGE=Linguagem ...
+HELP=Ajuda
+ABOUT=Sobre
+
+OK=OK
+CANCEL=Cancelar
+
+MANAGING=Gestão
+OUTPROD=Saida de produto...
+INPROD=Entrada de produto...
+NEWPROD=Novo produto simples...
+
+#-- Definicao dos diálogos --
+#- Lingua -
+LANGDIALOG=Definir Linguagem
+LANGCHOOSE=Escolher Linguagem
+LANGNEWEXECUTION=As alterações terão efeito na próxima execução
+
+#-- diálogo sa�da de produto
+OUTMENU_TITLE=Saída de produto
+PROD_ID=Id do produto: 
+QUANTITY=Quantidade
+DESCRIPTION=Descrição
+QUANT_POS=quantidade tem de ser positiva
+NO_STOCK=Não há stock para esse pedido
+QUANT_NUM=Quantia tem de ser um número
+NO_STOCKREFILL=Este produto não admite renovações de stock
+NO_STOCKREMOVE=Este produto não admite removações de stock
+ID_NUM=ID tem de ser um número
+NO_PRODUCT=Produto não existe
+
+
+#-- diálogo entrada de produto
+NEWPROD_TITLE=Menu novo produto
+SALE_PRICE=Preço de venda: 
+RETAIL_PRICE=Preço de custo: 
+EMPTY_DESC=Descrição não pode estar vazia
+SAME_PROD=Produto já existe
+PRICE_QUANT_POS=Preços e quantidades têm de ser positivos
+PRICE_QUANT_NUM=Preços e quantidades têm de ser números inteiros
