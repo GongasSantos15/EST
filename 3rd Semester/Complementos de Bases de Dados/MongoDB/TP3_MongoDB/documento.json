@@ -1,0 +1,4 @@
+[
+    {"id": 5, "nome_funcionario": "Carlos", "data_nascimento": "2000.01.05", "contatos_telefonicos": 919119115},
+    {"id": 6, "nome_funcionario": "Catarina", "data_nascimento": "2000.01.06", "contatos_telefonicos": 919119116}
+]
