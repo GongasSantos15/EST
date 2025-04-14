@@ -9,7 +9,7 @@ Aqui estão alguns links que te podem ajudar!
 - http://php.net/manual/en/function.fclose.php
 
 1. Crie um ficheiro de nome lusiadas.txt com a primeira estrofe do canto I dos Lusíadas (usando programação PHP):
-  1. As armas e os barões assinalados.
+     As armas e os barões assinalados.
      Que da ocidental praia Lusitana.
      Por mares nunca de antes navegados.
      Passaram ainda além da Taprobana.
@@ -22,7 +22,7 @@ Para a resolução deste exercício recomenda-se o uso das seguintes funções:
 - `fopen()` (usando o modo de abertura “w”)
 
 2. Acrescente ao ficheiro lusiadas.txt a terceira estrofe do canto I dos Lusíadas (usando programação PHP):
-  1. Cessem do sábio Grego e do Troiano.
+     Cessem do sábio Grego e do Troiano.
      As navegações grandes que fizeram.
      Cale-se de Alexandro e de Trajano.
      A fama das vitórias que tiveram.
@@ -36,7 +36,7 @@ Para a resolução deste exercício recomenda-se o uso das seguintes funções:
 - `fwrite()`, fputs() ou fprintf(), entre outras;
 
 3. Acrescente ao ficheiro lusiadas.txt a segunda estrofe do canto I dos Lusíadas, na posição correcta (usando programação PHP):
-   1. E também as memórias gloriosas.
+      E também as memórias gloriosas.
       Daqueles Reis, que foram dilatando.
       A Fé, o Império, e as terras viciosas.
       De África e de Ásia andaram devastando.
@@ -48,7 +48,7 @@ Para a resolução deste exercício recomenda-se o uso das seguintes funções:
 **NOTA:** Atendendo que não é possível acrescentar “conteúdo a meio de um ficheiro”, deve ser usado um ficheiro temporário para copiar a primeira parte, de seguida acrescentar o referido “conteúdo a meio de um ficheiro” e finalmente copiar a parte final.
 
 4. Escreva um script PHP para ler e mostrar o conteúdo do ficheiro lusiadas.txt anteriormente criado. O conteúdo deve ser o seguinte:
-   1. As armas e os barões assinalados.
+      As armas e os barões assinalados.
       Que da ocidental praia Lusitana.
       Por mares nunca de antes navegados.
       Passaram ainda além da Taprobana.
