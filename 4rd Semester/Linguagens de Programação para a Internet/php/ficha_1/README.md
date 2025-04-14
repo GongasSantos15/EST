@@ -21,5 +21,3 @@ Para verificar se o XAMPP ficou bem instalado e se o start foi realizado, pode a
        3 é primo<br>
        5 é primo<br>
        Total = 3 números primos menores que 7.
-
-<br>
