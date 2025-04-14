@@ -6,6 +6,7 @@ Para uma consulta rápida sobre tags html recomenda-se:
   - http://www.web-source.net/html_codes_chart.htm#.UwOCTmRdXoE
   - https://www.w3schools.com/tags/
 
+
 1. Escreva uma página HTML com um texto, por exemplo “Texto em Times New Roman”, na fonte “Times New Roman” tamanho 5 e cor vermelha.
 2. Escreva uma página HTML com que permita a escolha de apenas uma cor, sendo as possibilidades: Verde, Vermelho, Preto, Azul. A cor Verde deve estar previamente escolhida.
 3. Escreva uma página HTML que permita a escolha de várias cores (sendo as possibilidades: Verde, Vermelho, Preto, Azul). A cor Verde deve estar previamente escolhida.
