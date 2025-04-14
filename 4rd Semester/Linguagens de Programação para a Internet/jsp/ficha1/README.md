@@ -9,9 +9,9 @@ Implemente as seguintes tarefas (cada exercício deve ser um ficheiro separado):
   3. Crie uma página JSP_f1_ex03.htm (um formulário HTML) que receba através de caixas de texto um nome e uma idade. Esses dados serão passados (experimente os métodos GET e POST) para outra página, JSP_f1_ex03.jsp, que deverá verificar se a idade é maior ou igual a 18. O script exibirá nesta segunda página (JSP_f1_ex03.jsp) a seguinte mensagem: <nome> “pode votar” ou <nome> “não pode votar”, conforme o caso.
   4. Um script que receba um número (fornecido pelo utilizador, através de um formulário HTML) e mostre todos os número primos menores que esse número e o total de números encontrado. Por exemplo, se o número for 7, deverá mostrar:<br>
   
-    2 é primo<br>
-    3 é primo<br>
-    5 é primo<br>
+    2 é primo
+    3 é primo
+    5 é primo
     Total = 3 números primos menores que 7.
     
 <br>
