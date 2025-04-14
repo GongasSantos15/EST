@@ -1,8 +1,6 @@
 # Ficha Prática de PHP nº 05 (PHP+Sessions+MySQL)
 
-**NOTA:** parte do código disponibilizado para esta ficha foi desenvolvido pelos alunos: fpedro@ipcbcampus.pt; e nelson.farinha@ipcbcampus.pt, no âmbito da UC “Linguagens de Programação para a Internet” do curso de Licenciatura em Eng. Informática.
-
-1. O código disponibilizado no ficheiro “php_ficha06_files.zip” tem apenas alguns scripts/páginas de um projecto para “aluguer de cabanas de um parque de campismo”.
+1. O código disponibilizado no ficheiro “php_ficha05_files.zip” tem apenas alguns scripts/páginas de um projecto para “aluguer de cabanas de um parque de campismo”.
 2. Deve descompactar o ficheiro “php_ficha05_files.zip” para uma sub-directoria dentro do c:/xampp/htdocs, por exemplo, “ficha05”.
 3. Antes de executar o código php, tem que importar a base de dados para o MySQL.
 4. Verifique que a base de dados “3vago” e respectivas tabelas foram criadas:
