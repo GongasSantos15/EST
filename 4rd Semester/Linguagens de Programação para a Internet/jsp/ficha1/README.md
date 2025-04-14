@@ -12,6 +12,8 @@ Implemente as seguintes tarefas (cada exercício deve ser um ficheiro separado):
     2 é primo<br>
     3 é primo<br>
     5 é primo<br>
-    Total = 3 números primos menores que 7.<br>
+    Total = 3 números primos menores que 7.
+    
+<br>
     
 5. Implemente a função factorial, de forma que o script apresente o factorial do número pedido ao utilizador (fornecido pelo utilizador, através de um formulário HTML).
