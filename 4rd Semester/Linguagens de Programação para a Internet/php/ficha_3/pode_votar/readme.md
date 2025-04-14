@@ -1,0 +1,2 @@
+Crie uma página f03_ex01.htm que receba através de caixas de texto um nome e uma idade. Esses dados serão passados (experimente os métodos
+GET e POST) para outra página, f03_ex01.php, que deverá verificar se a idade é maior ou igual a 18. O programa exibirá nesta segunda página a seguinte mensagem: <nome> “pode votar” ou <nome> “não pode votar”, conforme o caso.

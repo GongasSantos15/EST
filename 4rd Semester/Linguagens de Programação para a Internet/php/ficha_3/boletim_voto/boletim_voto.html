@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+    <meta charset="utf-8">
+    <form method="GET" action="boletim_voto.php">
+        Eleitor:
+        <input type="text" name="nome" />
+        
+        <fieldset>
+            Candidatos: <br>
+            <input type="checkbox" name="candidatos[]" value="Rafael" /> Rafael<br>
+            <input type="checkbox" name="candidatos[]" value="Maria" /> Maria<br>
+            <input type="checkbox" name="candidatos[]" value="Carlos" /> Carlos<br>
+            <input type="checkbox" name="candidatos[]" value="Joaquim" /> Joaquim<br>
+
+        </fieldset>
+        <br>
+        <input type="submit" value="Submeter" />
+    </form>
+</html>

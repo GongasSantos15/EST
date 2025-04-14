@@ -1,0 +1,14 @@
+<?php
+	//variavel que abre o ficheiro
+	$fp = fopen("o_meu_ficheiro.txt", "w");
+	
+	//Escrever no ficheiro aberto, com uma dada linha
+	fprintf($fp, "Uma linha do ficheiro\n");
+	
+	fclose($fp);
+	
+	$fp = fopen("o_meu_ficheiro.txt", "r");
+	
+	while ($linha = fgets($fp))
+		echo $linha."<br>";
+?>
