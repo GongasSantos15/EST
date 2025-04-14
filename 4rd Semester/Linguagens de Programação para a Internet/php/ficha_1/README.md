@@ -17,7 +17,7 @@ Para verificar se o XAMPP ficou bem instalado e se o start foi realizado, pode a
 4. Escreva uma função PHP que receba um número como parâmetro e que mostre todos os número primos menores que esse argumento e o total de números encontrados (use a função do exercício anterior). Por exemplo, se for passado
    um 7, deverá mostrar:<br>
    
-       2 é primo<br>
-       3 é primo<br>
-       5 é primo<br>
+       2 é primo
+       3 é primo
+       5 é primo
        Total = 3 números primos menores que 7.
