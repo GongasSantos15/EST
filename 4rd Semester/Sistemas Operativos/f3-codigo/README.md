@@ -11,7 +11,7 @@
           return 0;
         }
   
-  a) Compile e execute o executável resultante em background. `prompt$ <ficheiro_exe>&`
+  a) Compile e execute o executável resultante em background. `prompt$ <ficheiro_exe>&`<br>
   b) Execute o mesmo executável 3 vezes, do mesmo modo. De seguida, execute o comando ps.
 
 2. Altere o código ex21.c de modo que, antes da chamada ao sleep seja apresentado o PID do processo em execução (ficheiro ex22.c):
